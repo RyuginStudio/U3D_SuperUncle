@@ -83,6 +83,6 @@ public class MapEditor : MonoBehaviour
         }
 
         //坐标写死，将坐标系移至左下角
-        mapMaskGrid.transform.position = new Vector3(-8.574f, -3.683f, 0);
+        mapMaskGrid.transform.position = new Vector3(-7.3263f, -3.8268f, 0);
     }
 }
