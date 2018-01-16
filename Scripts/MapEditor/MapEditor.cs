@@ -60,8 +60,16 @@ public class MapEditor : MonoBehaviour
 
     public void drawBlock(Vector3 pos)
     {
-        Debug.Log("Pos: " + Camera.main.ScreenToWorldPoint(Input.mousePosition));
-        Instantiate(PrefabMapBlock[getSingleBlockChoice()], new Vector3(pos.x, pos.y, 0), new Quaternion(), mapEditor);
+        //Debug.Log("Pos: " + Camera.main.ScreenToWorldPoint(Input.mousePosition));
+
+        if (GameObject.Find(pos.ToString()))
+        {
+            //覆盖掉同位置的GameObject
+            Destroy(GameObject.Find(pos.ToString()));
+        }
+
+        var prefabBlock = Instantiate(PrefabMapBlock[getSingleBlockChoice()], new Vector3(pos.x, pos.y, 0), new Quaternion(), mapEditor);
+        prefabBlock.name = pos.ToString();
     }
 
     public void createMask(int row, int column)  //创建网格遮罩
