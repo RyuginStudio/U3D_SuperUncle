@@ -25,6 +25,8 @@ public class MapEditor : MonoBehaviour
         instance = this;
 
         createMask(16, 32);// row, column);
+
+        MapStructList = new List<MapStruct>();
     }
 
     // Update is called once per frame
@@ -40,6 +42,7 @@ public class MapEditor : MonoBehaviour
 
     public Toggle[] ToggleMapBlock;      //地图图块Toggle
     public GameObject[] PrefabMapBlock;  //地图图块Prefab
+    public List<MapStruct> MapStructList;  //存放地图图块的容器
 
     public int row;     //行
     public int column;  //列
@@ -69,7 +72,22 @@ public class MapEditor : MonoBehaviour
         }
 
         var prefabBlock = Instantiate(PrefabMapBlock[getSingleBlockChoice()], new Vector3(pos.x, pos.y, 0), new Quaternion(), mapEditor);
+
         prefabBlock.name = pos.ToString();
+    }
+
+    public void createMapBlock2MapStruct()
+    {
+        var mapBlockGroup = GameObject.FindGameObjectsWithTag("MapBlock");
+
+        foreach (var item in mapBlockGroup)
+        {
+            //创建地图图块数据结构
+            MapStruct mapBlock = new MapStruct(item.transform.position.x, item.transform.position.y, item.GetComponent<BlockType>().type);
+
+            MapStructList.Add(mapBlock);
+        }
+
     }
 
     public void createMask(int row, int column)  //创建网格遮罩

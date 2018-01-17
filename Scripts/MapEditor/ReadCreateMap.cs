@@ -10,6 +10,7 @@ using UnityEngine;
 using LitJson;
 using System.IO;
 using UnityEngine.UI;
+using System.Text;
 
 public class ReadCreateMap : MonoBehaviour
 {
@@ -27,10 +28,9 @@ public class ReadCreateMap : MonoBehaviour
 
     }
 
-    public void createMap(GameObject obj)
+    public void createMap()
     {
-        //Debug.Log("Create Map");
-        //var x = JsonMapper.ToJson(obj);
+        MapEditor.getInstance().createMapBlock2MapStruct();
 
         if (inputFiledName.text == "")
         {
@@ -38,12 +38,50 @@ public class ReadCreateMap : MonoBehaviour
         }
 
         string path = Application.dataPath + "//Resources/MapConfig/" + inputFiledName.text + ".json";
-        DirectoryInfo myDirectoryInfo = new DirectoryInfo(path);
-        File.Create(path);
 
-        if (myDirectoryInfo.Exists)
-            print("this file already exists!");
-        else print("create success!");
+
+        StringBuilder sb = new StringBuilder();
+        JsonWriter writer = new JsonWriter(sb);
+
+        writer.WriteObjectStart();
+
+        writer.WritePropertyName("MapBlocks");
+
+        writer.WriteArrayStart();
+
+        foreach (var item in MapEditor.getInstance().MapStructList)
+        {
+            //Debug.Log(MapEditor.getInstance().MapStructList.Count);
+            writer.WriteObjectStart();
+            writer.WritePropertyName("position.x");
+            writer.Write(item.x);
+            writer.WriteObjectEnd();
+            writer.WriteObjectStart();
+            writer.WritePropertyName("position.y");
+            writer.Write(item.y);
+            writer.WriteObjectEnd();
+            writer.WriteObjectStart();
+            writer.WritePropertyName("type");
+            writer.Write(item.type);
+            writer.WriteObjectEnd();
+        }
+
+        writer.WriteArrayEnd();
+
+        writer.WriteObjectEnd();
+
+
+        JsonData jd = JsonMapper.ToObject(sb.ToString());
+
+        JsonData jdItems = jd["MapBlocks"];
+
+        StreamWriter sw;
+        sw = File.CreateText(path);
+
+        //写入  
+        sw.WriteLine(sb);
+        //关闭  
+        sw.Close();
     }
 
     public void readMap()
