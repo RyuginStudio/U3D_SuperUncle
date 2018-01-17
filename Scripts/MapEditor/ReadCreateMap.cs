@@ -11,6 +11,7 @@ using LitJson;
 using System.IO;
 using UnityEngine.UI;
 using System.Text;
+using System;
 
 public class ReadCreateMap : MonoBehaviour
 {
@@ -28,13 +29,13 @@ public class ReadCreateMap : MonoBehaviour
 
     }
 
-    public void createMap()
+    public void createMap()  //写入地图
     {
         MapEditor.getInstance().createMapBlock2MapStruct();
 
         if (inputFiledName.text == "")
         {
-            inputFiledName.text = "随机命名：" + Random.Range(1, 99.9f).ToString();
+            inputFiledName.text = "随机命名：" + UnityEngine.Random.Range(1, 99.9f).ToString();
         }
 
         string path = Application.dataPath + "//Resources/MapConfig/" + inputFiledName.text + ".json";
@@ -55,12 +56,8 @@ public class ReadCreateMap : MonoBehaviour
             writer.WriteObjectStart();
             writer.WritePropertyName("position.x");
             writer.Write(item.x);
-            writer.WriteObjectEnd();
-            writer.WriteObjectStart();
             writer.WritePropertyName("position.y");
             writer.Write(item.y);
-            writer.WriteObjectEnd();
-            writer.WriteObjectStart();
             writer.WritePropertyName("type");
             writer.Write(item.type);
             writer.WriteObjectEnd();
@@ -84,18 +81,25 @@ public class ReadCreateMap : MonoBehaviour
         sw.Close();
     }
 
-    public void readMap()
+    public void readMap()  //读取已有地图
     {
         //Debug.Log("Read Map");
-        var JsonFile = Resources.Load(@"MapConfig/mapConfig") as TextAsset;
+        //ps: var JsonFile = Resources.Load(@"MapConfig/mapConfig") as TextAsset;
+        var JsonFile = Resources.Load(@"MapConfig/" + inputFiledName.text) as TextAsset;
         var JsonObj = JsonMapper.ToObject(JsonFile.text);
         var JsonItems = JsonObj["MapBlocks"];
 
         foreach (JsonData item in JsonItems)
         {
-            Debug.Log("x:" + item["position.x"]);
-            Debug.Log("y:" + item["position.y"]);
-            Debug.Log("type:" + item["type"]);
+            //Debug.Log("x:" + item["position.x"]);
+            //Debug.Log("y:" + item["position.y"]);
+            //Debug.Log("type:" + item["type"]);
+
+            var x = Convert.ToSingle(item["position.x"].ToString());
+            var y = Convert.ToSingle(item["position.y"].ToString());
+            var type = int.Parse(item["type"].ToString());
+
+            MapEditor.getInstance().drawBlock(new Vector3(x, y, 0), type);
         }
     }
 

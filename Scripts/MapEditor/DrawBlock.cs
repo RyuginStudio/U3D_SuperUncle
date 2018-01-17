@@ -27,7 +27,7 @@ public class DrawBlock : MonoBehaviour
 
     public void setBlockPos()
     {
-        MapEditor.getInstance().drawBlock(new Vector3(transform.position.x, transform.position.y, 0));
+        MapEditor.getInstance().drawBlock(new Vector3(transform.position.x, transform.position.y, 0), MapEditor.getInstance().getSingleBlockChoice());
     }
 
 }

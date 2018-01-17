@@ -61,17 +61,15 @@ public class MapEditor : MonoBehaviour
         return idx;
     }
 
-    public void drawBlock(Vector3 pos)
+    public void drawBlock(Vector3 pos, int type)
     {
-        //Debug.Log("Pos: " + Camera.main.ScreenToWorldPoint(Input.mousePosition));
-
         if (GameObject.Find(pos.ToString()))
         {
             //覆盖掉同位置的GameObject
             Destroy(GameObject.Find(pos.ToString()));
         }
 
-        var prefabBlock = Instantiate(PrefabMapBlock[getSingleBlockChoice()], new Vector3(pos.x, pos.y, 0), new Quaternion(), mapEditor);
+        var prefabBlock = Instantiate(PrefabMapBlock[type], new Vector3(pos.x, pos.y, 0), new Quaternion(), mapEditor);
 
         prefabBlock.name = pos.ToString();
     }
