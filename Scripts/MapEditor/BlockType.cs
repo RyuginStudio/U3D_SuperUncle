@@ -16,7 +16,7 @@ public class BlockType : MonoBehaviour
     void Start()
     {
         instance = this;
-        type = MapEditor.getInstance().getSingleBlockChoice();
+        //type = MapEditor.getInstance().getSingleBlockChoice();
     }
 
     // Update is called once per frame

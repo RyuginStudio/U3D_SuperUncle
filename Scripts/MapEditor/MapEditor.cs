@@ -72,6 +72,7 @@ public class MapEditor : MonoBehaviour
         var prefabBlock = Instantiate(PrefabMapBlock[type], new Vector3(pos.x, pos.y, 0), new Quaternion(), mapEditor);
 
         prefabBlock.name = pos.ToString();
+        prefabBlock.GetComponent<BlockType>().type = type;
     }
 
     public void createMapBlock2MapStruct()
