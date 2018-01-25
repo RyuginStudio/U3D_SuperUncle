@@ -15,12 +15,18 @@ using System;
 
 public class ReadCreateMap : MonoBehaviour
 {
+    private static ReadCreateMap instance;
+    public static ReadCreateMap getInstance()
+    {
+        return instance;
+    }
+
     public InputField inputFiledName;
 
     // Use this for initialization
     void Start()
     {
-
+        instance = this;
     }
 
     // Update is called once per frame
@@ -102,5 +108,4 @@ public class ReadCreateMap : MonoBehaviour
             MapEditor.getInstance().drawBlock(new Vector3(x, y, 0), type);
         }
     }
-
 }
