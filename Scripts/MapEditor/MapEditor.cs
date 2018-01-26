@@ -27,6 +27,9 @@ public class MapEditor : MonoBehaviour
         createMask(16, 32);// row, column);
 
         MapStructList = new List<MapStruct>();
+
+        //初始化
+        init();
     }
 
     // Update is called once per frame
@@ -38,28 +41,20 @@ public class MapEditor : MonoBehaviour
     public Transform mapEditor;
     public Transform mapMaskGrid;
 
-    public GameObject PrefabMask;        //图块遮罩
+    public GameObject PrefabMask;           //图块遮罩Prefab
 
-    public Toggle[] ToggleMapBlock;      //地图图块Toggle
-    public GameObject[] PrefabMapBlock;  //地图图块Prefab
-    public List<MapStruct> MapStructList;  //存放地图图块的容器
+    public ToggleGroup ToggleGroupBlock;    //存放toggle的group
+    public GameObject[] PrefabMapBlock;     //存放地图图块Prefab
+
+    public GameObject PrefabToggle;         //实例化该预制体组成ToggleGroup
+    public Transform ToggleGroup;           //存放上述预制体
+    public int toggleChoice;                //被选中的toggle
+
+    public List<MapStruct> MapStructList;   //存放地图图块的容器
 
     public int row;     //行
     public int column;  //列
 
-
-    public int getSingleBlockChoice()  //获取单一图块选择“索引值”
-    {
-        int idx = 0;
-
-        while (idx < ToggleMapBlock.Length)
-        {
-            if (ToggleMapBlock[idx].isOn)
-                break;
-            idx++;
-        }
-        return idx;
-    }
 
     public void drawBlock(Vector3 pos, int type)
     {
@@ -102,5 +97,32 @@ public class MapEditor : MonoBehaviour
 
         //坐标写死，将坐标系移至左下角
         mapMaskGrid.transform.position = new Vector3(-7.3263f, -3.8268f, 0);
+    }
+
+    public void init()
+    {
+        //图块prefab数组初始化（从prefab文件夹加载）
+        PrefabMapBlock = new GameObject[GameData.blockNum];
+        for (int i = 0; i < PrefabMapBlock.Length; i++)
+        {
+            PrefabMapBlock.SetValue(Resources.Load(@"Prefab/BlockPrefab/Ground_" + i.ToString()), i);
+        }
+
+        //图块toggleGroup初始化
+        for (int i = 0; i < GameData.blockNum; i++)
+        {
+            var toggle = Instantiate(PrefabToggle, ToggleGroup);
+
+            toggle.GetComponent<Toggle>().group = ToggleGroupBlock;
+
+            toggle.GetComponentInChildren<Image>().sprite = Resources.Load("Pictures/Block/Ground/Ground_" + i.ToString(), typeof(Sprite)) as Sprite;
+
+            if (i == 0)
+                toggle.GetComponent<Toggle>().isOn = true;
+
+            toggle.name = i.ToString();
+        }
+
+
     }
 }

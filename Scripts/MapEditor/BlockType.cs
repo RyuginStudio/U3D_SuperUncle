@@ -26,6 +26,4 @@ public class BlockType : MonoBehaviour
     }
 
     public int type;
-
-
 }

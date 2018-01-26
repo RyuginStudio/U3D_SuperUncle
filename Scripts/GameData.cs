@@ -25,7 +25,8 @@ public class GameData : MonoBehaviour
 
     //===========================游戏数据===========================//
 
-    public static int mapIdx = 2;  //地图关卡索引
+    public static int mapIdx = 2;      //地图关卡索引
+    public static int blockNum = 247;  //地图图块数目
 
 
 }
