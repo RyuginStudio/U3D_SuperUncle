@@ -34,10 +34,11 @@ public class CharacterControler : MonoBehaviour
         var horizontal = Input.GetAxis("Horizontal");
         var verticle = Input.GetAxis("Vertical");
 
-        Debug.Log(horizontal);
-        Debug.Log(verticle);
+        //Debug.Log(horizontal);
+        //Debug.Log(verticle);
 
-        transform.Translate(new Vector2(horizontal * 0.1f, verticle * 0.1f), Space.World);
+        GetComponent<Rigidbody2D>().AddForce(new Vector2(horizontal * 10, verticle * 10));
+
 
     }
 }
