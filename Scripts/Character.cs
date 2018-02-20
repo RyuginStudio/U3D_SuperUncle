@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 {
+    //动画状态机
+    private Animator m_animator;
+
+    //角色刚体
+    private Rigidbody2D m_Rigidbody2D;
+
     //移动速度
-    public float MoveSpeed = 8;
-    //正常转弯速度
-    public float RotateSpeed = 10;
+    public float MoveSpeed = 10;
 
     //角色状态
     public enum Status
@@ -34,16 +38,14 @@ public class Character : MonoBehaviour
         if (horizontal != 0)
         {
             characStatus = Status.move;
-            Animator anim = GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>();
-            anim.SetBool("isRun", true);
-            anim.SetBool("isIdle", false);
+            m_animator.SetBool("isRun", true);
+            m_animator.SetBool("isIdle", false);
         }
         else if (!Input.GetKey(KeyCode.J) && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D))
         {
             characStatus = Status.idle;
-            Animator anim = GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>();
-            anim.SetBool("isIdle", true);
-            anim.SetBool("isRun", false);
+            m_animator.SetBool("isIdle", true);
+            m_animator.SetBool("isRun", false);
         }
     }
 
@@ -69,6 +71,13 @@ public class Character : MonoBehaviour
         characStatus = Status.idle;
     }
 
+    private void Awake()
+    {
+        //设置相关引用
+        m_animator = GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>();
+        m_Rigidbody2D = GetComponent<Rigidbody2D>();
+    }
+
     // Use this for initialization
     void Start()
     {
@@ -86,13 +95,22 @@ public class Character : MonoBehaviour
         var horizontal = Input.GetAxis("Horizontal");
         //var verticle = Input.GetAxis("Vertical");
 
-        GetComponent<Rigidbody2D>().AddForce(new Vector2(horizontal * MoveSpeed, 0));
+        characterMove(horizontal);
+    }
 
+    //角色移动函数
+    public void characterMove(float horizontal)
+    {
         //切换动画状态
         changeStatus(horizontal);
 
         //切换角色朝向
         changeDirection(horizontal);
+
+        //GetComponent<Rigidbody2D>().AddForce(new Vector2(horizontal * MoveSpeed, 0));   // --last version
+
+        //直接操控刚体的线性速度
+        m_Rigidbody2D.velocity = new Vector2(horizontal * MoveSpeed, m_Rigidbody2D.velocity.y);
     }
 
 }
