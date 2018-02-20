@@ -84,7 +84,7 @@ ModelImporter:
     400074: smdimport
     400076: trans
     4300000: smdimport
-    7400000: Run Anim
+    7400000: RunAnim
     9500000: //RootNode
     13700000: smdimport
   materials:
@@ -111,7 +111,7 @@ ModelImporter:
     extraExposedTransformPaths: []
     clipAnimations:
     - serializedVersion: 16
-      name: Run Anim
+      name: RunAnim
       takeName: Take 001
       firstFrame: 0
       lastFrame: 12

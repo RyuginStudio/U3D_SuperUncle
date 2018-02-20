@@ -5,10 +5,10 @@ using UnityEngine;
 public class Character : MonoBehaviour
 {
     //动画状态机
-    private Animator m_animator;
+    [SerializeField] private Animator m_animator;
 
     //角色刚体
-    private Rigidbody2D m_Rigidbody2D;
+    [SerializeField] private Rigidbody2D m_Rigidbody2D;
 
     //移动速度
     public float MoveSpeed = 10;
@@ -18,7 +18,6 @@ public class Character : MonoBehaviour
     {
         idle,
         move,
-        run,
         jump,
     }
 
@@ -109,8 +108,10 @@ public class Character : MonoBehaviour
 
         //GetComponent<Rigidbody2D>().AddForce(new Vector2(horizontal * MoveSpeed, 0));   // --last version
 
+        float lineSpeed = Input.GetKey(KeyCode.L) ? horizontal * MoveSpeed : horizontal * MoveSpeed / 2;
+
         //直接操控刚体的线性速度
-        m_Rigidbody2D.velocity = new Vector2(horizontal * MoveSpeed / 2, m_Rigidbody2D.velocity.y);
+        m_Rigidbody2D.velocity = new Vector2(lineSpeed, m_Rigidbody2D.velocity.y);
     }
 
 }
