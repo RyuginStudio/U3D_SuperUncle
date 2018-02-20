@@ -110,7 +110,7 @@ public class Character : MonoBehaviour
         //GetComponent<Rigidbody2D>().AddForce(new Vector2(horizontal * MoveSpeed, 0));   // --last version
 
         //直接操控刚体的线性速度
-        m_Rigidbody2D.velocity = new Vector2(horizontal * MoveSpeed * 0.8f, m_Rigidbody2D.velocity.y);
+        m_Rigidbody2D.velocity = new Vector2(horizontal * MoveSpeed / 2, m_Rigidbody2D.velocity.y);
     }
 
 }
