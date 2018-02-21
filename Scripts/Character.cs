@@ -10,6 +10,8 @@ public class Character : MonoBehaviour
     //角色刚体
     [SerializeField] private Rigidbody2D m_Rigidbody2D;
 
+    [SerializeField] private bool m_isGrounded;
+
     //移动速度
     public float MoveSpeed = 10;
 
@@ -34,17 +36,26 @@ public class Character : MonoBehaviour
 
     public void changeStatus(float horizontal)  //状态切换
     {
-        if (horizontal != 0)
+        if (horizontal != 0 && m_isGrounded)
         {
             characStatus = Status.move;
             m_animator.SetBool("isRun", true);
             m_animator.SetBool("isIdle", false);
         }
-        else if (!Input.GetKey(KeyCode.J) && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D))
+        else if (!Input.GetKey(KeyCode.J) && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D) && m_isGrounded)
         {
             characStatus = Status.idle;
             m_animator.SetBool("isIdle", true);
             m_animator.SetBool("isRun", false);
+        }
+
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            characStatus = Status.jump;
+            m_animator.SetBool("isIdle", false);
+            m_animator.SetBool("isRun", false);
+
+            this.jump();
         }
     }
 
@@ -53,13 +64,13 @@ public class Character : MonoBehaviour
         if (horizontal < 0 && characDirection != Direction.left)
         {
             characDirection = Direction.left;
-            GameObject.FindGameObjectWithTag("Player").transform.rotation = Quaternion.Euler(0, -90, 0);
+            transform.rotation = Quaternion.Euler(0, 180, 0);
         }
 
         if (horizontal > 0 && characDirection != Direction.right)
         {
             characDirection = Direction.right;
-            GameObject.FindGameObjectWithTag("Player").transform.rotation = Quaternion.Euler(0, 90, 0);
+            transform.rotation = Quaternion.Euler(0, 0, 0);
         }
     }
 
@@ -87,6 +98,7 @@ public class Character : MonoBehaviour
     void Update()
     {
         keyboardControl();
+        CharacterRayCollisionDetection();
     }
 
     void keyboardControl()
@@ -114,4 +126,57 @@ public class Character : MonoBehaviour
         m_Rigidbody2D.velocity = new Vector2(lineSpeed, m_Rigidbody2D.velocity.y);
     }
 
+    //角色的射线碰撞检测
+    public void CharacterRayCollisionDetection()
+    {
+        var CapColl2D = GetComponent<CapsuleCollider2D>();
+        var size = CapColl2D.size;
+        var pos = CapColl2D.transform.localPosition;
+
+        //获取胶囊碰撞器底部左右侧两端的pos
+        float left_x = characDirection == Direction.left ? pos.x - size.x / 2 - CapColl2D.offset.x : pos.x - size.x / 2 + CapColl2D.offset.x;
+        float left_y = pos.y;
+        float right_x = characDirection == Direction.left ? pos.x + size.x / 2 - CapColl2D.offset.x : pos.x + size.x / 2 + CapColl2D.offset.x;
+        float right_y = pos.y;
+
+        var pos_left = new Vector2(left_x, left_y);
+        var pos_right = new Vector2(right_x, right_y);
+
+        //通过两点，向下发射线
+        var vector1 = new Vector2(pos_left.x, pos_left.y - 0.01f);
+        var direction1 = vector1 - pos_left;
+
+        var vector2 = new Vector2(pos_right.x, pos_right.y - 0.01f);
+        var direction2 = vector2 - pos_right;
+
+        /*
+         * http://blog.csdn.net/qq_33000225/article/details/55225095
+         * 1、origin：射线投射的原点
+         * 2、direction：射线投射的方向
+         * 3、distance：射线的长度
+         * 4、layerMask：射线只会投射到layerMask层的碰撞体（注意此int参数的写法：1 << 层数）
+         * 5、射线方向为：目标点-起点
+         * 用法：Physics2D.Raycast(Vector2 origin, Vector2 direction, float distance, int layerMask);
+         */
+
+        var collider_left = Physics2D.Raycast(pos_left, direction1, 0.01f, 1 << LayerMask.NameToLayer("MapBlock")).collider;
+        var collider_right = Physics2D.Raycast(pos_right, direction2, 0.01f, 1 << LayerMask.NameToLayer("MapBlock")).collider;
+
+        //Debug.Log("colliderName1: " + collider_left);
+        //Debug.Log("colliderName2: " + collider_right);
+
+        if (collider_left == null & collider_right == null)
+            m_isGrounded = false;
+        else
+            m_isGrounded = true;
+    }
+
+    public void jump()
+    {
+        if (m_isGrounded)
+        {
+            m_Rigidbody2D.AddForce(new Vector2(0, 400));
+            m_isGrounded = false;
+        }
+    }
 }
