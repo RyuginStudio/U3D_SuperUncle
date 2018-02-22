@@ -15,16 +15,6 @@ public class Character : MonoBehaviour
     //移动速度
     public float MoveSpeed = 10;
 
-    //角色状态
-    public enum Status
-    {
-        idle,
-        move,
-        jump,
-    }
-
-    public Status characStatus;
-
     //角色朝向
     public enum Direction
     {
@@ -38,25 +28,24 @@ public class Character : MonoBehaviour
     {
         if (horizontal != 0 && m_isGrounded)
         {
-            characStatus = Status.move;
-            m_animator.SetBool("isRun", true);
+            m_animator.SetBool("isRun", true);            
             m_animator.SetBool("isIdle", false);
+            m_animator.SetFloat("verticleSpeed", 0);
         }
-        else if (!Input.GetKey(KeyCode.J) && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D) && m_isGrounded)
+        else if (horizontal == 0 && m_isGrounded && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D))
         {
-            characStatus = Status.idle;
+            m_animator.SetBool("isRun", false);           
             m_animator.SetBool("isIdle", true);
-            m_animator.SetBool("isRun", false);
+            m_animator.SetFloat("verticleSpeed", 0);
         }
 
-        if (Input.GetKeyDown(KeyCode.J))
+        if (!m_isGrounded)
         {
-            characStatus = Status.jump;
             m_animator.SetBool("isIdle", false);
             m_animator.SetBool("isRun", false);
-
-            this.jump();
+            m_animator.SetFloat("verticleSpeed", m_Rigidbody2D.velocity.y);
         }
+
     }
 
     public void changeDirection(float horizontal)
@@ -78,7 +67,6 @@ public class Character : MonoBehaviour
     void characInit()
     {
         characDirection = Direction.right;
-        characStatus = Status.idle;
     }
 
     private void Awake()
@@ -104,7 +92,6 @@ public class Character : MonoBehaviour
     void keyboardControl()
     {
         var horizontal = Input.GetAxis("Horizontal");
-        //var verticle = Input.GetAxis("Vertical");
 
         characterMove(horizontal);
     }
@@ -124,6 +111,9 @@ public class Character : MonoBehaviour
 
         //直接操控刚体的线性速度
         m_Rigidbody2D.velocity = new Vector2(lineSpeed, m_Rigidbody2D.velocity.y);
+
+        //角色跳跃
+        this.jump();
     }
 
     //角色的射线碰撞检测
@@ -159,8 +149,8 @@ public class Character : MonoBehaviour
          * 用法：Physics2D.Raycast(Vector2 origin, Vector2 direction, float distance, int layerMask);
          */
 
-        var collider_left = Physics2D.Raycast(pos_left, direction1, 0.01f, 1 << LayerMask.NameToLayer("MapBlock")).collider;
-        var collider_right = Physics2D.Raycast(pos_right, direction2, 0.01f, 1 << LayerMask.NameToLayer("MapBlock")).collider;
+        var collider_left = Physics2D.Raycast(pos_left, direction1, 0.1f, 1 << LayerMask.NameToLayer("MapBlock")).collider;
+        var collider_right = Physics2D.Raycast(pos_right, direction2, 0.1f, 1 << LayerMask.NameToLayer("MapBlock")).collider;
 
         //Debug.Log("colliderName1: " + collider_left);
         //Debug.Log("colliderName2: " + collider_right);
@@ -173,9 +163,10 @@ public class Character : MonoBehaviour
 
     public void jump()
     {
-        if (m_isGrounded)
+        if (m_isGrounded && Input.GetKeyDown(KeyCode.J))
         {
-            m_Rigidbody2D.AddForce(new Vector2(0, 400));
+            m_Rigidbody2D.AddForce(new Vector2(0, 800));
+            AudioControler.getInstance().SE_Jump.Play();
             m_isGrounded = false;
         }
     }
