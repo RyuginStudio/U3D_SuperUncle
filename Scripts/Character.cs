@@ -26,6 +26,8 @@ public class Character : MonoBehaviour
 
     public void changeStatus(float horizontal)  //状态切换
     {
+        m_animator.SetBool("isGrounded", m_isGrounded);
+
         if (horizontal != 0 && m_isGrounded)
         {
             m_animator.SetBool("isRun", true);            

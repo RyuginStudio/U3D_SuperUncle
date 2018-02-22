@@ -85,6 +85,7 @@ ModelImporter:
     400076: trans
     4300000: smdimport
     7400000: JumpUp
+    7400002: FallDown
     9500000: //RootNode
     13700000: smdimport
   materials:
@@ -115,6 +116,112 @@ ModelImporter:
       takeName: Take 001
       firstFrame: 0
       lastFrame: 15
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Mario
+        weight: 1
+      - path: root
+        weight: 1
+      - path: root/kosi_jnt
+        weight: 1
+      - path: root/kosi_jnt/eff_hip
+        weight: 1
+      - path: root/kosi_jnt/L_momo_jnt
+        weight: 1
+      - path: root/kosi_jnt/L_momo_jnt/L_sune_jnt
+        weight: 1
+      - path: root/kosi_jnt/L_momo_jnt/L_sune_jnt/L_asi_jnt
+        weight: 1
+      - path: root/kosi_jnt/R_momo_jnt
+        weight: 1
+      - path: root/kosi_jnt/R_momo_jnt/R_sune_jnt
+        weight: 1
+      - path: root/kosi_jnt/R_momo_jnt/R_sune_jnt/R_asi_jnt
+        weight: 1
+      - path: root/mune_jnt
+        weight: 1
+      - path: root/mune_jnt/kubi_jnt
+        weight: 1
+      - path: root/mune_jnt/kubi_jnt/eff_head
+        weight: 1
+      - path: root/mune_jnt/kubi_jnt/kuchi_jnt
+        weight: 1
+      - path: root/mune_jnt/L_kata
+        weight: 1
+      - path: root/mune_jnt/L_ude_jnt
+        weight: 1
+      - path: root/mune_jnt/L_ude_jnt/L_hiji_jnt
+        weight: 1
+      - path: root/mune_jnt/L_ude_jnt/L_hiji_jnt/L_te_jnt
+        weight: 1
+      - path: root/mune_jnt/L_ude_jnt/L_hiji_jnt/L_te_jnt/L_yubi_01A_jnt
+        weight: 1
+      - path: root/mune_jnt/L_ude_jnt/L_hiji_jnt/L_te_jnt/L_yubi_01A_jnt/L_yubi_01B_jnt
+        weight: 1
+      - path: root/mune_jnt/L_ude_jnt/L_hiji_jnt/L_te_jnt/L_yubi_02A_jnt
+        weight: 1
+      - path: root/mune_jnt/L_ude_jnt/L_hiji_jnt/L_te_jnt/L_yubi_02A_jnt/L_yubi_02B_jnt
+        weight: 1
+      - path: root/mune_jnt/L_ude_jnt/L_hiji_jnt/L_te_jnt/L_yubi_03A_jnt
+        weight: 1
+      - path: root/mune_jnt/L_ude_jnt/L_hiji_jnt/L_te_jnt/L_yubi_03A_jnt/L_yubi_03B_jnt
+        weight: 1
+      - path: root/mune_jnt/L_ude_jnt/L_hiji_jnt/L_tekubi
+        weight: 1
+      - path: root/mune_jnt/R_kata
+        weight: 1
+      - path: root/mune_jnt/R_ude_jnt
+        weight: 1
+      - path: root/mune_jnt/R_ude_jnt/R_hiji_jnt
+        weight: 1
+      - path: root/mune_jnt/R_ude_jnt/R_hiji_jnt/R_te_jnt
+        weight: 1
+      - path: root/mune_jnt/R_ude_jnt/R_hiji_jnt/R_te_jnt/R_yubi_01A_jnt
+        weight: 1
+      - path: root/mune_jnt/R_ude_jnt/R_hiji_jnt/R_te_jnt/R_yubi_01A_jnt/R_yubi_01B_jnt
+        weight: 1
+      - path: root/mune_jnt/R_ude_jnt/R_hiji_jnt/R_te_jnt/R_yubi_02A_jnt
+        weight: 1
+      - path: root/mune_jnt/R_ude_jnt/R_hiji_jnt/R_te_jnt/R_yubi_02A_jnt/R_yubi_02B_jnt
+        weight: 1
+      - path: root/mune_jnt/R_ude_jnt/R_hiji_jnt/R_te_jnt/R_yubi_03A_jnt
+        weight: 1
+      - path: root/mune_jnt/R_ude_jnt/R_hiji_jnt/R_te_jnt/R_yubi_03A_jnt/R_yubi_03B_jnt
+        weight: 1
+      - path: root/mune_jnt/R_ude_jnt/R_hiji_jnt/R_tekubi
+        weight: 1
+      - path: root/trans
+        weight: 1
+      - path: smdimport
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: FallDown
+      takeName: Take 001
+      firstFrame: 25
+      lastFrame: 26
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
