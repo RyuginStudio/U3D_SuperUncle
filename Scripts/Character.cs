@@ -30,13 +30,13 @@ public class Character : MonoBehaviour
 
         if (horizontal != 0 && m_isGrounded)
         {
-            m_animator.SetBool("isRun", true);            
+            m_animator.SetBool("isRun", true);
             m_animator.SetBool("isIdle", false);
             m_animator.SetFloat("verticleSpeed", 0);
         }
-        else if (horizontal == 0 && m_isGrounded && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D))
+        else if (horizontal == 0 && m_isGrounded && !Input.GetButton("Horizontal"))
         {
-            m_animator.SetBool("isRun", false);           
+            m_animator.SetBool("isRun", false);
             m_animator.SetBool("isIdle", true);
             m_animator.SetFloat("verticleSpeed", 0);
         }
@@ -109,7 +109,7 @@ public class Character : MonoBehaviour
 
         //GetComponent<Rigidbody2D>().AddForce(new Vector2(horizontal * MoveSpeed, 0));   // --last version
 
-        float lineSpeed = Input.GetKey(KeyCode.L) ? horizontal * MoveSpeed : horizontal * MoveSpeed / 2;
+        float lineSpeed = Input.GetButton("Sprint") ? horizontal * MoveSpeed : horizontal * MoveSpeed / 2;
 
         //直接操控刚体的线性速度
         m_Rigidbody2D.velocity = new Vector2(lineSpeed, m_Rigidbody2D.velocity.y);
@@ -165,7 +165,7 @@ public class Character : MonoBehaviour
 
     public void jump()
     {
-        if (m_isGrounded && Input.GetKeyDown(KeyCode.J))
+        if (m_isGrounded && Input.GetButtonDown("Jump"))
         {
             m_Rigidbody2D.AddForce(new Vector2(0, 800));
             AudioControler.getInstance().SE_Jump.Play();

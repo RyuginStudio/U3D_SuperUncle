@@ -14,7 +14,7 @@ public class RunAnimSpeed : StateMachineBehaviour
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         //加速奔跑动画加速
-        if (Input.GetKey(KeyCode.L))
+        if (Input.GetButton("Sprint"))
         {
             animator.speed = 2;
         }
