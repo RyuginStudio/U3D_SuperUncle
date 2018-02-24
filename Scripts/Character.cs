@@ -119,6 +119,9 @@ public class Character : MonoBehaviour
 
         //角色脚步音效
         playFootPrintSE(horizontal);
+
+        //角色下落音效
+        playFallDownSE();
     }
 
     //角色的射线碰撞检测
@@ -161,9 +164,15 @@ public class Character : MonoBehaviour
         //Debug.Log("colliderName2: " + collider_right);
 
         if (collider_left == null & collider_right == null)
+        {
             m_isGrounded = false;
+            canPlayFallDownSE = true;
+        }         
         else
-            m_isGrounded = true;
+        {
+            m_isGrounded = true;           
+        }
+            
     }
 
     public void jump()
@@ -172,7 +181,6 @@ public class Character : MonoBehaviour
         {
             m_Rigidbody2D.AddForce(new Vector2(0, 800));
             AudioControler.getInstance().SE_Jump.Play();
-            m_isGrounded = false;
         }
     }
 
@@ -190,4 +198,18 @@ public class Character : MonoBehaviour
                 AudioControler.getInstance().SE_FootNote_L.PlayDelayed(0.165f);
         }
     }
+
+    //能否播放下落落地声音
+    private bool canPlayFallDownSE = true;
+
+    public void playFallDownSE()
+    {
+        if (m_isGrounded && canPlayFallDownSE && !AudioControler.getInstance().SE_FallDown.isPlaying)
+        {
+            AudioControler.getInstance().SE_FallDown.Play();
+            canPlayFallDownSE = false;
+        }
+    }
+
+
 }
