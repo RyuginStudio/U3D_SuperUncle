@@ -116,6 +116,9 @@ public class Character : MonoBehaviour
 
         //角色跳跃
         this.jump();
+
+        //角色脚步音效
+        playFootPrintSE(horizontal);
     }
 
     //角色的射线碰撞检测
@@ -170,6 +173,21 @@ public class Character : MonoBehaviour
             m_Rigidbody2D.AddForce(new Vector2(0, 800));
             AudioControler.getInstance().SE_Jump.Play();
             m_isGrounded = false;
+        }
+    }
+
+    public void playFootPrintSE(float horizontal)
+    {
+        if (m_isGrounded && horizontal != 0
+            && !AudioControler.getInstance().SE_FootNote.isPlaying
+            && !AudioControler.getInstance().SE_FootNote_L.isPlaying)
+        {
+            AudioControler.getInstance().SE_FootNote.Play();
+
+            if (Input.GetButton("Sprint"))
+                AudioControler.getInstance().SE_FootNote_L.PlayDelayed(0.1f);
+            else
+                AudioControler.getInstance().SE_FootNote_L.PlayDelayed(0.165f);
         }
     }
 }

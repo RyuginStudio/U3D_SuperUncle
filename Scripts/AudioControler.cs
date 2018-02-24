@@ -29,6 +29,8 @@ public class AudioControler : MonoBehaviour
     public AudioSource SE_Die1;
     public AudioSource SE_Die2;
     public AudioSource SE_Jump;
+    public AudioSource SE_FootNote;
+    public AudioSource SE_FootNote_L;
 
     //=========BGM=========//
     public AudioSource BGM_Ground;
