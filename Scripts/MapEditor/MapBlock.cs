@@ -13,6 +13,9 @@ public class MapBlock : MonoBehaviour
     //图块种类
     public int type;
 
+    //能否触发事件
+    public bool canDoEvent = true;
+
     private static MapBlock instance;
 
     public static MapBlock getInstance()
@@ -51,13 +54,26 @@ public class MapBlock : MonoBehaviour
 
     void brickEvent()
     {
-        if (!AudioControler.getInstance().SE_Hit_Block.isPlaying)
+        if (canDoEvent)
         {
-            AudioControler.getInstance().SE_Hit_Block.Play();
+            canDoEvent = false;
+
+            if (!AudioControler.getInstance().SE_Hit_Block.isPlaying)
+            {
+                AudioControler.getInstance().SE_Hit_Block.Play();
+            }
+
+            GetComponent<Animator>().SetBool("isHit", true);
+
+            Invoke("resetCanDoEvent", 0.2f);
         }
-
-
     }
 
     #endregion
+
+    //根据某些具体图块觉得是否可重置
+    private void resetCanDoEvent()
+    {
+        canDoEvent = true;
+    }
 }
