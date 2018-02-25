@@ -123,6 +123,6 @@ public class GameControler : MonoBehaviour
         //SE
         AudioControler.getInstance().SE_Die1.Play();
         AudioControler.getInstance().SE_Die2.PlayDelayed(0.5f);
-        AudioControler.getInstance().SE_OhNo.PlayDelayed(0.5f);        
+        AudioControler.getInstance().SE_OhNo.PlayDelayed(0.5f);
     }
 }

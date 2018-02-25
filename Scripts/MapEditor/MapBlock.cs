@@ -51,7 +51,12 @@ public class MapBlock : MonoBehaviour
 
     void brickEvent()
     {
-        Debug.Log("brickEvent");
+        if (!AudioControler.getInstance().SE_Hit_Block.isPlaying)
+        {
+            AudioControler.getInstance().SE_Hit_Block.Play();
+        }
+
+
     }
 
     #endregion
