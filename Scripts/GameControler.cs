@@ -67,7 +67,7 @@ public class GameControler : MonoBehaviour
 
             //坐标作为图块Name
             prefabBlock.name = new Vector3(x, y, 0).ToString();
-            //prefabBlock.GetComponent<BlockType>().type = type;
+            ((GameObject)prefabBlock).GetComponent<MapBlock>().type = type;
         }
     }
 

@@ -124,9 +124,11 @@ public class Character : MonoBehaviour
         playFallDownSE();
     }
 
-    //角色的射线碰撞检测
+    //角色的射线碰撞检测(头部和脚部)
     public void CharacterRayCollisionDetection()
     {
+        #region JudgeFeet  //检测脚部碰撞
+
         var CapColl2D = GetComponent<CapsuleCollider2D>();
         var size = CapColl2D.size;
         var pos = CapColl2D.transform.localPosition;
@@ -167,12 +169,49 @@ public class Character : MonoBehaviour
         {
             m_isGrounded = false;
             canPlayFallDownSE = true;
-        }         
+        }
         else
         {
-            m_isGrounded = true;           
+            m_isGrounded = true;
         }
-            
+
+        #endregion
+
+        #region JudgeHead  //检测头部碰撞
+
+        float left_head_x = characDirection == Direction.left ? pos.x - size.x / 2 - CapColl2D.offset.x : pos.x - size.x / 2 + CapColl2D.offset.x;
+        float left_head_y = pos.y + size.y;
+        float right_head_x = characDirection == Direction.left ? pos.x + size.x / 2 - CapColl2D.offset.x : pos.x + size.x / 2 + CapColl2D.offset.x;
+        float right_head_y = pos.y + size.y;
+
+        var pos_head_left = new Vector2(left_head_x, left_head_y);
+        var pos_head_right = new Vector2(right_head_x, right_head_y);
+
+        //通过两点，向上发射线
+        var vectorHeadLeft = new Vector2(pos_head_left.x, pos_head_left.y + 0.01f);
+        var directionHeadLeft = vectorHeadLeft - pos_head_left;
+
+        var vectorHeadRight = new Vector2(pos_head_right.x, pos_head_right.y + 0.01f);
+        var directionHeadRight = vectorHeadRight - pos_head_right;
+
+        var collider_Head_Left = Physics2D.Raycast(pos_head_left, directionHeadLeft, 0.05f, 1 << LayerMask.NameToLayer("MapBlock")).collider;
+        var collider_Head_Right = Physics2D.Raycast(pos_head_right, directionHeadRight, 0.05f, 1 << LayerMask.NameToLayer("MapBlock")).collider;
+
+        //Debug.Log("collider1: " + collider_Head_Left);
+        //Debug.Log("collider2: " + collider_Head_Right);
+
+        //需要保证是向“上”跳的状态（限制线速度的Y）
+        if (collider_Head_Left != null && m_Rigidbody2D.velocity.y > -1)
+        {
+            collider_Head_Left.GetComponent<MapBlock>().collisionEvent();
+        }
+        if (collider_Head_Right != null && m_Rigidbody2D.velocity.y > -1)
+        {
+            collider_Head_Right.GetComponent<MapBlock>().collisionEvent();
+        }
+
+        #endregion
+
     }
 
     public void jump()

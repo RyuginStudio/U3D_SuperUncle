@@ -67,7 +67,7 @@ public class MapEditor : MonoBehaviour
         var prefabBlock = Instantiate(PrefabMapBlock[type], new Vector3(pos.x, pos.y, 0), new Quaternion(), mapEditor);
 
         prefabBlock.name = pos.ToString();
-        prefabBlock.GetComponent<BlockType>().type = type;
+        prefabBlock.GetComponent<MapBlock>().type = type;
     }
 
     public void createMapBlock2MapStruct()
@@ -77,7 +77,7 @@ public class MapEditor : MonoBehaviour
         foreach (var item in mapBlockGroup)
         {
             //创建地图图块数据结构
-            MapStruct mapBlock = new MapStruct(item.transform.position.x, item.transform.position.y, item.GetComponent<BlockType>().type);
+            MapStruct mapBlock = new MapStruct(item.transform.position.x, item.transform.position.y, item.GetComponent<MapBlock>().type);
 
             MapStructList.Add(mapBlock);
         }
