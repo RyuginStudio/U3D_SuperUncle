@@ -73,6 +73,7 @@ public class MapEditor : MonoBehaviour
     public void createMapBlock2MapStruct()
     {
         var mapBlockGroup = GameObject.FindGameObjectsWithTag("MapBlock");
+        MapStructList.Clear();  //fix bug 否则容器图块数将随保存按键的次数叠加
 
         foreach (var item in mapBlockGroup)
         {
@@ -80,6 +81,7 @@ public class MapEditor : MonoBehaviour
             MapStruct mapBlock = new MapStruct(item.transform.position.x, item.transform.position.y, item.GetComponent<MapBlock>().type);
 
             MapStructList.Add(mapBlock);
+            //Debug.Log("MapStructList.Length: " + MapStructList.Count); 
         }
 
     }
