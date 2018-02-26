@@ -46,6 +46,12 @@ public class ReadCreateMap : MonoBehaviour
 
         string path = Application.dataPath + "//Resources/MapConfig/" + inputFiledName.text + ".json";
 
+        //检查是否存在该名字的地图
+        if(IsFileExists(Application.dataPath + "//Resources/MapConfig/" + inputFiledName.text + ".json"))
+        {
+            //TODO:需要messagebox是否覆盖
+        }
+
 
         StringBuilder sb = new StringBuilder();
         JsonWriter writer = new JsonWriter(sb);
@@ -107,5 +113,16 @@ public class ReadCreateMap : MonoBehaviour
 
             MapEditor.getInstance().drawBlock(new Vector3(x, y, 0), type);
         }
+    }
+
+    // 检测文件是否存在Application.dataPath目录
+    public static bool IsFileExists(string fileName)
+    {
+        if (fileName.Equals(string.Empty))
+        {
+            return false;
+        }
+
+        return File.Exists(Path.GetFullPath(fileName));
     }
 }
