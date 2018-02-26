@@ -10,6 +10,9 @@ using UnityEngine;
 
 public class MapBlock : MonoBehaviour
 {
+    //存放预制体的transform
+    public Transform TransformMapPack;
+
     //图块种类
     public int type;
 
@@ -27,6 +30,8 @@ public class MapBlock : MonoBehaviour
     void Start()
     {
         instance = this;
+
+        TransformMapPack = GameObject.FindGameObjectWithTag("MapPack").transform;
     }
 
     // Update is called once per frame
@@ -45,6 +50,17 @@ public class MapBlock : MonoBehaviour
                     brickEvent();
                     break;
                 }
+            case 1:  //问号
+                {
+                    questionEvent();
+                    break;
+                }
+            case 5:  //石头
+                {
+                    stoneEvent();
+                    break;
+                }
+
             default:
                 break;
         }
@@ -54,18 +70,47 @@ public class MapBlock : MonoBehaviour
 
     void brickEvent()
     {
+        if (!AudioControler.getInstance().SE_Hit_Block.isPlaying)
+        {
+            AudioControler.getInstance().SE_Hit_Block.Play();
+        }
+
         if (canDoEvent)
         {
             canDoEvent = false;
 
-            if (!AudioControler.getInstance().SE_Hit_Block.isPlaying)
-            {
-                AudioControler.getInstance().SE_Hit_Block.Play();
-            }
-
             GetComponent<Animator>().SetBool("isHit", true);
 
             Invoke("resetCanDoEvent", 0.2f);
+        }
+    }
+
+    void questionEvent()
+    {
+        if (!AudioControler.getInstance().SE_Hit_Block.isPlaying)
+        {
+            AudioControler.getInstance().SE_Hit_Block.Play();
+        }
+
+        if (canDoEvent)
+        {
+            canDoEvent = false;
+
+            GetComponent<Animator>().SetBool("isHit", true);
+
+            Destroy(gameObject, 0.6f);
+
+            var stone = Instantiate(Resources.Load("Prefab/BlockPrefab/Ground_5"), transform.position, new Quaternion(), TransformMapPack);
+
+            ((GameObject)stone).GetComponent<MapBlock>().type = 5;
+        }
+    }
+
+    void stoneEvent()
+    {
+        if (!AudioControler.getInstance().SE_Hit_Block.isPlaying)
+        {
+            AudioControler.getInstance().SE_Hit_Block.Play();
         }
     }
 

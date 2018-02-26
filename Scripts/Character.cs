@@ -133,6 +133,9 @@ public class Character : MonoBehaviour
         var size = CapColl2D.size;
         var pos = CapColl2D.transform.localPosition;
 
+        //Debug.Log("size: " + size);
+        //Debug.Log("pos: " + pos);
+
         //获取胶囊碰撞器底部左右侧两端的pos
         float left_x = characDirection == Direction.left ? pos.x - size.x / 2 - CapColl2D.offset.x : pos.x - size.x / 2 + CapColl2D.offset.x;
         float left_y = pos.y;
@@ -199,6 +202,8 @@ public class Character : MonoBehaviour
 
         //Debug.Log("collider1: " + collider_Head_Left);
         //Debug.Log("collider2: " + collider_Head_Right);
+        //Debug.DrawRay(pos_head_left, directionHeadLeft, Color.red, 0.05f);
+        //Debug.DrawRay(pos_head_right, directionHeadRight, Color.red, 0.05f);
 
         //需要保证是向“上”跳的状态（限制线速度的Y）
         if (collider_Head_Left != null && m_Rigidbody2D.velocity.y > -1)
