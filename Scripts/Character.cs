@@ -208,11 +208,11 @@ public class Character : MonoBehaviour
         //需要保证是向“上”跳的状态（限制线速度的Y）
         if (collider_Head_Left != null && m_Rigidbody2D.velocity.y > -1)
         {
-            collider_Head_Left.GetComponent<MapBlock>().collisionEvent();
+            collider_Head_Left.GetComponent<MapBlock>().BlockCollision();
         }
         if (collider_Head_Right != null && m_Rigidbody2D.velocity.y > -1)
         {
-            collider_Head_Right.GetComponent<MapBlock>().collisionEvent();
+            collider_Head_Right.GetComponent<MapBlock>().BlockCollision();
         }
 
         #endregion

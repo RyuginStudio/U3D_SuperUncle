@@ -19,6 +19,14 @@ public class MapBlock : MonoBehaviour
     //能否触发事件
     public bool canDoEvent = true;
 
+    //图块附带事件种类
+    public enum EventType
+    {
+        coin,
+        mushRoom,
+
+    }
+
     private static MapBlock instance;
 
     public static MapBlock getInstance()
@@ -40,58 +48,41 @@ public class MapBlock : MonoBehaviour
 
     }
 
-    //图块碰撞事件：根据type值匹配分发
-    public void collisionEvent()
+    public void BlockCollision()
     {
+        //播放碰撞音效
+        if (!AudioControler.getInstance().SE_Hit_Block.isPlaying)
+        {
+            AudioControler.getInstance().SE_Hit_Block.Play();
+        }
+
+        //根据type分发
         switch (type)
         {
             case 0:  //砖块
                 {
-                    brickEvent();
+                    collideBrick();
                     break;
                 }
             case 1:  //问号
                 {
-                    questionEvent();
+                    collideQuestion();
                     break;
                 }
-            case 5:  //石头
-                {
-                    stoneEvent();
-                    break;
-                }
-
             default:
                 break;
         }
     }
 
-    #region BlockEvent
+    #region BlockCollision
 
-    void brickEvent()
+    void collideBrick()
     {
-        if (!AudioControler.getInstance().SE_Hit_Block.isPlaying)
-        {
-            AudioControler.getInstance().SE_Hit_Block.Play();
-        }
-
-        if (canDoEvent)
-        {
-            canDoEvent = false;
-
-            GetComponent<Animator>().SetBool("isHit", true);
-
-            Invoke("resetCanDoEvent", 0.2f);
-        }
+        GetComponent<Animator>().SetBool("isHit", true);
     }
 
-    void questionEvent()
+    void collideQuestion()
     {
-        if (!AudioControler.getInstance().SE_Hit_Block.isPlaying)
-        {
-            AudioControler.getInstance().SE_Hit_Block.Play();
-        }
-
         if (canDoEvent)
         {
             canDoEvent = false;
@@ -106,17 +97,9 @@ public class MapBlock : MonoBehaviour
         }
     }
 
-    void stoneEvent()
-    {
-        if (!AudioControler.getInstance().SE_Hit_Block.isPlaying)
-        {
-            AudioControler.getInstance().SE_Hit_Block.Play();
-        }
-    }
-
     #endregion
 
-    //根据某些具体图块觉得是否可重置
+    //根据某些具体图块决定是否可重置
     private void resetCanDoEvent()
     {
         canDoEvent = true;

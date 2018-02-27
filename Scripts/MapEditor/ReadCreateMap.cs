@@ -49,7 +49,6 @@ public class ReadCreateMap : MonoBehaviour
         //检查是否存在该名字的地图
         if (IsFileExists(Application.dataPath + "//Resources/MapConfig/" + inputFiledName.text + ".json"))
         {
-            //TODO:需要messagebox是否覆盖
             var MessageBox = Instantiate(Resources.Load("Prefab/MessageBox"), GameObject.Find("Canvas").transform);
 
             ((GameObject)MessageBox).GetComponentInChildren<Text>().text = "您所设定的地图名称与本地地图库中现有地图的名称发生重复！是否要保存新地图从而覆盖掉旧地图？？？";
