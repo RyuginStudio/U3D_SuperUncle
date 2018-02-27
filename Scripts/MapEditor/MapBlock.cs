@@ -26,6 +26,7 @@ public class MapBlock : MonoBehaviour
         mushRoom,
 
     }
+    public EventType BlockEvent;
 
     private static MapBlock instance;
 
@@ -56,48 +57,45 @@ public class MapBlock : MonoBehaviour
             AudioControler.getInstance().SE_Hit_Block.Play();
         }
 
-        //根据type分发
-        switch (type)
+        //碰撞动画控制(如果有动画的话：需要有isHit参数)
+        if (GetComponent<Animator>())
         {
-            case 0:  //砖块
-                {
-                    collideBrick();
-                    break;
-                }
-            case 1:  //问号
-                {
-                    collideQuestion();
-                    break;
-                }
+            GetComponent<Animator>().SetBool("isHit", true);
+        }
+
+        if (canDoEvent)
+        {
+            DoEvent();
+        }       
+    }
+
+    //图块事件
+    public void DoEvent()
+    {
+        switch (BlockEvent)
+        {
+            case EventType.coin:
+                break;
+            case EventType.mushRoom:
+                break;
             default:
                 break;
         }
     }
 
-    #region BlockCollision
+    //void collideQuestion()
+    //{
+    //    if (canDoEvent)
+    //    {
+    //        canDoEvent = false;
 
-    void collideBrick()
-    {
-        GetComponent<Animator>().SetBool("isHit", true);
-    }
+    //        Destroy(gameObject, 0.6f);
 
-    void collideQuestion()
-    {
-        if (canDoEvent)
-        {
-            canDoEvent = false;
+    //        var stone = Instantiate(Resources.Load("Prefab/BlockPrefab/Ground_5"), transform.position, new Quaternion(), TransformMapPack);
 
-            GetComponent<Animator>().SetBool("isHit", true);
-
-            Destroy(gameObject, 0.6f);
-
-            var stone = Instantiate(Resources.Load("Prefab/BlockPrefab/Ground_5"), transform.position, new Quaternion(), TransformMapPack);
-
-            ((GameObject)stone).GetComponent<MapBlock>().type = 5;
-        }
-    }
-
-    #endregion
+    //        ((GameObject)stone).GetComponent<MapBlock>().type = 5;
+    //    }
+    //}
 
     //根据某些具体图块决定是否可重置
     private void resetCanDoEvent()
