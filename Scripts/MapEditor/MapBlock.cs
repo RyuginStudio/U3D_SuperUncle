@@ -10,21 +10,24 @@ using UnityEngine;
 
 public class MapBlock : MonoBehaviour
 {
+    //防止事件被连续触发的定时器
+    private float currentTime;
+    private float doEventTimeInterval;
+
     //存放预制体的transform
     public Transform TransformMapPack;
 
     //图块种类
     public int type;
 
-    //能否触发事件
-    public bool canDoEvent = true;
+    //可执行事件的次数
+    public int canDoEventTimes;
 
     //图块附带事件种类
     public enum EventType
     {
+        none,  //无事件
         coin,
-        mushRoom,
-
     }
     public EventType BlockEvent;
 
@@ -38,6 +41,8 @@ public class MapBlock : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        currentTime = Time.time;
+
         instance = this;
 
         TransformMapPack = GameObject.FindGameObjectWithTag("MapPack").transform;
@@ -46,7 +51,7 @@ public class MapBlock : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        currentTime = Time.time;
     }
 
     public void BlockCollision()
@@ -63,43 +68,57 @@ public class MapBlock : MonoBehaviour
             GetComponent<Animator>().SetBool("isHit", true);
         }
 
-        if (canDoEvent)
+        if (canDoEventTimes > 0 && currentTime - doEventTimeInterval > .2f)  //有剩余次数且防止连续触发
         {
-            DoEvent();
-        }       
+            --canDoEventTimes;
+
+            doEventTimeInterval = Time.time;
+
+            DoEvent();  //执行事件分发
+        }
+        else if (canDoEventTimes == 0 && type == 1)  //问号=>石头
+        {
+            --canDoEventTimes;
+
+            Destroy(gameObject, 0.6f);
+
+            var stone = Instantiate(Resources.Load("Prefab/BlockPrefab/Ground_4"), transform.position, new Quaternion(), TransformMapPack);
+
+            ((GameObject)stone).GetComponent<MapBlock>().type = 5;
+        }
     }
 
-    //图块事件
+    //图块事件分发
     public void DoEvent()
     {
         switch (BlockEvent)
         {
             case EventType.coin:
-                break;
-            case EventType.mushRoom:
-                break;
+                {
+                    gainCoin();
+                    break;
+                }
+
             default:
                 break;
         }
     }
 
-    //void collideQuestion()
-    //{
-    //    if (canDoEvent)
-    //    {
-    //        canDoEvent = false;
+    //具体事件的执行内容
+    #region ParticularEventFunc
 
-    //        Destroy(gameObject, 0.6f);
-
-    //        var stone = Instantiate(Resources.Load("Prefab/BlockPrefab/Ground_5"), transform.position, new Quaternion(), TransformMapPack);
-
-    //        ((GameObject)stone).GetComponent<MapBlock>().type = 5;
-    //    }
-    //}
-
-    //根据某些具体图块决定是否可重置
-    private void resetCanDoEvent()
+    public void gainCoin()
     {
-        canDoEvent = true;
+        GameControler.getInstance().ScoreUIControl(100, transform.localPosition);
+
+        AudioControler.getInstance().SE_Gain_Coin.Play();
+
+        var pos = transform.position;
+        var coinAnimPrefab = Instantiate(Resources.Load("Prefab/GainCoinPrefab"), new Vector2(pos.x, pos.y + 0.8f), new Quaternion());
+        ((GameObject)coinAnimPrefab).GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 400));
+        GameObject.Destroy(coinAnimPrefab, 0.53f);
     }
+
+    #endregion
+
 }

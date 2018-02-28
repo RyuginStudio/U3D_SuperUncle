@@ -26,9 +26,18 @@ public class GameControler : MonoBehaviour
     //游戏结束开关
     public bool GameOver;
 
+    //单例
+    private static GameControler instance;
+    public static GameControler getInstance()
+    {
+        return instance;
+    }
+
     // Use this for initialization
     void Start()
     {
+        instance = this;
+
         countDownUpdate = Time.time;
         loadMap();
     }
@@ -124,5 +133,25 @@ public class GameControler : MonoBehaviour
         AudioControler.getInstance().SE_Die1.Play();
         AudioControler.getInstance().SE_Die2.PlayDelayed(0.5f);
         AudioControler.getInstance().SE_OhNo.PlayDelayed(0.5f);
+    }
+
+    //分数控制
+    public void ScoreUIControl(int score, Vector2 pos)
+    {
+        //更改UI大分数
+        int currentScore = 0;
+        int.TryParse(GameObject.Find("ScoreNum").GetComponent<Text>().text, out currentScore);
+        currentScore += score;
+        var str_currentScore = currentScore.ToString();
+
+        while (str_currentScore.Length < 9)
+            str_currentScore = "0" + str_currentScore;
+
+        GameObject.Find("ScoreNum").GetComponent<Text>().text = str_currentScore;
+
+        //得分后实现“小分数”提醒
+        var littleScoreTips = Instantiate(Resources.Load("Prefab/GainScoreView"), new Vector2(pos.x, pos.y), new Quaternion());
+        var scoreTexture = (Texture2D)Resources.Load("Pictures/UI/scoreNumbers/" + score.ToString());
+        ((GameObject)littleScoreTips).GetComponent<SpriteRenderer>().sprite = Sprite.Create(scoreTexture, new Rect(0, 0, scoreTexture.width, scoreTexture.height), new Vector2(0.5f, 0.5f));
     }
 }
