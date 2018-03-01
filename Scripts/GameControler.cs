@@ -135,9 +135,11 @@ public class GameControler : MonoBehaviour
         AudioControler.getInstance().SE_OhNo.PlayDelayed(0.5f);
     }
 
-    //分数控制
-    public void ScoreUIControl(int score, Vector2 pos)
+    //分数控制(延时执行)
+    public IEnumerator ScoreUIControl(int score, Vector2 pos, float delaySecond)
     {
+        yield return new WaitForSeconds(delaySecond);
+
         //更改UI大分数
         int currentScore = 0;
         int.TryParse(GameObject.Find("ScoreNum").GetComponent<Text>().text, out currentScore);
@@ -150,8 +152,24 @@ public class GameControler : MonoBehaviour
         GameObject.Find("ScoreNum").GetComponent<Text>().text = str_currentScore;
 
         //得分后实现“小分数”提醒
-        var littleScoreTips = Instantiate(Resources.Load("Prefab/GainScoreView"), new Vector2(pos.x, pos.y), new Quaternion());
+        var littleScoreTips = Instantiate(Resources.Load("Prefab/GainScoreView"), new Vector2(pos.x, pos.y + 0.5f), new Quaternion());
+        ((GameObject)littleScoreTips).GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 360));
         var scoreTexture = (Texture2D)Resources.Load("Pictures/UI/scoreNumbers/" + score.ToString());
         ((GameObject)littleScoreTips).GetComponent<SpriteRenderer>().sprite = Sprite.Create(scoreTexture, new Rect(0, 0, scoreTexture.width, scoreTexture.height), new Vector2(0.5f, 0.5f));
+        GameObject.Destroy(littleScoreTips, 0.5f);
+    }
+
+    //金币控制
+    public void coinControl(int coinAddNumber)
+    {
+        int currentCoin = 0;
+        int.TryParse(GameObject.Find("CoinNum").GetComponent<Text>().text, out currentCoin);
+        currentCoin += coinAddNumber;
+        var str_coin = currentCoin.ToString();
+        while (str_coin.Length < 2)
+        {
+            str_coin = "0" + str_coin;
+        }
+        GameObject.Find("CoinNum").GetComponent<Text>().text = str_coin;
     }
 }

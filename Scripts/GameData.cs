@@ -27,6 +27,5 @@ public class GameData : MonoBehaviour
 
     [SerializeField] public static string mapName = "map2";   //地图关卡索引
     [SerializeField] public static int blockNum = 247;        //地图图块数目
-    [SerializeField] public static int score = 0;             //当前关卡得分
 
 }

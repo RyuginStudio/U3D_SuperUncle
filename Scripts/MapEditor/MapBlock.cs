@@ -109,14 +109,19 @@ public class MapBlock : MonoBehaviour
 
     public void gainCoin()
     {
-        GameControler.getInstance().ScoreUIControl(100, transform.localPosition);
-
         AudioControler.getInstance().SE_Gain_Coin.Play();
 
+        //加金币
+        GameControler.getInstance().coinControl(1);
+
+        //金币动画显示
         var pos = transform.position;
         var coinAnimPrefab = Instantiate(Resources.Load("Prefab/GainCoinPrefab"), new Vector2(pos.x, pos.y + 0.8f), new Quaternion());
         ((GameObject)coinAnimPrefab).GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 400));
         GameObject.Destroy(coinAnimPrefab, 0.53f);
+
+        //加分延时执行
+        StartCoroutine(GameControler.getInstance().ScoreUIControl(100,transform.localPosition, 0.6f));
     }
 
     #endregion
