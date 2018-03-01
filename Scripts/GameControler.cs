@@ -68,7 +68,8 @@ public class GameControler : MonoBehaviour
             var x = Convert.ToSingle(item["position.x"].ToString());
             var y = Convert.ToSingle(item["position.y"].ToString());
             var type = int.Parse(item["type"].ToString());
-
+            var blockEvent = item["blockEvent"].ToString();
+            var doEventTimes = int.Parse(item["doEventTimes"].ToString());
 
             //MapEditor.getInstance().drawBlock(new Vector3(x, y, 0), type);
 
@@ -77,6 +78,20 @@ public class GameControler : MonoBehaviour
             //坐标作为图块Name
             prefabBlock.name = new Vector3(x, y, 0).ToString();
             ((GameObject)prefabBlock).GetComponent<MapBlock>().type = type;
+
+            switch (blockEvent)
+            {
+                case "Coin":
+                    {
+                        ((GameObject)prefabBlock).GetComponent<MapBlock>().BlockEvent = MapBlock.EventType.Coin;
+                        break;
+                    }
+
+                default:
+                    break;
+            }
+
+            ((GameObject)prefabBlock).GetComponent<MapBlock>().canDoEventTimes = doEventTimes;
         }
     }
 

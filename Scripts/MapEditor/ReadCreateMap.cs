@@ -109,6 +109,10 @@ public class ReadCreateMap : MonoBehaviour
             writer.Write(item.y);
             writer.WritePropertyName("type");
             writer.Write(item.type);
+            writer.WritePropertyName("blockEvent");
+            writer.Write(item.blockEvent);
+            writer.WritePropertyName("doEventTimes");
+            writer.Write(item.doEventTimes);
             writer.WriteObjectEnd();
         }
 
@@ -147,8 +151,10 @@ public class ReadCreateMap : MonoBehaviour
             var x = Convert.ToSingle(item["position.x"].ToString());
             var y = Convert.ToSingle(item["position.y"].ToString());
             var type = int.Parse(item["type"].ToString());
+            var blockEvent = item["blockEvent"].ToString();
+            var doEventTimes = int.Parse(item["doEventTimes"].ToString());
 
-            MapEditor.getInstance().drawBlock(new Vector3(x, y, 0), type);
+            MapEditor.getInstance().drawBlock(new Vector3(x, y, 0), type, blockEvent, doEventTimes);
         }
     }
 

@@ -27,7 +27,8 @@ public class GirdEvent : MonoBehaviour
 
     public void setBlockPos()
     {
-        MapEditor.getInstance().drawBlock(new Vector3(transform.position.x, transform.position.y, 0), MapEditor.getInstance().toggleChoice);
+        //默认
+        MapEditor.getInstance().drawBlock(new Vector3(transform.position.x, transform.position.y, 0), MapEditor.getInstance().toggleChoice, "None", 0);
         //Debug.Log("x: " + transform.position.x);
         //Debug.Log("y: " + transform.position.y);
         //Debug.Log("z: " + transform.position.z);

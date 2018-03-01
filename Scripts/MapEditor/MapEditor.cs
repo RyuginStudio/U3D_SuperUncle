@@ -56,7 +56,7 @@ public class MapEditor : MonoBehaviour
     public int column;  //列
 
 
-    public void drawBlock(Vector3 pos, int type)
+    public void drawBlock(Vector3 pos, int type, string blockEvent, int doEventTimes)
     {
         if (GameObject.Find(pos.ToString()))
         {
@@ -78,6 +78,20 @@ public class MapEditor : MonoBehaviour
         var prefabBlock = Instantiate(PrefabMapBlock[type], new Vector3(pos.x, pos.y, 0), new Quaternion(), mapEditor);
         prefabBlock.name = pos.ToString();
         prefabBlock.GetComponent<MapBlock>().type = type;
+
+        switch (blockEvent)
+        {
+            case "Coin":
+                {
+                    prefabBlock.GetComponent<MapBlock>().BlockEvent = MapBlock.EventType.Coin;
+                    break;
+                }
+
+            default:
+                break;
+        }
+
+        prefabBlock.GetComponent<MapBlock>().canDoEventTimes = doEventTimes;
     }
 
     public void createMapBlock2MapStruct()
@@ -88,7 +102,7 @@ public class MapEditor : MonoBehaviour
         foreach (var item in mapBlockGroup)
         {
             //创建地图图块数据结构
-            MapStruct mapBlock = new MapStruct(item.transform.position.x, item.transform.position.y, item.GetComponent<MapBlock>().type);
+            MapStruct mapBlock = new MapStruct(item.transform.position.x, item.transform.position.y, item.GetComponent<MapBlock>().type, item.GetComponent<MapBlock>().BlockEvent.ToString(), item.GetComponent<MapBlock>().canDoEventTimes);
 
             MapStructList.Add(mapBlock);
             //Debug.Log("MapStructList.Length: " + MapStructList.Count); 
@@ -145,8 +159,27 @@ public class MapEditor : MonoBehaviour
 
         var editor = Instantiate(Resources.Load("Prefab/EventEditor"), Input.mousePosition, new Quaternion(), GameObject.Find("Canvas").transform);
 
+        //注册“确定”“取消”监听事件
+        foreach (var btn in ((GameObject)editor).GetComponentsInChildren<Button>())
+        {
+            if (btn.name == "BtnEventConfirm")
+            {
+                btn.onClick.AddListener(delegate ()
+                {
+                    onBtnEventConfirm(ob, (GameObject)editor);
+                });
+            }
+            else
+            {
+                btn.onClick.AddListener(delegate ()
+                {
+                    onBtnEventCancel();
+                });
+            }
+        }
+
         //显示图块可执行事件次数
-        ((GameObject)editor).GetComponentInChildren<InputField>().text = "执行次数:" + GameObject.Find(ob).GetComponent<MapBlock>().canDoEventTimes.ToString();
+        ((GameObject)editor).GetComponentInChildren<InputField>().text = GameObject.Find(ob).GetComponent<MapBlock>().canDoEventTimes.ToString();
 
         //读取图块并改变预制体toggle
         foreach (var toggle in ((GameObject)editor).GetComponentsInChildren<Toggle>())
@@ -154,5 +187,38 @@ public class MapEditor : MonoBehaviour
             if (toggle.name == GameObject.Find(ob).GetComponent<MapBlock>().BlockEvent.ToString())
                 toggle.isOn = true;
         }
+    }
+
+    //事件编辑UI确定按钮回调
+    public void onBtnEventConfirm(string ob, GameObject editor)
+    {
+        //写入次数
+        int times = 0;
+        int.TryParse(editor.GetComponentInChildren<InputField>().text, out times);
+        GameObject.Find(ob).GetComponent<MapBlock>().canDoEventTimes = times;
+
+        //改变事件类型
+        foreach (var toggle in editor.GetComponentsInChildren<Toggle>())
+        {
+            if (toggle.isOn)
+            {
+                switch (toggle.name)
+                {
+                    case "Coin":
+                        {
+                            GameObject.Find(ob).GetComponent<MapBlock>().BlockEvent = MapBlock.EventType.Coin;
+                            break;
+                        }
+                    default:
+                        break;
+                }
+            }
+        }
+
+        GameObject.Destroy(editor);
+    }
+    public void onBtnEventCancel()
+    {
+        GameObject.Destroy(GameObject.Find("EventEditor(Clone)"));
     }
 }
