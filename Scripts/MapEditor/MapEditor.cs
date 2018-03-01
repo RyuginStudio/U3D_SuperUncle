@@ -60,12 +60,22 @@ public class MapEditor : MonoBehaviour
     {
         if (GameObject.Find(pos.ToString()))
         {
-            //覆盖掉同位置的GameObject
-            Destroy(GameObject.Find(pos.ToString()));
+            if (GameObject.Find(pos.ToString()).GetComponent<MapBlock>().type != type)
+            {
+                //覆盖掉同位置的GameObject
+                Destroy(GameObject.Find(pos.ToString()));
+            }
+            else
+            {
+                //调出事件编辑菜单
+                //Debug.Log("EventEditorMenu");
+                eventEditor(pos.ToString());
+                return;
+            }
+
         }
 
         var prefabBlock = Instantiate(PrefabMapBlock[type], new Vector3(pos.x, pos.y, 0), new Quaternion(), mapEditor);
-
         prefabBlock.name = pos.ToString();
         prefabBlock.GetComponent<MapBlock>().type = type;
     }
@@ -126,5 +136,23 @@ public class MapEditor : MonoBehaviour
         }
 
 
+    }
+
+    //地图图块事件编辑
+    public void eventEditor(string ob)
+    {
+        GameObject.Destroy(GameObject.Find("EventEditor(Clone)"));
+
+        var editor = Instantiate(Resources.Load("Prefab/EventEditor"), Input.mousePosition, new Quaternion(), GameObject.Find("Canvas").transform);
+
+        //显示图块可执行事件次数
+        ((GameObject)editor).GetComponentInChildren<InputField>().text = "执行次数:" + GameObject.Find(ob).GetComponent<MapBlock>().canDoEventTimes.ToString();
+
+        //读取图块并改变预制体toggle
+        foreach (var toggle in ((GameObject)editor).GetComponentsInChildren<Toggle>())
+        {
+            if (toggle.name == GameObject.Find(ob).GetComponent<MapBlock>().BlockEvent.ToString())
+                toggle.isOn = true;
+        }
     }
 }

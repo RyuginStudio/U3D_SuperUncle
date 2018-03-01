@@ -21,13 +21,13 @@ public class MapBlock : MonoBehaviour
     public int type;
 
     //可执行事件的次数
-    public int canDoEventTimes;
+    public int canDoEventTimes = 0;
 
     //图块附带事件种类
     public enum EventType
     {
-        none,  //无事件
-        coin,
+        None,  //无事件
+        Coin,
     }
     public EventType BlockEvent;
 
@@ -93,7 +93,7 @@ public class MapBlock : MonoBehaviour
     {
         switch (BlockEvent)
         {
-            case EventType.coin:
+            case EventType.Coin:
                 {
                     gainCoin();
                     break;
