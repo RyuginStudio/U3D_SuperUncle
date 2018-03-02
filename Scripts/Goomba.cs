@@ -72,4 +72,29 @@ public class Goomba : MonoBehaviour
             directionUpdate = Time.time;
         }
     }
+
+    public void die()
+    {
+        //在地上死
+        if (GetComponent<Rigidbody2D>().velocity.y == 0)
+        {
+            Destroy(this);
+            GetComponent<Animator>().SetBool("isDie", true);
+            Destroy(GetComponent<Rigidbody2D>());
+            Destroy(GetComponent<CircleCollider2D>());
+            Destroy(gameObject, 1);
+        }
+        else
+        {
+            //TODO:在空中死的逻辑
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.gameObject.name == "Character")
+        {
+            die();
+        }
+    }
 }
