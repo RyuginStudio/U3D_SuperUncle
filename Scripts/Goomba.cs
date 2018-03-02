@@ -18,6 +18,9 @@ public class Goomba : MonoBehaviour
 
     public float moveSpeed = 1;
 
+    //放大倍数
+    public float magnification = 1;
+
     // Use this for initialization
     void Start()
     {
@@ -47,12 +50,12 @@ public class Goomba : MonoBehaviour
         if (GoombaDirection == direction.right)
         {
             GetComponent<Rigidbody2D>().velocity = new Vector2(moveSpeed, GetComponent<Rigidbody2D>().velocity.y);
-            transform.localScale = new Vector3(-1, 1, 1);
+            transform.localScale = new Vector3(-magnification, magnification, magnification);
         }
         else
         {
             GetComponent<Rigidbody2D>().velocity = new Vector2(-moveSpeed, GetComponent<Rigidbody2D>().velocity.y);
-            transform.localScale = new Vector3(1, 1, 1);
+            transform.localScale = new Vector3(magnification, magnification, magnification);
         }
 
     }
