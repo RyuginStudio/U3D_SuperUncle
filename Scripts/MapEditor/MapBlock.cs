@@ -80,7 +80,7 @@ public class MapBlock : MonoBehaviour
         {
             --canDoEventTimes;
 
-            Destroy(gameObject, 0.6f);
+            Destroy(gameObject, 0.65f);
 
             var stone = Instantiate(Resources.Load("Prefab/BlockPrefab/Ground_4"), transform.position, new Quaternion(), TransformMapPack);
 
@@ -121,7 +121,7 @@ public class MapBlock : MonoBehaviour
         GameObject.Destroy(coinAnimPrefab, 0.53f);
 
         //加分延时执行
-        StartCoroutine(GameControler.getInstance().ScoreUIControl(100,transform.localPosition, 0.6f));
+        StartCoroutine(GameControler.getInstance().ScoreUIControl(100,transform.localPosition, 0.55f));
     }
 
     #endregion
