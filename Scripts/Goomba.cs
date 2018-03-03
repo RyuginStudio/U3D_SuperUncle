@@ -79,7 +79,7 @@ public class Goomba : MonoBehaviour
         if (GetComponent<Rigidbody2D>().velocity.y == 0)
         {
             Destroy(this);
-            GetComponent<Animator>().SetBool("isDie", true);
+            GetComponent<Animator>().SetBool("isDieGround", true);
             Destroy(GetComponent<Rigidbody2D>());
             Destroy(GetComponent<CircleCollider2D>());
             Destroy(gameObject, 1);
@@ -87,6 +87,7 @@ public class Goomba : MonoBehaviour
         else
         {
             //TODO:在空中死的逻辑
+
         }
     }
 
