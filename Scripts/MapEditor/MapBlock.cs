@@ -76,7 +76,8 @@ public class MapBlock : MonoBehaviour
 
             DoEvent();  //执行事件分发
         }
-        else if (canDoEventTimes == 0 && type == 1)  //问号=>石头
+
+        if (canDoEventTimes == 0 && type == 1)  //问号=>石头
         {
             --canDoEventTimes;
 
@@ -116,12 +117,12 @@ public class MapBlock : MonoBehaviour
 
         //金币动画显示
         var pos = transform.position;
-        var coinAnimPrefab = Instantiate(Resources.Load("Prefab/GainCoinPrefab"), new Vector2(pos.x, pos.y + 0.8f), new Quaternion());
+        var coinAnimPrefab = Instantiate(Resources.Load("Prefab/UI/GainCoinPrefab"), new Vector2(pos.x, pos.y + 0.8f), new Quaternion());
         ((GameObject)coinAnimPrefab).GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 400));
         GameObject.Destroy(coinAnimPrefab, 0.53f);
 
         //加分延时执行
-        StartCoroutine(GameControler.getInstance().ScoreUIControl(100,transform.localPosition, 0.55f));
+        StartCoroutine(GameControler.getInstance().ScoreUIControl(100, transform.localPosition, 0.55f));
     }
 
     #endregion

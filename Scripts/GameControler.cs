@@ -167,7 +167,7 @@ public class GameControler : MonoBehaviour
         GameObject.Find("ScoreNum").GetComponent<Text>().text = str_currentScore;
 
         //得分后实现“小分数”提醒
-        var littleScoreTips = Instantiate(Resources.Load("Prefab/GainScoreView"), new Vector2(pos.x, pos.y + 0.5f), new Quaternion());
+        var littleScoreTips = Instantiate(Resources.Load("Prefab/UI/GainScoreView"), new Vector2(pos.x, pos.y + 0.5f), new Quaternion());
         ((GameObject)littleScoreTips).GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 360));
         var scoreTexture = (Texture2D)Resources.Load("Pictures/UI/scoreNumbers/" + score.ToString());
         ((GameObject)littleScoreTips).GetComponent<SpriteRenderer>().sprite = Sprite.Create(scoreTexture, new Rect(0, 0, scoreTexture.width, scoreTexture.height), new Vector2(0.5f, 0.5f));
