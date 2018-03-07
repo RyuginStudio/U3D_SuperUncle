@@ -34,6 +34,8 @@ public class AudioControler : MonoBehaviour
     public AudioSource SE_FootNote;
     public AudioSource SE_FootNote_L;
     public AudioSource SE_FallDown;
+    public AudioSource SE_Emy_Fumu;
+    public AudioSource SE_Emy_Down;
 
     //=========BGM=========//
     public AudioSource BGM_Ground;

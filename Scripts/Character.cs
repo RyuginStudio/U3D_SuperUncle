@@ -129,6 +129,8 @@ public class Character : MonoBehaviour
     {
         #region JudgeFeet  //检测脚部碰撞
 
+        //=================脚部与图块 Begin=================//
+
         var CapColl2D = GetComponent<CapsuleCollider2D>();
         var size = CapColl2D.size;
         var pos = CapColl2D.transform.localPosition;
@@ -177,6 +179,40 @@ public class Character : MonoBehaviour
         {
             m_isGrounded = true;
         }
+
+        //=================脚部与图块 End=================//
+
+
+        //=================脚部与敌人 Begin=================//
+
+        var collider_left_enemy = Physics2D.Raycast(pos_left, direction1, 0.1f, 1 << LayerMask.NameToLayer("EnemyLayer")).collider;
+        var collider_right_enemy = Physics2D.Raycast(pos_right, direction2, 0.1f, 1 << LayerMask.NameToLayer("EnemyLayer")).collider;
+
+        if (collider_left_enemy != null)
+        {
+            switch (collider_left_enemy.gameObject.tag)
+            {
+                case "Goomba":
+                    {
+                        collider_left_enemy.gameObject.GetComponent<Goomba>().doBeTread();
+                        break;
+                    }                
+            }
+        }
+
+        if (collider_right_enemy != null)
+        {
+            switch (collider_right_enemy.gameObject.tag)
+            {
+                case "Goomba":
+                    {
+                        collider_right_enemy.gameObject.GetComponent<Goomba>().doBeTread();
+                        break;
+                    }
+            }
+        }
+
+        //=================脚部与敌人 End=================//
 
         #endregion
 

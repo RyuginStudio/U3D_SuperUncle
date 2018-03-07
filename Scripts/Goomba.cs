@@ -8,10 +8,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Goomba : MonoBehaviour
+public class Goomba : MonoBehaviour, IEnemy
 {
     private float currentTime;
     private float directionUpdate;
+
+    //自转动画开关
+    private bool ownRotateSwitch;
+
+    //动画旋转角度
+    private int rotateAngle;
 
     //0.1秒之前的坐标
     private Vector3 previousPos;
@@ -21,11 +27,17 @@ public class Goomba : MonoBehaviour
     //放大倍数
     public float magnification = 1;
 
+    //是否站在地上
+    public bool isGrounded;
+
+    private Rigidbody2D m_rigidbody;
+
     // Use this for initialization
     void Start()
     {
         currentTime = Time.time;
         previousPos = transform.position;
+        m_rigidbody = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -34,7 +46,11 @@ public class Goomba : MonoBehaviour
         currentTime = Time.time;
 
         changeDirection();
-        Move();
+        //Move();
+
+        RayCollisionDetection();
+
+        ownRotate(rotateAngle);
     }
 
     public enum direction
@@ -49,12 +65,12 @@ public class Goomba : MonoBehaviour
     {
         if (GoombaDirection == direction.right)
         {
-            GetComponent<Rigidbody2D>().velocity = new Vector2(moveSpeed, GetComponent<Rigidbody2D>().velocity.y);
+            m_rigidbody.velocity = new Vector2(moveSpeed, m_rigidbody.velocity.y);
             transform.localScale = new Vector3(-magnification, magnification, magnification);
         }
         else
         {
-            GetComponent<Rigidbody2D>().velocity = new Vector2(-moveSpeed, GetComponent<Rigidbody2D>().velocity.y);
+            m_rigidbody.velocity = new Vector2(-moveSpeed, m_rigidbody.velocity.y);
             transform.localScale = new Vector3(magnification, magnification, magnification);
         }
 
@@ -73,29 +89,86 @@ public class Goomba : MonoBehaviour
         }
     }
 
+    //被踩执行内容
+    public void doBeTread()
+    {
+        die();
+    }
+
     public void die()
     {
         //在地上死
-        if (GetComponent<Rigidbody2D>().velocity.y == 0)
+        if (isGrounded)
         {
+            AudioControler.getInstance().SE_Emy_Fumu.Play();
+
+            //角色受力
+            GameObject.FindWithTag("Player").GetComponentInParent<Rigidbody2D>().AddForce(new Vector2(0, 350));
+
             Destroy(this);
             GetComponent<Animator>().SetBool("isDieGround", true);
-            Destroy(GetComponent<Rigidbody2D>());
+            Destroy(m_rigidbody);
             Destroy(GetComponent<CircleCollider2D>());
-            Destroy(gameObject, 1);
+            Destroy(gameObject, 1.5f);
         }
         else
         {
-            //TODO:在空中死的逻辑
+            AudioControler.getInstance().SE_Emy_Down.Play();
 
+            Destroy(GetComponent<CircleCollider2D>());
+
+            var charPos = GameObject.FindWithTag("Player").transform.position;
+
+            if (charPos.x > transform.position.x)
+            {
+                rotateAngle = 10;
+                m_rigidbody.AddForce(new Vector2(-400, 400), ForceMode2D.Force);
+            }
+            else
+            {
+                rotateAngle = -10;
+                m_rigidbody.AddForce(new Vector2(400, 400), ForceMode2D.Force);
+            }
+
+            ownRotateSwitch = true;
+
+            Destroy(gameObject, 5);
+        }
+    }
+
+    //射线检测
+    private void RayCollisionDetection()
+    {
+        if (!ownRotateSwitch)
+        {
+            var circleCollider = GetComponent<CircleCollider2D>();
+
+            var pos = new Vector2(transform.position.x, transform.position.y - circleCollider.radius);  //检测坐标
+
+            var targetPos = new Vector2(pos.x, pos.y - 0.1f);
+
+            var direction = targetPos - pos;
+
+            var collider = Physics2D.Raycast(pos, direction, 0.1f, 1 << LayerMask.NameToLayer("MapBlock")).collider;
+
+            if (collider != null)
+                isGrounded = true;
+            else
+                isGrounded = false;
+        }
+    }
+
+    //空中死亡旋转动画
+    private void ownRotate(int angle)
+    {
+        if (ownRotateSwitch)
+        {
+            transform.Rotate(Vector3.forward, angle);
         }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.gameObject.name == "Character")
-        {
-            die();
-        }
+        Debug.Log(collision.collider.gameObject.name);
     }
 }
