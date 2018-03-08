@@ -173,22 +173,4 @@ public class Goomba : MonoBehaviour, IEnemy
         }
     }
 
-    //private void OnCollisionEnter2D(Collision2D collision)
-    //{
-    //    if (collision.collider.gameObject.name == "Character")
-    //    {           
-    //        GameControler.getInstance().gameOver();
-    //        Debug.Log("Goomba");
-    //        Debug.Log(collision.collider.transform.position);            
-    //    }
-    //}
-    //private void OnCollisionStay2D(Collision2D collision)
-    //{
-    //    if (collision.collider.gameObject.name == "Character")
-    //    {
-    //        GameControler.getInstance().gameOver();
-    //        Debug.Log("GoombaStay");
-    //        Debug.Log(collision.collider.transform.position);
-    //    }
-    //}
 }
