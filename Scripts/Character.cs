@@ -103,7 +103,7 @@ public class Character : MonoBehaviour
         {
             keyboardControl();
             CharacterRayCollisionDetection();
-        }      
+        }
     }
 
     void keyboardControl()
@@ -284,6 +284,14 @@ public class Character : MonoBehaviour
 
         #endregion
 
+        #region JudgeBody  //检测身体碰撞
+
+        /*
+         * 于胶囊碰撞器上添加了boxCollider(isTrigger)触发器 => 以免被卡住
+         * 用这个碰撞器OnTriggerEnter2D代替身体部位的射线碰撞处理
+         */
+
+        #endregion
     }
 
     public void jump()
@@ -326,8 +334,31 @@ public class Character : MonoBehaviour
     {
         m_animator.SetBool("isDie", true);
         Destroy(GetComponent<CapsuleCollider2D>());
+        Destroy(GetComponent<BoxCollider2D>());
         Destroy(GetComponent<Rigidbody2D>());
-        GameObject.Find("small_sprite_stand").transform.rotation = Quaternion.Euler(0, 180, 0);        
+        GameObject.Find("small_sprite_stand").transform.rotation = Quaternion.Euler(0, 180, 0);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (!isUnmatched)
+        {
+            switch (collision.gameObject.tag)
+            {
+                case "Goomba":
+                    GameControler.getInstance().gameOver();
+                    break;
+            }
+        }
+        else
+        {
+            switch (collision.gameObject.tag)
+            {
+                case "Goomba":
+                    collision.gameObject.GetComponent<Goomba>().doBeTread();
+                    break;
+            }
+        }
     }
 
 }
