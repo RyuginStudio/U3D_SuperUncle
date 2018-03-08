@@ -12,6 +12,16 @@ public class Character : MonoBehaviour
 
     [SerializeField] private bool m_isGrounded;
 
+    //角色是否无敌
+    public bool isUnmatched = false;
+
+    //单例
+    private static Character instance;
+    public static Character getInstance()
+    {
+        return instance;
+    }
+
     //移动速度
     public float MoveSpeed = 10;
 
@@ -73,6 +83,8 @@ public class Character : MonoBehaviour
 
     private void Awake()
     {
+        instance = this;
+
         //设置相关引用
         m_animator = GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>();
         m_Rigidbody2D = GetComponent<Rigidbody2D>();
@@ -87,8 +99,11 @@ public class Character : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        keyboardControl();
-        CharacterRayCollisionDetection();
+        if (!m_animator.GetBool("isDie"))
+        {
+            keyboardControl();
+            CharacterRayCollisionDetection();
+        }      
     }
 
     void keyboardControl()
@@ -196,7 +211,7 @@ public class Character : MonoBehaviour
                     {
                         collider_left_enemy.gameObject.GetComponent<Goomba>().doBeTread();
                         break;
-                    }                
+                    }
             }
         }
 
@@ -217,6 +232,8 @@ public class Character : MonoBehaviour
         #endregion
 
         #region JudgeHead  //检测头部碰撞
+
+        //=================头部与图块 Begin=================//
 
         float left_head_x = characDirection == Direction.left ? pos.x - size.x / 2 - CapColl2D.offset.x : pos.x - size.x / 2 + CapColl2D.offset.x;
         float left_head_y = pos.y + size.y;
@@ -250,6 +267,20 @@ public class Character : MonoBehaviour
         {
             collider_Head_Right.GetComponent<MapBlock>().BlockCollision();
         }
+
+        //=================头部与图块 End=================//
+
+        //=================头部与敌人 Begin=================//
+
+        var collider_Head_Left_enemy = Physics2D.Raycast(pos_head_left, directionHeadLeft, 0.05f, 1 << LayerMask.NameToLayer("EnemyLayer")).collider;
+        var collider_Head_Right_enemy = Physics2D.Raycast(pos_head_right, directionHeadRight, 0.05f, 1 << LayerMask.NameToLayer("EnemyLayer")).collider;
+
+        if ((collider_Head_Left_enemy != null || collider_Head_Right_enemy != null) && !isUnmatched)
+        {
+            GameControler.getInstance().gameOver();
+        }
+
+        //=================头部与敌人 End=================//
 
         #endregion
 
@@ -291,5 +322,12 @@ public class Character : MonoBehaviour
         }
     }
 
+    public void characterDie()
+    {
+        m_animator.SetBool("isDie", true);
+        Destroy(GetComponent<CapsuleCollider2D>());
+        Destroy(GetComponent<Rigidbody2D>());
+        GameObject.Find("small_sprite_stand").transform.rotation = Quaternion.Euler(0, 180, 0);        
+    }
 
 }

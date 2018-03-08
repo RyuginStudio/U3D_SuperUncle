@@ -134,12 +134,9 @@ public class GameControler : MonoBehaviour
         }
     }
 
-    //游戏结束 TODO：具体逻辑没写
+    //游戏结束
     public void gameOver()
     {
-        Debug.Log("GameOver");
-        GameOver = true;
-
         //BGM
         AudioControler.getInstance().BGM_Ground.Stop();
         AudioControler.getInstance().BGM_Ground_Hurry.Stop();
@@ -148,6 +145,11 @@ public class GameControler : MonoBehaviour
         AudioControler.getInstance().SE_Die1.Play();
         AudioControler.getInstance().SE_Die2.PlayDelayed(0.5f);
         AudioControler.getInstance().SE_OhNo.PlayDelayed(0.5f);
+
+        Debug.Log("GameOver");
+        GameOver = true;
+
+        Character.getInstance().characterDie();
     }
 
     //分数控制(延时执行)

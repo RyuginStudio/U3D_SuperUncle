@@ -12,6 +12,7 @@ public class Goomba : MonoBehaviour, IEnemy
 {
     private float currentTime;
     private float directionUpdate;
+    private float doBeTreadUpdate;
 
     //自转动画开关
     private bool ownRotateSwitch;
@@ -46,7 +47,7 @@ public class Goomba : MonoBehaviour, IEnemy
         currentTime = Time.time;
 
         changeDirection();
-        //Move();
+        Move();
 
         RayCollisionDetection();
 
@@ -92,7 +93,12 @@ public class Goomba : MonoBehaviour, IEnemy
     //被踩执行内容
     public void doBeTread()
     {
-        die();
+        if (currentTime - doBeTreadUpdate > 0.2f)
+        {
+            Debug.Log("doBeTread()");
+            doBeTreadUpdate = Time.time;
+            die();
+        }
     }
 
     public void die()
@@ -167,8 +173,22 @@ public class Goomba : MonoBehaviour, IEnemy
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        Debug.Log(collision.collider.gameObject.name);
-    }
+    //private void OnCollisionEnter2D(Collision2D collision)
+    //{
+    //    if (collision.collider.gameObject.name == "Character")
+    //    {           
+    //        GameControler.getInstance().gameOver();
+    //        Debug.Log("Goomba");
+    //        Debug.Log(collision.collider.transform.position);            
+    //    }
+    //}
+    //private void OnCollisionStay2D(Collision2D collision)
+    //{
+    //    if (collision.collider.gameObject.name == "Character")
+    //    {
+    //        GameControler.getInstance().gameOver();
+    //        Debug.Log("GoombaStay");
+    //        Debug.Log(collision.collider.transform.position);
+    //    }
+    //}
 }
