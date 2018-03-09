@@ -95,7 +95,7 @@ public class Goomba : MonoBehaviour, IEnemy
     {
         if (currentTime - doBeTreadUpdate > 0.2f)
         {
-            Debug.Log("doBeTread()");
+            //Debug.Log("doBeTread()");
             doBeTreadUpdate = Time.time;
             die();
         }
