@@ -86,6 +86,11 @@ public class GameControler : MonoBehaviour
                         ((GameObject)prefabBlock).GetComponent<MapBlock>().BlockEvent = MapBlock.EventType.Coin;
                         break;
                     }
+                case "Goomba":
+                    {
+                        ((GameObject)prefabBlock).GetComponent<MapBlock>().BlockEvent = MapBlock.EventType.Goomba;
+                        break;
+                    }
 
                 default:
                     break;

@@ -28,6 +28,7 @@ public class MapBlock : MonoBehaviour
     {
         None,  //无事件
         Coin,
+        Goomba
     }
     public EventType BlockEvent;
 
@@ -99,6 +100,11 @@ public class MapBlock : MonoBehaviour
                     gainCoin();
                     break;
                 }
+            case EventType.Goomba:
+                {
+                    createGoomba();
+                    break;
+                }
 
             default:
                 break;
@@ -123,6 +129,14 @@ public class MapBlock : MonoBehaviour
 
         //加分延时执行
         StartCoroutine(GameControler.getInstance().ScoreUIControl(100, transform.localPosition, 0.55f));
+    }
+
+    public void createGoomba()
+    {
+        AudioControler.getInstance().SE_Appear.Play();
+        var pos = transform.position;
+        var goomba = Instantiate(Resources.Load("Prefab/Enemy/Goomba"), new Vector2(pos.x, pos.y + 0.2f), new Quaternion());
+        ((GameObject)goomba).GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 400));
     }
 
     #endregion

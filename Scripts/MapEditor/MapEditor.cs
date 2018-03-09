@@ -86,6 +86,11 @@ public class MapEditor : MonoBehaviour
                     prefabBlock.GetComponent<MapBlock>().BlockEvent = MapBlock.EventType.Coin;
                     break;
                 }
+            case "Goomba":
+                {
+                    prefabBlock.GetComponent<MapBlock>().BlockEvent = MapBlock.EventType.Goomba;
+                    break;
+                }
 
             default:
                 break;
@@ -157,7 +162,7 @@ public class MapEditor : MonoBehaviour
     {
         GameObject.Destroy(GameObject.Find("EventEditor(Clone)"));
 
-        var editor = Instantiate(Resources.Load("Prefab/EventEditor"), Input.mousePosition, new Quaternion(), GameObject.Find("Canvas").transform);
+        var editor = Instantiate(Resources.Load("Prefab/UI/EventEditor"), Input.mousePosition, new Quaternion(), GameObject.Find("Canvas").transform);
 
         //注册“确定”“取消”监听事件
         foreach (var btn in ((GameObject)editor).GetComponentsInChildren<Button>())
@@ -207,6 +212,11 @@ public class MapEditor : MonoBehaviour
                     case "Coin":
                         {
                             GameObject.Find(ob).GetComponent<MapBlock>().BlockEvent = MapBlock.EventType.Coin;
+                            break;
+                        }
+                    case "Goomba":
+                        {
+                            GameObject.Find(ob).GetComponent<MapBlock>().BlockEvent = MapBlock.EventType.Goomba;
                             break;
                         }
                     default:
