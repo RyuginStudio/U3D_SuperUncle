@@ -212,6 +212,11 @@ public class Character : MonoBehaviour
                         collider_left_enemy.gameObject.GetComponent<Goomba>().doBeTread();
                         break;
                     }
+                case "Tortoise":
+                    {
+                        collider_left_enemy.gameObject.GetComponent<Tortoise>().doBeTread();
+                        break;
+                    }
             }
         }
 
@@ -222,6 +227,11 @@ public class Character : MonoBehaviour
                 case "Goomba":
                     {
                         collider_right_enemy.gameObject.GetComponent<Goomba>().doBeTread();
+                        break;
+                    }
+                case "Tortoise":
+                    {
+                        collider_right_enemy.gameObject.GetComponent<Tortoise>().doBeTread();
                         break;
                     }
             }
@@ -348,6 +358,9 @@ public class Character : MonoBehaviour
                 case "Goomba":
                     GameControler.getInstance().gameOver();
                     break;
+                case "Tortoise":
+                    GameControler.getInstance().gameOver();
+                    break;
             }
         }
         else
@@ -356,6 +369,9 @@ public class Character : MonoBehaviour
             {
                 case "Goomba":
                     collision.gameObject.GetComponent<Goomba>().doBeTread();
+                    break;
+                case "Tortoise":
+                    collision.gameObject.GetComponent<Tortoise>().doBeTread();
                     break;
             }
         }
