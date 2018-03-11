@@ -1,0 +1,638 @@
+fileFormatVersion: 2
+guid: 1ebdc6ba52300e94f82c792b6f3591c2
+timeCreated: 1520736650
+licenseType: Pro
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: TortoiseCrawl_0
+    21300002: TortoiseCrawl_1
+    21300004: TortoiseCrawl_2
+    21300006: TortoiseCrawl_3
+    21300008: TortoiseCrawl_4
+    21300010: TortoiseCrawl_5
+    21300012: TortoiseCrawl_6
+    21300014: TortoiseCrawl_7
+    21300016: TortoiseCrawl_8
+    21300018: TortoiseCrawl_9
+    21300020: TortoiseCrawl_10
+    21300022: TortoiseCrawl_11
+    21300024: TortoiseCrawl_12
+    21300026: TortoiseCrawl_13
+    21300028: TortoiseCrawl_14
+    21300030: TortoiseCrawl_15
+    21300032: TortoiseCrawl_16
+    21300034: TortoiseCrawl_17
+    21300036: TortoiseCrawl_18
+    21300038: TortoiseCrawl_19
+    21300040: TortoiseCrawl_20
+    21300042: TortoiseCrawl_21
+    21300044: TortoiseCrawl_22
+    21300046: TortoiseCrawl_23
+    21300048: TortoiseCrawl_24
+    21300050: TortoiseCrawl_25
+    21300052: TortoiseCrawl_26
+    21300054: TortoiseCrawl_27
+    21300056: TortoiseCrawl_28
+    21300058: TortoiseCrawl_29
+    21300060: TortoiseCrawl_30
+    21300062: TortoiseCrawl_31
+    21300064: TortoiseCrawl_32
+    21300066: TortoiseCrawl_33
+    21300068: TortoiseCrawl_34
+    21300070: TortoiseCrawl_35
+    21300072: TortoiseCrawl_36
+    21300074: TortoiseCrawl_37
+    21300076: TortoiseCrawl_38
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: -1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaUsage: 1
+  alphaIsTransparency: 0
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Android
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: WebGL
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: TortoiseCrawl_0
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 1352
+        width: 178
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: TortoiseCrawl_1
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 1352
+        width: 178
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: TortoiseCrawl_2
+      rect:
+        serializedVersion: 2
+        x: 359
+        y: 1352
+        width: 178
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: TortoiseCrawl_3
+      rect:
+        serializedVersion: 2
+        x: 538
+        y: 1352
+        width: 178
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: TortoiseCrawl_4
+      rect:
+        serializedVersion: 2
+        x: 717
+        y: 1352
+        width: 178
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: TortoiseCrawl_5
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 1159
+        width: 178
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: TortoiseCrawl_6
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 1159
+        width: 178
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: TortoiseCrawl_7
+      rect:
+        serializedVersion: 2
+        x: 359
+        y: 1159
+        width: 178
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: TortoiseCrawl_8
+      rect:
+        serializedVersion: 2
+        x: 538
+        y: 1159
+        width: 178
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: TortoiseCrawl_9
+      rect:
+        serializedVersion: 2
+        x: 717
+        y: 1159
+        width: 178
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: TortoiseCrawl_10
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 966
+        width: 178
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: TortoiseCrawl_11
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 966
+        width: 178
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: TortoiseCrawl_12
+      rect:
+        serializedVersion: 2
+        x: 359
+        y: 966
+        width: 178
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: TortoiseCrawl_13
+      rect:
+        serializedVersion: 2
+        x: 538
+        y: 966
+        width: 178
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: TortoiseCrawl_14
+      rect:
+        serializedVersion: 2
+        x: 717
+        y: 966
+        width: 178
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: TortoiseCrawl_15
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 773
+        width: 178
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: TortoiseCrawl_16
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 773
+        width: 178
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: TortoiseCrawl_17
+      rect:
+        serializedVersion: 2
+        x: 359
+        y: 773
+        width: 178
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: TortoiseCrawl_18
+      rect:
+        serializedVersion: 2
+        x: 538
+        y: 773
+        width: 178
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: TortoiseCrawl_19
+      rect:
+        serializedVersion: 2
+        x: 717
+        y: 773
+        width: 178
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: TortoiseCrawl_20
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 580
+        width: 178
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: TortoiseCrawl_21
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 580
+        width: 178
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: TortoiseCrawl_22
+      rect:
+        serializedVersion: 2
+        x: 359
+        y: 580
+        width: 178
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: TortoiseCrawl_23
+      rect:
+        serializedVersion: 2
+        x: 538
+        y: 580
+        width: 178
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: TortoiseCrawl_24
+      rect:
+        serializedVersion: 2
+        x: 717
+        y: 580
+        width: 178
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: TortoiseCrawl_25
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 387
+        width: 178
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: TortoiseCrawl_26
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 387
+        width: 178
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: TortoiseCrawl_27
+      rect:
+        serializedVersion: 2
+        x: 359
+        y: 387
+        width: 178
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: TortoiseCrawl_28
+      rect:
+        serializedVersion: 2
+        x: 538
+        y: 387
+        width: 178
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: TortoiseCrawl_29
+      rect:
+        serializedVersion: 2
+        x: 717
+        y: 387
+        width: 178
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: TortoiseCrawl_30
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 194
+        width: 178
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: TortoiseCrawl_31
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 194
+        width: 178
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: TortoiseCrawl_32
+      rect:
+        serializedVersion: 2
+        x: 359
+        y: 194
+        width: 178
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: TortoiseCrawl_33
+      rect:
+        serializedVersion: 2
+        x: 538
+        y: 194
+        width: 178
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: TortoiseCrawl_34
+      rect:
+        serializedVersion: 2
+        x: 717
+        y: 194
+        width: 178
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: TortoiseCrawl_35
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 1
+        width: 178
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: TortoiseCrawl_36
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 1
+        width: 178
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: TortoiseCrawl_37
+      rect:
+        serializedVersion: 2
+        x: 359
+        y: 1
+        width: 178
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: TortoiseCrawl_38
+      rect:
+        serializedVersion: 2
+        x: 538
+        y: 1
+        width: 178
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -21,7 +21,7 @@ public class Tortoise : MonoBehaviour, IEnemy
     //默认为陆龟
     public bool isFlyTortoise = false;
 
-    public float moveSpeed = 1;
+    public float moveSpeed = 2;
 
     //触地或触头
     public bool isGrounded;
@@ -133,7 +133,9 @@ public class Tortoise : MonoBehaviour, IEnemy
         if (currentTime - directionUpdate > 0.1f)
         {
             if (previousPos == transform.position && !isFlyTortoise)
+            {
                 TortoiseDirection = TortoiseDirection == direction.right ? direction.left : direction.right;
+            }
             else if (isFlyTortoise)
             {
                 if (isGrounded)
@@ -168,7 +170,14 @@ public class Tortoise : MonoBehaviour, IEnemy
             m_Animator.SetBool("isFlyTortoise", false);
             if (transform.childCount == 1)
             {
-                Destroy((transform.GetChild(0)).gameObject);
+                transform.GetChild(0).gameObject.GetComponent<Wing>().ownRotateSwitch = true;
+
+                if (!transform.GetChild(0).gameObject.GetComponent<Rigidbody2D>())
+                {
+                    transform.GetChild(0).gameObject.AddComponent<Rigidbody2D>();
+                    transform.GetChild(0).gameObject.GetComponent<Rigidbody2D>().gravityScale = 3;
+                }
+                Destroy((transform.GetChild(0)).gameObject, 3);
             }
 
         }
@@ -265,9 +274,37 @@ public class Tortoise : MonoBehaviour, IEnemy
             AudioControler.getInstance().SE_Emy_Fumu.Play();
 
             //角色受力
-            GameObject.FindWithTag("Player").GetComponentInParent<Rigidbody2D>().AddForce(new Vector2(0, 350));
+            GameObject.FindWithTag("Player").GetComponentInParent<Rigidbody2D>().velocity =
+                new Vector2(GameObject.FindWithTag("Player").GetComponentInParent<Rigidbody2D>().velocity.x,
+                GameObject.FindWithTag("Player").GetComponentInParent<Rigidbody2D>().velocity.y + 15);
+
+            changeStatus();
 
         }
+    }
+
+    public void changeStatus()
+    {
+        if (isFlyTortoise)
+        {
+            isFlyTortoise = false;
+
+            var playerPos = GameObject.FindGameObjectWithTag("Player").gameObject.GetComponentInParent<Transform>().position;
+
+            if (playerPos.x > transform.position.x)
+                TortoiseDirection = direction.right;
+            else
+                TortoiseDirection = direction.left;
+        }
+        else
+        {
+
+        }
+    }
+
+    public void pushShell()
+    {
+
     }
 
     //只有两种情况会死：任何状态下 => 1.被炮弹击中 2.被别的龟壳击中
