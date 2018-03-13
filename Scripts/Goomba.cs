@@ -91,17 +91,17 @@ public class Goomba : MonoBehaviour, IEnemy
     }
 
     //被踩执行内容
-    public void doBeTread()
+    public void doBeTread(GameObject player)
     {
         if (currentTime - doBeTreadUpdate > 0.2f)
         {
             //Debug.Log("doBeTread()");
             doBeTreadUpdate = Time.time;
-            die();
+            die(player);
         }
     }
 
-    public void die()
+    public void die(GameObject player)
     {
         //在地上死
         if (isGrounded)
@@ -109,7 +109,8 @@ public class Goomba : MonoBehaviour, IEnemy
             AudioControler.getInstance().SE_Emy_Fumu.Play();
 
             //角色受力
-            GameObject.FindWithTag("Player").GetComponentInParent<Rigidbody2D>().AddForce(new Vector2(0, 350));
+            player.GetComponent<Rigidbody2D>().velocity = new Vector2(player.GetComponent<Rigidbody2D>().velocity.x, 0);  //清空player竖直线速度
+            player.GetComponent<Rigidbody2D>().velocity = new Vector2(player.GetComponent<Rigidbody2D>().velocity.x, player.GetComponent<Rigidbody2D>().velocity.y + 8);
 
             Destroy(this);
             GetComponent<Animator>().SetBool("isDieGround", true);

@@ -209,12 +209,12 @@ public class Character : MonoBehaviour
             {
                 case "Goomba":
                     {
-                        collider_left_enemy.gameObject.GetComponent<Goomba>().doBeTread();
+                        collider_left_enemy.gameObject.GetComponent<Goomba>().doBeTread(gameObject);
                         break;
                     }
                 case "Tortoise":
                     {
-                        collider_left_enemy.gameObject.GetComponent<Tortoise>().doBeTread();
+                        collider_left_enemy.gameObject.GetComponent<Tortoise>().doBeTread(gameObject);
                         break;
                     }
             }
@@ -226,12 +226,12 @@ public class Character : MonoBehaviour
             {
                 case "Goomba":
                     {
-                        collider_right_enemy.gameObject.GetComponent<Goomba>().doBeTread();
+                        collider_right_enemy.gameObject.GetComponent<Goomba>().doBeTread(gameObject);
                         break;
                     }
                 case "Tortoise":
                     {
-                        collider_right_enemy.gameObject.GetComponent<Tortoise>().doBeTread();
+                        collider_right_enemy.gameObject.GetComponent<Tortoise>().doBeTread(gameObject);
                         break;
                     }
             }
@@ -368,10 +368,10 @@ public class Character : MonoBehaviour
             switch (collision.gameObject.tag)
             {
                 case "Goomba":
-                    collision.gameObject.GetComponent<Goomba>().doBeTread();
+                    collision.gameObject.GetComponent<Goomba>().doBeTread(gameObject);
                     break;
                 case "Tortoise":
-                    collision.gameObject.GetComponent<Tortoise>().doBeTread();
+                    collision.gameObject.GetComponent<Tortoise>().doBeTread(gameObject);
                     break;
             }
         }

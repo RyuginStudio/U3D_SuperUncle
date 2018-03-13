@@ -11,5 +11,5 @@ using UnityEngine;
 public interface IEnemy
 {
     //被踩踏
-    void doBeTread();
+    void doBeTread(GameObject player);
 }

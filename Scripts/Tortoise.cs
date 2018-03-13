@@ -18,9 +18,6 @@ public class Tortoise : MonoBehaviour, IEnemy
     private float directionUpdate;
     private float doBeTreadUpdate;
 
-    //默认为陆龟
-    public bool isFlyTortoise = false;
-
     public float moveSpeed = 2;
 
     //触地或触头
@@ -42,14 +39,15 @@ public class Tortoise : MonoBehaviour, IEnemy
     private Vector3 UpTargetPos;
     private Vector3 DownTargetPos;
 
-
     private void Awake()
     {
         m_Animator = GetComponent<Animator>();
         m_rigidbody = GetComponent<Rigidbody2D>();
 
-        if (isFlyTortoise)
+        if (TortoiseStatus == Status.isFly)
             TortoiseDirection = direction.rise;
+        else if (TortoiseStatus == Status.isOnFoot)
+            TortoiseDirection = direction.right | direction.left;
     }
 
     // Use this for initialization
@@ -58,6 +56,8 @@ public class Tortoise : MonoBehaviour, IEnemy
         var pos = transform.position;
         UpTargetPos = new Vector3(pos.x, pos.y + 10, pos.z);
         DownTargetPos = new Vector3(pos.x, pos.y - 10, pos.z);
+
+        wingControl();
     }
 
     // Update is called once per frame
@@ -65,9 +65,12 @@ public class Tortoise : MonoBehaviour, IEnemy
     {
         currentTime = Time.time;
 
+        animatorControler();
+
         Move();
+
         changeDirection();
-        changeAnimatorStatus();
+
         RayCollisionDetection();
     }
 
@@ -80,10 +83,70 @@ public class Tortoise : MonoBehaviour, IEnemy
     }
     public direction TortoiseDirection;
 
+    public enum Status
+    {
+        isFly,
+        isOnFoot,
+        isShellStatic,
+        isShellMove,
+        isCrawl
+    }
+    public Status TortoiseStatus;
+
+    //动画状态机
+    private void animatorControler()
+    {
+        switch (TortoiseStatus)
+        {
+            case Status.isFly:
+                {
+                    m_Animator.SetBool("isFly", true);
+                    m_Animator.SetBool("isCrawl", false);
+                    m_Animator.SetBool("isShellMove", false);
+                    m_Animator.SetBool("isShellStatic", false);
+                    break;
+                }
+            case Status.isOnFoot:
+                {
+                    m_Animator.SetBool("isFly", false);
+                    m_Animator.SetBool("isCrawl", false);
+                    m_Animator.SetBool("isShellMove", false);
+                    m_Animator.SetBool("isShellStatic", false);
+                    break;
+                }
+
+            case Status.isShellMove:
+                {
+                    m_Animator.SetBool("isFly", false);
+                    m_Animator.SetBool("isCrawl", false);
+                    m_Animator.SetBool("isShellMove", true);
+                    m_Animator.SetBool("isShellStatic", false);
+                    break;
+                }
+            case Status.isShellStatic:
+                {
+                    m_Animator.SetBool("isFly", false);
+                    m_Animator.SetBool("isCrawl", false);
+                    m_Animator.SetBool("isShellMove", false);
+                    m_Animator.SetBool("isShellStatic", true);
+                    break;
+                }
+            case Status.isCrawl:
+                {
+                    m_Animator.SetBool("isFly", false);
+                    m_Animator.SetBool("isCrawl", true);
+                    m_Animator.SetBool("isShellMove", false);
+                    m_Animator.SetBool("isShellStatic", false);
+                    break;
+                }
+        }
+    }
+
     //移动
     public void Move()
     {
-        if (isFlyTortoise)
+
+        if (TortoiseStatus == Status.isFly)
         {
             m_rigidbody.gravityScale = 0;
             m_rigidbody.mass = 0;
@@ -108,7 +171,7 @@ public class Tortoise : MonoBehaviour, IEnemy
                 }
             }
         }
-        else
+        else if (TortoiseStatus == Status.isOnFoot)
         {
             m_rigidbody.gravityScale = 3;
             m_rigidbody.mass = 1;
@@ -125,6 +188,7 @@ public class Tortoise : MonoBehaviour, IEnemy
                 transform.localScale = new Vector3(magnification, magnification, magnification);
             }
         }
+
     }
 
     //转向 => (0.1秒前的坐标与当前坐标相同时视为障碍物)
@@ -132,19 +196,22 @@ public class Tortoise : MonoBehaviour, IEnemy
     {
         if (currentTime - directionUpdate > 0.1f)
         {
-            if (previousPos == transform.position && !isFlyTortoise)
+            if (previousPos == transform.position)
             {
-                TortoiseDirection = TortoiseDirection == direction.right ? direction.left : direction.right;
-            }
-            else if (isFlyTortoise)
-            {
-                if (isGrounded)
+                if (TortoiseStatus == Status.isFly)
                 {
-                    TortoiseDirection = direction.rise;
+                    if (isGrounded)
+                    {
+                        TortoiseDirection = direction.rise;
+                    }
+                    if (isHeaded)
+                    {
+                        TortoiseDirection = direction.fall;
+                    }
                 }
-                if (isHeaded)
+                else if (TortoiseStatus != Status.isCrawl && TortoiseStatus != Status.isShellStatic)
                 {
-                    TortoiseDirection = direction.fall;
+                    TortoiseDirection = TortoiseDirection == direction.right ? direction.left : direction.right;
                 }
             }
 
@@ -153,11 +220,11 @@ public class Tortoise : MonoBehaviour, IEnemy
         }
     }
 
-    public void changeAnimatorStatus()
+    //翅膀控制
+    public void wingControl()
     {
-        if (isFlyTortoise)
+        if (TortoiseStatus == Status.isFly)
         {
-            m_Animator.SetBool("isFlyTortoise", true);
             if (transform.childCount == 0)
             {
                 var pos = transform.position;
@@ -167,7 +234,6 @@ public class Tortoise : MonoBehaviour, IEnemy
         }
         else
         {
-            m_Animator.SetBool("isFlyTortoise", false);
             if (transform.childCount == 1)
             {
                 transform.GetChild(0).gameObject.GetComponent<Wing>().ownRotateSwitch = true;
@@ -179,7 +245,6 @@ public class Tortoise : MonoBehaviour, IEnemy
                 }
                 Destroy((transform.GetChild(0)).gameObject, 3);
             }
-
         }
     }
 
@@ -264,7 +329,7 @@ public class Tortoise : MonoBehaviour, IEnemy
 
     }
 
-    public void doBeTread()
+    public void doBeTread(GameObject player)
     {
         if (currentTime - doBeTreadUpdate > 0.2f)
         {
@@ -274,37 +339,43 @@ public class Tortoise : MonoBehaviour, IEnemy
             AudioControler.getInstance().SE_Emy_Fumu.Play();
 
             //角色受力
-            GameObject.FindWithTag("Player").GetComponentInParent<Rigidbody2D>().velocity =
-                new Vector2(GameObject.FindWithTag("Player").GetComponentInParent<Rigidbody2D>().velocity.x,
-                GameObject.FindWithTag("Player").GetComponentInParent<Rigidbody2D>().velocity.y + 15);
+            player.GetComponent<Rigidbody2D>().velocity = new Vector2(player.GetComponent<Rigidbody2D>().velocity.x, 0);  //清空player竖直线速度
+            player.GetComponent<Rigidbody2D>().velocity = new Vector2(player.GetComponent<Rigidbody2D>().velocity.x, player.GetComponent<Rigidbody2D>().velocity.y + 10);
 
-            changeStatus();
+            switch (TortoiseStatus)
+            {
+                case Status.isFly:
+                    {
+                        TortoiseStatus = Status.isOnFoot;
+                        wingControl();
+
+                        if (player.transform.position.x > transform.position.x)
+                            TortoiseDirection = direction.left;
+                        else
+                            TortoiseDirection = direction.right;
+
+                        break;
+                    }
+
+                case Status.isOnFoot:
+                    {
+                        TortoiseStatus = Status.isShellStatic;
+                        GetComponent<Rigidbody2D>().velocity = new Vector2(0, GetComponent<Rigidbody2D>().velocity.y);
+
+                        break;
+                    }
+
+                case Status.isShellStatic:
+                    break;
+                case Status.isShellMove:
+                    break;
+                case Status.isCrawl:
+                    break;
+                default:
+                    break;
+            }
 
         }
-    }
-
-    public void changeStatus()
-    {
-        if (isFlyTortoise)
-        {
-            isFlyTortoise = false;
-
-            var playerPos = GameObject.FindGameObjectWithTag("Player").gameObject.GetComponentInParent<Transform>().position;
-
-            if (playerPos.x > transform.position.x)
-                TortoiseDirection = direction.right;
-            else
-                TortoiseDirection = direction.left;
-        }
-        else
-        {
-
-        }
-    }
-
-    public void pushShell()
-    {
-
     }
 
     //只有两种情况会死：任何状态下 => 1.被炮弹击中 2.被别的龟壳击中
