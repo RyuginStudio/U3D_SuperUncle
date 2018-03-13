@@ -72,6 +72,8 @@ public class Tortoise : MonoBehaviour, IEnemy
         changeDirection();
 
         RayCollisionDetection();
+
+        changeCollider();
     }
 
     public enum direction
@@ -188,6 +190,13 @@ public class Tortoise : MonoBehaviour, IEnemy
                 transform.localScale = new Vector3(magnification, magnification, magnification);
             }
         }
+        else if (TortoiseStatus == Status.isShellMove)
+        {
+            if (TortoiseDirection == direction.left)
+                m_rigidbody.velocity = new Vector2(m_rigidbody.velocity.x - 1.5f * moveSpeed, m_rigidbody.velocity.y);
+            else
+                m_rigidbody.velocity = new Vector2(m_rigidbody.velocity.x + 1.5f * moveSpeed, m_rigidbody.velocity.y);
+        }
 
     }
 
@@ -209,8 +218,10 @@ public class Tortoise : MonoBehaviour, IEnemy
                         TortoiseDirection = direction.fall;
                     }
                 }
-                else if (TortoiseStatus != Status.isCrawl && TortoiseStatus != Status.isShellStatic)
+                else if (TortoiseStatus == Status.isShellMove || TortoiseStatus == Status.isOnFoot)
                 {
+                    if (TortoiseStatus == Status.isShellMove)
+                        AudioControler.getInstance().SE_Hit_Block.Play();
                     TortoiseDirection = TortoiseDirection == direction.right ? direction.left : direction.right;
                 }
             }
@@ -225,25 +236,19 @@ public class Tortoise : MonoBehaviour, IEnemy
     {
         if (TortoiseStatus == Status.isFly)
         {
-            if (transform.childCount == 0)
-            {
-                var pos = transform.position;
-                var wingPos = transform.localScale.x > 0 ? new Vector2(pos.x + 0.4f, pos.y + 0.1f) : new Vector2(pos.x - 0.4f, pos.y + 0.1f);
-                Instantiate(Resources.Load("Prefab/Enemy/Wing"), wingPos, new Quaternion(), transform);
-            }
+            var pos = transform.position;
+            var wingPos = transform.localScale.x > 0 ? new Vector2(pos.x + 0.4f, pos.y + 0.1f) : new Vector2(pos.x - 0.4f, pos.y + 0.1f);
+            Instantiate(Resources.Load("Prefab/Enemy/Wing"), wingPos, new Quaternion(), transform);
         }
         else
         {
-            if (transform.childCount == 1)
+            if (GetComponentInChildren<Wing>())
             {
-                transform.GetChild(0).gameObject.GetComponent<Wing>().ownRotateSwitch = true;
+                GetComponentInChildren<Wing>().ownRotateSwitch = true;
+                GetComponentInChildren<Wing>().gameObject.AddComponent<Rigidbody2D>();
+                GetComponentInChildren<Wing>().gameObject.GetComponent<Rigidbody2D>().gravityScale = 3;
 
-                if (!transform.GetChild(0).gameObject.GetComponent<Rigidbody2D>())
-                {
-                    transform.GetChild(0).gameObject.AddComponent<Rigidbody2D>();
-                    transform.GetChild(0).gameObject.GetComponent<Rigidbody2D>().gravityScale = 3;
-                }
-                Destroy((transform.GetChild(0)).gameObject, 3);
+                Destroy(GetComponentInChildren<Wing>().gameObject, 3);
             }
         }
     }
@@ -272,8 +277,8 @@ public class Tortoise : MonoBehaviour, IEnemy
         var vector2 = new Vector2(pos_right.x, pos_right.y - 0.01f);
         var direction2 = vector2 - pos_right;
 
-        var collider_left = Physics2D.Raycast(pos_left, direction1, 0.1f, 1 << LayerMask.NameToLayer("MapBlock")).collider;
-        var collider_right = Physics2D.Raycast(pos_right, direction2, 0.1f, 1 << LayerMask.NameToLayer("MapBlock")).collider;
+        var collider_left = Physics2D.Raycast(pos_left, direction1, 0.3f, 1 << LayerMask.NameToLayer("MapBlock")).collider;
+        var collider_right = Physics2D.Raycast(pos_right, direction2, 0.3f, 1 << LayerMask.NameToLayer("MapBlock")).collider;
 
         //Debug.Log("colliderName1: " + collider_left);
         //Debug.Log("colliderName2: " + collider_right);
@@ -308,8 +313,8 @@ public class Tortoise : MonoBehaviour, IEnemy
         var vectorHeadRight = new Vector2(pos_head_right.x, pos_head_right.y + 0.01f);
         var directionHeadRight = vectorHeadRight - pos_head_right;
 
-        var collider_Head_Left = Physics2D.Raycast(pos_head_left, directionHeadLeft, 0.01f, 1 << LayerMask.NameToLayer("MapBlock")).collider;
-        var collider_Head_Right = Physics2D.Raycast(pos_head_right, directionHeadRight, 0.01f, 1 << LayerMask.NameToLayer("MapBlock")).collider;
+        var collider_Head_Left = Physics2D.Raycast(pos_head_left, directionHeadLeft, 0.3f, 1 << LayerMask.NameToLayer("MapBlock")).collider;
+        var collider_Head_Right = Physics2D.Raycast(pos_head_right, directionHeadRight, 0.3f, 1 << LayerMask.NameToLayer("MapBlock")).collider;
 
         //Debug.Log("collider1: " + collider_Head_Left);
         //Debug.Log("collider2: " + collider_Head_Right);
@@ -336,7 +341,15 @@ public class Tortoise : MonoBehaviour, IEnemy
             //Debug.Log("doBeTread()");
             doBeTreadUpdate = Time.time;
 
-            AudioControler.getInstance().SE_Emy_Fumu.Play();
+            if (TortoiseStatus == Status.isFly)
+            {
+                AudioControler.getInstance().SE_Emy_Down.Play();
+            }
+            else
+            {
+                AudioControler.getInstance().SE_Emy_Fumu.Play();
+            }
+
 
             //角色受力
             player.GetComponent<Rigidbody2D>().velocity = new Vector2(player.GetComponent<Rigidbody2D>().velocity.x, 0);  //清空player竖直线速度
@@ -361,12 +374,16 @@ public class Tortoise : MonoBehaviour, IEnemy
                     {
                         TortoiseStatus = Status.isShellStatic;
                         GetComponent<Rigidbody2D>().velocity = new Vector2(0, GetComponent<Rigidbody2D>().velocity.y);
-
                         break;
                     }
 
                 case Status.isShellStatic:
-                    break;
+                    {
+                        TortoiseStatus = Status.isShellMove;
+                        pushOrTreadShell(player);
+                        break;
+                    }
+
                 case Status.isShellMove:
                     break;
                 case Status.isCrawl:
@@ -378,9 +395,42 @@ public class Tortoise : MonoBehaviour, IEnemy
         }
     }
 
+    //乌龟不同形态切换不同碰撞体
+    public void changeCollider()
+    {
+        if (TortoiseStatus == Status.isFly || TortoiseStatus == Status.isOnFoot)
+        {
+            GetComponent<CapsuleCollider2D>().enabled = true;
+            GetComponent<CircleCollider2D>().enabled = false;
+            GetComponent<BoxCollider2D>().enabled = false;
+        }
+        else if (TortoiseStatus == Status.isCrawl)
+        {
+            GetComponent<CapsuleCollider2D>().enabled = false;
+            GetComponent<CircleCollider2D>().enabled = false;
+            GetComponent<BoxCollider2D>().enabled = true;
+        }
+        else if (TortoiseStatus == Status.isShellMove || TortoiseStatus == Status.isShellStatic)
+        {
+            GetComponent<CapsuleCollider2D>().enabled = false;
+            GetComponent<CircleCollider2D>().enabled = true;
+            GetComponent<BoxCollider2D>().enabled = false;
+        }
+    }
+
+    //推壳|踩壳
+    public void pushOrTreadShell(GameObject player)
+    {
+        if (player.transform.position.x > transform.position.x)
+            TortoiseDirection = direction.left;
+        else
+            TortoiseDirection = direction.right;
+    }
+
     //只有两种情况会死：任何状态下 => 1.被炮弹击中 2.被别的龟壳击中
     public void die()
     {
 
     }
+
 }
