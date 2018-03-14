@@ -101,16 +101,16 @@ public class Goomba : MonoBehaviour, IEnemy
         }
     }
 
-    public void die(GameObject player)
+    public void die(GameObject ob)
     {
         //在地上死
-        if (isGrounded)
+        if (isGrounded && ob.tag != "Tortoise")
         {
             AudioControler.getInstance().SE_Emy_Fumu.Play();
 
-            //角色受力
-            player.GetComponent<Rigidbody2D>().velocity = new Vector2(player.GetComponent<Rigidbody2D>().velocity.x, 0);  //清空player竖直线速度
-            player.GetComponent<Rigidbody2D>().velocity = new Vector2(player.GetComponent<Rigidbody2D>().velocity.x, player.GetComponent<Rigidbody2D>().velocity.y + 8);
+            //受力
+            ob.GetComponent<Rigidbody2D>().velocity = new Vector2(ob.GetComponent<Rigidbody2D>().velocity.x, 0);
+            ob.GetComponent<Rigidbody2D>().velocity = new Vector2(ob.GetComponent<Rigidbody2D>().velocity.x, ob.GetComponent<Rigidbody2D>().velocity.y + 8);
 
             Destroy(this);
             GetComponent<Animator>().SetBool("isDieGround", true);
@@ -124,7 +124,7 @@ public class Goomba : MonoBehaviour, IEnemy
 
             Destroy(GetComponent<CircleCollider2D>());
 
-            var charPos = GameObject.FindWithTag("Player").transform.position;
+            var charPos = ob.transform.position;
 
             if (charPos.x > transform.position.x)
             {

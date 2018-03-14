@@ -15,20 +15,18 @@ using UnityEngine;
 public class Tortoise : MonoBehaviour, IEnemy
 {
     private float currentTime;
-    private float directionUpdate;
     private float doBeTreadUpdate;
 
     public float moveSpeed = 2;
 
-    //触地或触头
+    //触碰周身
     public bool isGrounded;
     public bool isHeaded;
+    public bool isLeft;
+    public bool isRight;
 
     //放大倍数
     public float magnification;
-
-    //0.1秒之前的坐标
-    private Vector3 previousPos;
 
     //动画状态机
     private Animator m_Animator;
@@ -38,6 +36,10 @@ public class Tortoise : MonoBehaviour, IEnemy
     //飞龟上下目标点
     private Vector3 UpTargetPos;
     private Vector3 DownTargetPos;
+
+    //死亡自转开关
+    bool ownRotateSwitch = false;
+    int rotateAngle;
 
     private void Awake()
     {
@@ -65,15 +67,22 @@ public class Tortoise : MonoBehaviour, IEnemy
     {
         currentTime = Time.time;
 
-        animatorControler();
+        if (!ownRotateSwitch)
+        {
+            animatorControler();
 
-        Move();
+            Move();
 
-        changeDirection();
+            changeDirection();
 
-        RayCollisionDetection();
+            RayCollisionDetection();
 
-        changeCollider();
+            changeCollider();
+
+        }
+
+        //死亡自转
+        ownRotate(rotateAngle);
     }
 
     public enum direction
@@ -192,42 +201,42 @@ public class Tortoise : MonoBehaviour, IEnemy
         }
         else if (TortoiseStatus == Status.isShellMove)
         {
+            m_rigidbody.gravityScale = 30;
+            m_rigidbody.mass = 1;
+            m_rigidbody.constraints = RigidbodyConstraints2D.FreezeRotation;
+
             if (TortoiseDirection == direction.left)
-                m_rigidbody.velocity = new Vector2(m_rigidbody.velocity.x - 1.5f * moveSpeed, m_rigidbody.velocity.y);
+                m_rigidbody.velocity = new Vector2(m_rigidbody.velocity.x - 1.1f * moveSpeed, m_rigidbody.velocity.y);
             else
-                m_rigidbody.velocity = new Vector2(m_rigidbody.velocity.x + 1.5f * moveSpeed, m_rigidbody.velocity.y);
+                m_rigidbody.velocity = new Vector2(m_rigidbody.velocity.x + 1.1f * moveSpeed, m_rigidbody.velocity.y);
         }
 
     }
 
-    //转向 => (0.1秒前的坐标与当前坐标相同时视为障碍物)
+    //转向
     public void changeDirection()
     {
-        if (currentTime - directionUpdate > 0.1f)
+        if (TortoiseStatus == Status.isFly)
         {
-            if (previousPos == transform.position)
+            if (isGrounded)
             {
-                if (TortoiseStatus == Status.isFly)
-                {
-                    if (isGrounded)
-                    {
-                        TortoiseDirection = direction.rise;
-                    }
-                    if (isHeaded)
-                    {
-                        TortoiseDirection = direction.fall;
-                    }
-                }
-                else if (TortoiseStatus == Status.isShellMove || TortoiseStatus == Status.isOnFoot)
-                {
-                    if (TortoiseStatus == Status.isShellMove)
-                        AudioControler.getInstance().SE_Hit_Block.Play();
-                    TortoiseDirection = TortoiseDirection == direction.right ? direction.left : direction.right;
-                }
+                TortoiseDirection = direction.rise;
             }
-
-            previousPos = transform.position;
-            directionUpdate = Time.time;
+            if (isHeaded)
+            {
+                TortoiseDirection = direction.fall;
+            }
+        }
+        else if (TortoiseStatus == Status.isShellMove || TortoiseStatus == Status.isOnFoot)
+        {
+            if (isLeft)
+            {
+                TortoiseDirection = direction.right;
+            }
+            if (isRight)
+            {
+                TortoiseDirection = direction.left;
+            }
         }
     }
 
@@ -332,6 +341,40 @@ public class Tortoise : MonoBehaviour, IEnemy
 
         #endregion
 
+        #region bodyLeftRight
+
+        var circlePos = GetComponent<CircleCollider2D>().transform.position;
+        var posBodyLeft = new Vector2(circlePos.x - GetComponent<CircleCollider2D>().radius, circlePos.y);
+        var targetBodyLeft = new Vector2(posBodyLeft.x - 1, posBodyLeft.y);
+        var DirectionBodyLeft = targetBodyLeft - posBodyLeft;
+        var posBodyRight = new Vector2(circlePos.x + GetComponent<CircleCollider2D>().radius, circlePos.y);
+        var targetBodyRight = new Vector2(posBodyRight.x + 1, posBodyRight.y);
+        var DirectionBodyRight = targetBodyRight - posBodyRight;
+
+        var colliderBodyLeft = Physics2D.Raycast(posBodyLeft, DirectionBodyLeft, 0.1f, 1 << LayerMask.NameToLayer("MapBlock")).collider;
+        var colliderBodyRight = Physics2D.Raycast(posBodyRight, DirectionBodyRight, 0.1f, 1 << LayerMask.NameToLayer("MapBlock")).collider;
+
+        if (colliderBodyLeft)
+        {
+            if (!AudioControler.getInstance().SE_Hit_Block.isPlaying && TortoiseStatus == Status.isShellMove)
+                AudioControler.getInstance().SE_Hit_Block.Play();
+            isLeft = true;
+        }
+        else
+            isLeft = false;
+
+        if (colliderBodyRight)
+        {
+            if (!AudioControler.getInstance().SE_Hit_Block.isPlaying && TortoiseStatus == Status.isShellMove)
+                AudioControler.getInstance().SE_Hit_Block.Play();
+
+            isRight = true;
+        }
+        else
+            isRight = false;
+
+        #endregion
+
     }
 
     public void doBeTread(GameObject player)
@@ -385,7 +428,11 @@ public class Tortoise : MonoBehaviour, IEnemy
                     }
 
                 case Status.isShellMove:
-                    break;
+                    {
+                        TortoiseStatus = Status.isShellStatic;
+                        break;
+                    }
+
                 case Status.isCrawl:
                     break;
                 default:
@@ -422,15 +469,81 @@ public class Tortoise : MonoBehaviour, IEnemy
     public void pushOrTreadShell(GameObject player)
     {
         if (player.transform.position.x > transform.position.x)
+        {
             TortoiseDirection = direction.left;
+            TortoiseStatus = Status.isShellMove;
+        }
         else
+        {
             TortoiseDirection = direction.right;
+            TortoiseStatus = Status.isShellMove;
+        }
+
+
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (TortoiseStatus == Status.isShellMove)
+        {
+            switch (collision.collider.tag)
+            {
+                case "Goomba":
+                    {
+                        collision.collider.GetComponent<Goomba>().die(gameObject);
+                        break;
+                    }
+                case "Tortoise":
+                    {
+                        collision.collider.GetComponent<Tortoise>().die(collision.collider.gameObject);
+                        break;
+                    }
+                default:
+                    break;
+            }
+        }
     }
 
     //只有两种情况会死：任何状态下 => 1.被炮弹击中 2.被别的龟壳击中
-    public void die()
+    public void die(GameObject ob)
     {
+        AudioControler.getInstance().SE_Emy_Down.Play();
 
+        GetComponent<Rigidbody2D>().gravityScale = 3;
+        GetComponent<Rigidbody2D>().mass = 1;
+
+        if (GetComponent<CircleCollider2D>())
+            Destroy(GetComponent<CircleCollider2D>());
+        if (GetComponent<BoxCollider2D>())
+            Destroy(GetComponent<BoxCollider2D>());
+        if (GetComponent<CapsuleCollider2D>())
+            Destroy(GetComponent<CapsuleCollider2D>());
+
+        var obPos = ob.transform.position;
+
+        if (obPos.x > transform.position.x)
+        {
+            rotateAngle = 10;
+            m_rigidbody.AddForce(new Vector2(-400, 400), ForceMode2D.Force);
+        }
+        else
+        {
+            rotateAngle = -10;
+            m_rigidbody.AddForce(new Vector2(400, 400), ForceMode2D.Force);
+        }
+
+        ownRotateSwitch = true;
+
+        Destroy(gameObject, 5);
+    }
+
+    //空中死亡旋转动画
+    private void ownRotate(int angle)
+    {
+        if (ownRotateSwitch)
+        {
+            transform.Rotate(Vector3.forward, angle);
+        }
     }
 
 }
