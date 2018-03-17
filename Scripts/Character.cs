@@ -287,11 +287,7 @@ public class Character : MonoBehaviour
 
         if ((collider_Head_Left_enemy != null || collider_Head_Right_enemy != null) && !isUnmatched)
         {
-            //对静态龟壳单独处理
-            if (collider_Head_Left_enemy != null && !(collider_Head_Left_enemy.tag == "Tortoise" && collider_Head_Left_enemy.GetComponent<Tortoise>().TortoiseStatus == Tortoise.Status.isShellStatic))
-                GameControler.getInstance().gameOver();
-            if (collider_Head_Right_enemy != null && !(collider_Head_Right_enemy.tag == "Tortoise" && collider_Head_Right_enemy.GetComponent<Tortoise>().TortoiseStatus == Tortoise.Status.isShellStatic))
-                GameControler.getInstance().gameOver();
+            GameControler.getInstance().gameOver();
         }
 
         //=================头部与敌人 End=================//
