@@ -14,6 +14,8 @@ public class Goomba : MonoBehaviour, IEnemy
     private float directionUpdate;
     private float doBeTreadUpdate;
 
+    public bool isDied = false;
+
     //自转动画开关
     private bool ownRotateSwitch;
 
@@ -46,10 +48,13 @@ public class Goomba : MonoBehaviour, IEnemy
     {
         currentTime = Time.time;
 
-        changeDirection();
-        Move();
+        if (!isDied)
+        {
+            changeDirection();
+            Move();
 
-        RayCollisionDetection();
+            RayCollisionDetection();
+        }
 
         ownRotate(rotateAngle);
     }
@@ -103,6 +108,11 @@ public class Goomba : MonoBehaviour, IEnemy
 
     public void die(GameObject ob)
     {
+        isDied = true;
+
+        //得分
+        StartCoroutine(GameControler.getInstance().ScoreUIControl(100, transform.localPosition, 0.1f));
+
         //在地上死
         if (isGrounded && ob.tag != "Tortoise")
         {
@@ -112,7 +122,7 @@ public class Goomba : MonoBehaviour, IEnemy
             ob.GetComponent<Rigidbody2D>().velocity = new Vector2(ob.GetComponent<Rigidbody2D>().velocity.x, 0);
             ob.GetComponent<Rigidbody2D>().velocity = new Vector2(ob.GetComponent<Rigidbody2D>().velocity.x, ob.GetComponent<Rigidbody2D>().velocity.y + 8);
 
-            Destroy(this);
+            Destroy(GetComponent<Rigidbody2D>());
             GetComponent<Animator>().SetBool("isDieGround", true);
             Destroy(m_rigidbody);
             Destroy(GetComponent<CircleCollider2D>());

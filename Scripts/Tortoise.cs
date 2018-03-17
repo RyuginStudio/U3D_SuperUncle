@@ -14,6 +14,8 @@ using UnityEngine;
 
 public class Tortoise : MonoBehaviour, IEnemy
 {
+    public bool isDied = false;
+
     private float currentTime;
     private float doBeTreadUpdate;
 
@@ -67,7 +69,7 @@ public class Tortoise : MonoBehaviour, IEnemy
     {
         currentTime = Time.time;
 
-        if (!ownRotateSwitch)
+        if (!isDied)
         {
             animatorControler();
 
@@ -351,8 +353,12 @@ public class Tortoise : MonoBehaviour, IEnemy
         var targetBodyRight = new Vector2(posBodyRight.x + 1, posBodyRight.y);
         var DirectionBodyRight = targetBodyRight - posBodyRight;
 
-        var colliderBodyLeft = Physics2D.Raycast(posBodyLeft, DirectionBodyLeft, 0.1f, 1 << LayerMask.NameToLayer("MapBlock")).collider;
-        var colliderBodyRight = Physics2D.Raycast(posBodyRight, DirectionBodyRight, 0.1f, 1 << LayerMask.NameToLayer("MapBlock")).collider;
+        //Debug.DrawRay(posBodyLeft, DirectionBodyLeft, Color.red, 0.2f);
+        //Debug.DrawRay(posBodyRight, DirectionBodyRight, Color.red, 0.2f);
+
+        var rayDistance = TortoiseStatus == Status.isShellMove ? 0.1f : 0.2f;
+        var colliderBodyLeft = Physics2D.Raycast(posBodyLeft, DirectionBodyLeft, rayDistance, 1 << LayerMask.NameToLayer("MapBlock")).collider;
+        var colliderBodyRight = Physics2D.Raycast(posBodyRight, DirectionBodyRight, rayDistance, 1 << LayerMask.NameToLayer("MapBlock")).collider;
 
         if (colliderBodyLeft)
         {
@@ -381,6 +387,8 @@ public class Tortoise : MonoBehaviour, IEnemy
     {
         if (currentTime - doBeTreadUpdate > 0.2f)
         {
+            StartCoroutine(GameControler.getInstance().ScoreUIControl(100, transform.localPosition, 0.1f));
+
             //Debug.Log("doBeTread()");
             doBeTreadUpdate = Time.time;
 
@@ -507,6 +515,10 @@ public class Tortoise : MonoBehaviour, IEnemy
     //只有两种情况会死：任何状态下 => 1.被炮弹击中 2.被别的龟壳击中
     public void die(GameObject ob)
     {
+        isDied = true;
+
+        StartCoroutine(GameControler.getInstance().ScoreUIControl(200, transform.localPosition, 0.1f));
+
         AudioControler.getInstance().SE_Emy_Down.Play();
 
         GetComponent<Rigidbody2D>().gravityScale = 3;
@@ -545,5 +557,5 @@ public class Tortoise : MonoBehaviour, IEnemy
             transform.Rotate(Vector3.forward, angle);
         }
     }
-
+    
 }

@@ -298,7 +298,7 @@ public class Character : MonoBehaviour
 
         /*
          * 于胶囊碰撞器上添加了boxCollider(isTrigger)触发器 => 以免被卡住
-         * 用这个碰撞器OnTriggerEnter2D代替身体部位的射线碰撞处理
+         * 用这个碰撞器OnTriggerEnter2D与Stay2D代替身体部位的射线碰撞处理
          */
 
         #endregion
@@ -366,6 +366,45 @@ public class Character : MonoBehaviour
                         }
                         else
                             GameControler.getInstance().gameOver();
+                        break;
+                    }
+            }
+        }
+        else
+        {
+            switch (collision.gameObject.tag)
+            {
+                case "Goomba":
+                    collision.gameObject.GetComponent<Goomba>().doBeTread(gameObject);
+                    break;
+                case "Tortoise":
+                    collision.gameObject.GetComponent<Tortoise>().doBeTread(gameObject);
+                    break;
+            }
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (!isUnmatched)
+        {
+            switch (collision.gameObject.tag)
+            {
+                case "Goomba":
+                    GameControler.getInstance().gameOver();
+                    break;
+                case "Tortoise":
+                    {
+                        if (collision.GetComponent<Tortoise>().TortoiseStatus == Tortoise.Status.isShellStatic)
+                        {
+                            collision.GetComponent<Tortoise>().pushOrTreadShell(gameObject);
+                        }
+                        else if(transform.position.x < collision.transform.position.x && collision.GetComponent<Tortoise>().TortoiseDirection == Tortoise.direction.left 
+                            || transform.position.x > collision.transform.position.x && collision.GetComponent<Tortoise>().TortoiseDirection == Tortoise.direction.right)
+                        {   //需要对龟壳的direction进行判断
+                            GameControler.getInstance().gameOver();
+                        }
+                            
                         break;
                     }
             }
