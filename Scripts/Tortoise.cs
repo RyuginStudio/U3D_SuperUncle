@@ -19,6 +19,9 @@ public class Tortoise : MonoBehaviour, IEnemy
     private float currentTime;
     private float doBeTreadUpdate;
 
+    //xx秒后爬出龟壳定时器
+    private float beginCrawlUpdate;
+
     public float moveSpeed = 2;
 
     //触碰周身
@@ -80,6 +83,8 @@ public class Tortoise : MonoBehaviour, IEnemy
             RayCollisionDetection();
 
             changeCollider();
+
+            tortoiseCrawl();
 
         }
 
@@ -211,6 +216,13 @@ public class Tortoise : MonoBehaviour, IEnemy
                 m_rigidbody.velocity = new Vector2(m_rigidbody.velocity.x - 1.1f * moveSpeed, m_rigidbody.velocity.y);
             else
                 m_rigidbody.velocity = new Vector2(m_rigidbody.velocity.x + 1.1f * moveSpeed, m_rigidbody.velocity.y);
+        }
+        else if (TortoiseStatus == Status.isCrawl)
+        {
+            if(m_Animator.GetCurrentAnimatorStateInfo(0).IsName("Walk"))
+            {
+                TortoiseStatus = Status.isOnFoot;
+            }
         }
 
     }
@@ -423,6 +435,9 @@ public class Tortoise : MonoBehaviour, IEnemy
 
                 case Status.isOnFoot:
                     {
+                        //龟壳爬行计时
+                        beginCrawlUpdate = Time.time;
+
                         TortoiseStatus = Status.isShellStatic;
                         GetComponent<Rigidbody2D>().velocity = new Vector2(0, GetComponent<Rigidbody2D>().velocity.y);
                         break;
@@ -437,12 +452,22 @@ public class Tortoise : MonoBehaviour, IEnemy
 
                 case Status.isShellMove:
                     {
+                        //龟壳爬行计时
+                        beginCrawlUpdate = Time.time;
+
                         TortoiseStatus = Status.isShellStatic;
                         break;
                     }
 
                 case Status.isCrawl:
-                    break;
+                    {
+                        //龟壳爬行计时
+                        beginCrawlUpdate = Time.time;
+
+                        TortoiseStatus = Status.isShellStatic;
+                        break;
+                    }
+                    
                 default:
                     break;
             }
@@ -490,7 +515,39 @@ public class Tortoise : MonoBehaviour, IEnemy
 
     }
 
+    //乌龟爬行逻辑
+    public void tortoiseCrawl()
+    {
+        if(currentTime - beginCrawlUpdate > 3 && TortoiseStatus == Status.isShellStatic)
+        {
+            TortoiseStatus = Status.isCrawl;
+        }
+
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (TortoiseStatus == Status.isShellMove)
+        {
+            switch (collision.collider.tag)
+            {
+                case "Goomba":
+                    {
+                        collision.collider.GetComponent<Goomba>().die(gameObject);
+                        break;
+                    }
+                case "Tortoise":
+                    {
+                        collision.collider.GetComponent<Tortoise>().die(collision.collider.gameObject);
+                        break;
+                    }
+                default:
+                    break;
+            }
+        }
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
     {
         if (TortoiseStatus == Status.isShellMove)
         {
