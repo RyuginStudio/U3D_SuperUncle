@@ -1,52 +1,53 @@
-﻿/*
- * 时间：2018年3月21日15:55:22
- * 作者：vszed
- * 功能：Logo+欢迎界面
- */
-
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Logo : MonoBehaviour
 {
-    [SerializeField] private GameObject blackMask;
+    private float currentTime;
+    private float animationUpdate;
 
-    [SerializeField] private bool startLogoAnim;
+    private float logoAlpha = 0;  //图片alpha值
+    [SerializeField] private GameObject vszedLogo;
 
     // Use this for initialization
     void Start()
     {
-        Invoke("startLogo", 2);
+        Invoke("playSound", 0.5f);
+        Invoke("jumpNextScene", 5);
+
+        currentTime = Time.time;
+        animationUpdate = Time.time;
     }
 
     // Update is called once per frame
     void Update()
     {
-        changeLogoAlpha();
+        currentTime = Time.time;
+        playAnimation();
     }
 
-    void startLogo()
+    void playSound()
     {
-        startLogoAnim = true;
+        //抖动摄像机
+        GetComponent<ShakeCamera>().isshakeCamera = true;
+
+        AudioControler.getInstance().SE_vszed.Play();
     }
 
-    void changeLogoAlpha()
+    void playAnimation()
     {
-        if (startLogoAnim)
+        var LogoColor = vszedLogo.GetComponent<SpriteRenderer>().color;
+
+        if (currentTime - animationUpdate >= 0.1f)
         {
-            var currentColor = blackMask.GetComponent<SpriteRenderer>().color;
-            if (currentColor.a == 0)
-            {
-                Invoke("jumpScene", 2);
-            }
-            blackMask.GetComponent<SpriteRenderer>().color = new Color(currentColor.r, currentColor.g, currentColor.b, currentColor.a - .03f);
+            vszedLogo.GetComponent<SpriteRenderer>().color = new Color(LogoColor.r, LogoColor.g, LogoColor.b, logoAlpha += 0.02f);
         }
     }
 
-    void jumpScene()
+    void jumpNextScene()
     {
-        SceneManager.CreateScene("MainScene");
+        SceneManager.LoadScene("MainScene");
     }
 }

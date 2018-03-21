@@ -342,6 +342,9 @@ public class Character : MonoBehaviour
 
     public void characterDie()
     {
+        //死亡时屏幕抖动
+        GameObject.FindWithTag("MainCamera").GetComponent<ShakeCamera>().isshakeCamera = true;
+
         m_animator.SetBool("isDie", true);
         Destroy(GetComponent<CapsuleCollider2D>());
         Destroy(GetComponent<BoxCollider2D>());

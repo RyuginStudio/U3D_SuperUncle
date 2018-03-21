@@ -37,6 +37,7 @@ public class AudioControler : MonoBehaviour
     public AudioSource SE_Emy_Fumu;
     public AudioSource SE_Emy_Down;
     public AudioSource SE_Appear;
+    public AudioSource SE_vszed;
 
     //=========BGM=========//
     public AudioSource BGM_Ground;
