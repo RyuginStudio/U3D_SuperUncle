@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Logo : MonoBehaviour
 {
@@ -15,7 +16,7 @@ public class Logo : MonoBehaviour
     void Start()
     {
         Invoke("playSound", 0.5f);
-        Invoke("jumpNextScene", 5);
+        Invoke("jumpNextScene", 4);
 
         currentTime = Time.time;
         animationUpdate = Time.time;
@@ -30,24 +31,21 @@ public class Logo : MonoBehaviour
 
     void playSound()
     {
-        //抖动摄像机
-        GetComponent<ShakeCamera>().isshakeCamera = true;
-
         AudioControler.getInstance().SE_vszed.Play();
     }
 
     void playAnimation()
     {
-        var LogoColor = vszedLogo.GetComponent<SpriteRenderer>().color;
+        var LogoColor = vszedLogo.GetComponent<Image>().color;
 
         if (currentTime - animationUpdate >= 0.1f)
         {
-            vszedLogo.GetComponent<SpriteRenderer>().color = new Color(LogoColor.r, LogoColor.g, LogoColor.b, logoAlpha += 0.02f);
+            vszedLogo.GetComponent<Image>().color = new Color(LogoColor.r, LogoColor.g, LogoColor.b, logoAlpha += 0.02f);
         }
     }
 
     void jumpNextScene()
     {
-        SceneManager.LoadScene("MainScene");
+        SceneManager.LoadScene("TitleScene");
     }
 }

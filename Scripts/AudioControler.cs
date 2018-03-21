@@ -38,8 +38,12 @@ public class AudioControler : MonoBehaviour
     public AudioSource SE_Emy_Down;
     public AudioSource SE_Appear;
     public AudioSource SE_vszed;
+    public AudioSource SE_Confirm;
+    public AudioSource SE_Invalid;
+
 
     //=========BGM=========//
+    public AudioSource BGM_Title;
     public AudioSource BGM_Ground;
     public AudioSource BGM_Ground_Hurry;
 }
