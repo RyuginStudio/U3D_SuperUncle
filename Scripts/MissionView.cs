@@ -74,7 +74,7 @@ public class MissionView : MonoBehaviour
     //显示"新手教学"牌
     private IEnumerator displayNoticeCard()
     {
-        yield return new WaitForSeconds(0.2f * GameData.missionTotalNum);
+        yield return new WaitForSeconds(0.2f * GameData.missionTotalNum + 2);
 
         if (!alreadyDisplayNoticeCard)
         {
