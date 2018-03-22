@@ -16,6 +16,8 @@ public class NoticeCard : MonoBehaviour
     public Text Content;
     public string str_title;
     public string str_Content;
+    public int FallSpeed = 200;
+    public Vector3 fallToPos = new Vector3(-13, 37, 0);
 
     // Use this for initialization
     void Start()
@@ -46,6 +48,6 @@ public class NoticeCard : MonoBehaviour
     private void fallDownDisplay()
     {
         var currentPos = transform.localPosition;
-        transform.localPosition = Vector3.MoveTowards(currentPos, new Vector3(-13, 37, 0), 5);
+        transform.localPosition = Vector3.MoveTowards(currentPos, fallToPos, FallSpeed * Time.deltaTime);
     }
 }
