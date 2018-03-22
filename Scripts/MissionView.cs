@@ -34,7 +34,7 @@ public class MissionView : MonoBehaviour
     void Start()
     {
         currentLives.GetComponent<Text>().text = "x " + GameData.MarioLives.ToString();
-        FinishMissionViewNum.GetComponent<Text>().text = GameData.currentMissionNum.ToString() + " / " + GameData.missionTotalNum;
+        FinishMissionViewNum.GetComponent<Text>().text = (GameData.currentMissionNum - 1).ToString() + " / " + GameData.missionTotalNum;
 
         StartCoroutine(displayNoticeCard());
         StartCoroutine(displayAllPrefab());
@@ -58,10 +58,17 @@ public class MissionView : MonoBehaviour
 
         for (int i = 0; i < GameData.missionTotalNum; i++)
         {
-            yield return new WaitForSeconds(0.2f);
+            if (!alreadyDisplayNoticeCard)
+            {
+                yield return new WaitForSeconds(0.2f);
+            }
+
             var prefab_point = Instantiate(prefab_stepMission, new Vector3(startPos.x + i * eachPreSpace, startPos.y, startPos.z), prefab_stepMission.transform.rotation, prefabTransform);
+            prefab_point.GetComponentInChildren<Text>().text = (i + 1).ToString();
             list_stepMission.Add(prefab_point);
         }
+
+        updateprefab();
     }
 
     //显示"新手教学"牌
@@ -79,5 +86,20 @@ public class MissionView : MonoBehaviour
 
             Destroy(pre, 10);
         }
+
+        alreadyDisplayNoticeCard = true;
+    }
+
+    //刷新已打穿的关卡预制体
+    private void updateprefab()
+    {
+        for (var i = 0; i < list_stepMission.Count && i < GameData.currentMissionNum - 1; ++i)
+        {
+            foreach (var item in list_stepMission[i].GetComponentsInChildren<Image>())
+            {
+                item.enabled = true;
+            }
+        }
+
     }
 }
