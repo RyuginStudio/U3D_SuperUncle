@@ -17,7 +17,7 @@ public class RollTxt : MonoBehaviour
     public int showLength = 8;
     public int txtLength;
     public float rollSpeed = 0.1f;
-    private int indexMax;
+    public int indexMax = 0;
     private float currentIdx;
 
     // Use this for initialization

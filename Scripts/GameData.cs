@@ -25,7 +25,12 @@ public class GameData : MonoBehaviour
 
     //===========================游戏数据===========================//
 
-    [SerializeField] public static string mapName = "map2";   //地图关卡索引
-    [SerializeField] public static int blockNum = 247;        //地图图块数目
+    public static string mapName = "map2";    //地图关卡索引
+    public static int blockNum = 247;         //地图图块数目
+    public static int missionTotalNum = 18;   //地图关卡总数
+    public static int currentMissionNum = 0;  //当前关卡数目
 
+    //===========================角色数据===========================//
+
+    public static int MarioLives = 12;
 }

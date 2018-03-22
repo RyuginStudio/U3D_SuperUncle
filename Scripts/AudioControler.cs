@@ -46,4 +46,5 @@ public class AudioControler : MonoBehaviour
     public AudioSource BGM_Title;
     public AudioSource BGM_Ground;
     public AudioSource BGM_Ground_Hurry;
+    public AudioSource BGM_10MarioMap;
 }
