@@ -24,7 +24,7 @@ public class MapEditor : MonoBehaviour
     {
         instance = this;
 
-        createMask(16, 32);// row, column);
+        createMask(64, 123);// row, column);
 
         MapStructList = new List<MapStruct>();
 

@@ -103,6 +103,7 @@ public class Character : MonoBehaviour
         {
             keyboardControl();
             CharacterRayCollisionDetection();
+            fallDownDie();
         }
     }
 
@@ -310,6 +311,14 @@ public class Character : MonoBehaviour
         {
             m_Rigidbody2D.AddForce(new Vector2(0, 800));
             AudioControler.getInstance().SE_Jump.Play();
+        }
+    }
+
+    public void fallDownDie()
+    {
+        if (transform.position.y < -15)
+        {
+            GameControler.getInstance().gameOver();
         }
     }
 

@@ -54,6 +54,7 @@ public class Camera2DFollow : MonoBehaviour
 
         newPos.x = newPos.x < 0 ? 0 : newPos.x;  //边界值，防止黑边
         newPos.y = newPos.y < 0 ? 0 : newPos.y;
+        newPos.y = newPos.y > 59.4f ? 59.4f : newPos.y;
 
         transform.position = newPos;
 
