@@ -37,7 +37,7 @@ public class Title : MonoBehaviour
         AudioControler.getInstance().SE_Confirm.Play();
 
         if (btnName == "Story")
-            StartCoroutine(SceneTransition.getInstance().loadScene("MissionView", 2));
+            StartCoroutine(SceneTransition.getInstance().loadScene("MissionViewScene", 0, 2));
         else
         {
             SceneTransition.getInstance().IncreaseSwitch = true;

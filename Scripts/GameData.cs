@@ -23,12 +23,25 @@ public class GameData : MonoBehaviour
 
     }
 
+    //刷新数据
+    public static void dataUpdate()
+    {
+        alreadyTeaching = false;
+        mapName = "map2";
+        blockNum = 247;
+        missionTotalNum = 30;
+        currentMissionNum = 1;
+        MarioLives = 12;
+
+    }
+
     //===========================游戏数据===========================//
 
-    public static string mapName = "map2";    //地图关卡索引
-    public static int blockNum = 247;         //地图图块数目
-    public static int missionTotalNum = 30;   //地图关卡总数
-    public static int currentMissionNum = 10;  //当前关卡数目
+    public static bool alreadyTeaching = false;  //完成新手教学
+    public static string mapName = "map2";       //地图关卡索引
+    public static int blockNum = 247;            //地图图块数目
+    public static int missionTotalNum = 30;      //地图关卡总数
+    public static int currentMissionNum = 1;     //当前关卡数目
 
     //===========================角色数据===========================//
 

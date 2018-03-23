@@ -51,14 +51,15 @@ public class SceneTransition : MonoBehaviour
     }
 
     //场景跳转
-    public IEnumerator loadScene(string SceneName, float delayTime)
+    public IEnumerator loadScene(string SceneName, float waitTime, float jumpDelayTime)  // => waitTime后开始执行渐变
     {
+        yield return new WaitForSeconds(waitTime);
         TransionMask.SetActive(true);
 
         DeclineSwitch = false;
         IncreaseSwitch = true;
 
-        yield return new WaitForSeconds(delayTime);
+        yield return new WaitForSeconds(jumpDelayTime);
         SceneManager.LoadScene(SceneName);
     }
 

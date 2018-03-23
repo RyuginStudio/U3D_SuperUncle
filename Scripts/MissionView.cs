@@ -28,9 +28,6 @@ public class MissionView : MonoBehaviour
     //当前已完成关卡数目
     [SerializeField] private Text FinishMissionViewNum;
 
-    //“新手教学”标志位
-    private static bool alreadyDisplayNoticeCard = true;
-
     [SerializeField] private GameObject MarioUI;
 
     //MarioUI抬手
@@ -65,7 +62,7 @@ public class MissionView : MonoBehaviour
 
         for (int i = 0; i < GameData.missionTotalNum; i++)
         {
-            if (!alreadyDisplayNoticeCard)
+            if (!GameData.alreadyTeaching)
             {
                 yield return new WaitForSeconds(0.2f);
             }
@@ -84,7 +81,7 @@ public class MissionView : MonoBehaviour
     {
         yield return new WaitForSeconds(0.2f * GameData.missionTotalNum + 2);
 
-        if (!alreadyDisplayNoticeCard)
+        if (!GameData.alreadyTeaching)
         {
             var pre = Instantiate(Resources.Load("Prefab/UI/NoticeCard"), prefabTransform);
             (pre as GameObject).transform.localPosition = new Vector3(-13, 556, 0);
@@ -95,7 +92,7 @@ public class MissionView : MonoBehaviour
             Destroy(pre, 10);
         }
 
-        alreadyDisplayNoticeCard = true;
+        GameData.alreadyTeaching = true;
     }
 
     //刷新已打穿的关卡预制体
@@ -119,7 +116,7 @@ public class MissionView : MonoBehaviour
         }
 
         //马里奥UI向新的关卡point移动
-        var waitSeconds = alreadyDisplayNoticeCard ? 3 : 12;
+        var waitSeconds = GameData.alreadyTeaching ? 3 : 12;
         yield return new WaitForSeconds(waitSeconds);
         var currentMissionPos = list_stepMission[GameData.currentMissionNum - 1].transform.position;
         MarioUI.transform.position = new Vector3(currentMissionPos.x, MarioUI.transform.position.y, currentMissionPos.z);
@@ -140,7 +137,7 @@ public class MissionView : MonoBehaviour
     {
         yield return new WaitForSeconds(1);
         AudioControler.getInstance().SE_Daikettefinal.Play();
-        StartCoroutine(SceneTransition.getInstance().loadScene("LivesScene", 2));
+        StartCoroutine(SceneTransition.getInstance().loadScene("LivesScene", 0, 2));
 
     }
 }

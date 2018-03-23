@@ -42,6 +42,7 @@ public class AudioControler : MonoBehaviour
     public AudioSource SE_Invalid;
     public AudioSource SE_Daikettefinal;
     public AudioSource SE_MoveMap;
+    public AudioSource SE_GameOver;
 
 
     //=========BGM=========//

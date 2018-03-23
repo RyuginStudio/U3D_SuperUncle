@@ -142,19 +142,30 @@ public class GameControler : MonoBehaviour
     //游戏结束
     public void gameOver()
     {
-        //BGM
-        AudioControler.getInstance().BGM_Ground.Stop();
-        AudioControler.getInstance().BGM_Ground_Hurry.Stop();
+        if (GameOver == false)
+        {
+            GameOver = true;
 
-        //SE
-        AudioControler.getInstance().SE_Die1.Play();
-        AudioControler.getInstance().SE_Die2.PlayDelayed(0.5f);
-        AudioControler.getInstance().SE_OhNo.PlayDelayed(0.5f);
+            //BGM
+            AudioControler.getInstance().BGM_Ground.Stop();
+            AudioControler.getInstance().BGM_Ground_Hurry.Stop();
 
-        Debug.Log("GameOver");
-        GameOver = true;
+            Character.getInstance().characterDie();
 
-        Character.getInstance().characterDie();
+            //游戏结束逻辑
+            --GameData.MarioLives;
+
+            if (GameData.MarioLives > 0)
+            {
+                StartCoroutine(SceneTransition.getInstance().loadScene("LivesScene", 2, 3));
+            }
+            else
+            {
+                //刷新游戏数据
+                GameData.dataUpdate();
+                StartCoroutine(SceneTransition.getInstance().loadScene("GameOverScene", 2, 3));
+            }
+        }
     }
 
     //分数控制(延时执行)

@@ -11,7 +11,7 @@ public class LiveScene : MonoBehaviour
     void Start()
     {
         livesNum.text = GameData.MarioLives.ToString();
-        Invoke("jumpScene",3);
+        jumpScene();
     }
 
     // Update is called once per frame
@@ -22,6 +22,6 @@ public class LiveScene : MonoBehaviour
 
     void jumpScene()
     {
-        StartCoroutine(SceneTransition.getInstance().loadScene("MainScene", 2));
+        StartCoroutine(SceneTransition.getInstance().loadScene("MainScene", 3, 2));
     }
 }

@@ -26,6 +26,6 @@ public class Logo : MonoBehaviour
 
     void jumpScene()
     {
-        StartCoroutine(SceneTransition.getInstance().loadScene("TitleScene", 2));
+        StartCoroutine(SceneTransition.getInstance().loadScene("TitleScene", 0, 2));
     }
 }
