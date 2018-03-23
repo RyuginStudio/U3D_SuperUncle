@@ -40,6 +40,8 @@ public class AudioControler : MonoBehaviour
     public AudioSource SE_vszed;
     public AudioSource SE_Confirm;
     public AudioSource SE_Invalid;
+    public AudioSource SE_Daikettefinal;
+    public AudioSource SE_MoveMap;
 
 
     //=========BGM=========//

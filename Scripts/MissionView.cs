@@ -8,6 +8,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class MissionView : MonoBehaviour
 {
@@ -27,8 +28,13 @@ public class MissionView : MonoBehaviour
     //当前已完成关卡数目
     [SerializeField] private Text FinishMissionViewNum;
 
-    private static bool alreadyDisplayNoticeCard = false;
+    //“新手教学”标志位
+    private static bool alreadyDisplayNoticeCard = true;
 
+    [SerializeField] private GameObject MarioUI;
+
+    //MarioUI抬手
+    [SerializeField] private Sprite MarioUIHandsUp;
 
     // Use this for initialization
     void Start()
@@ -38,6 +44,7 @@ public class MissionView : MonoBehaviour
 
         StartCoroutine(displayNoticeCard());
         StartCoroutine(displayAllPrefab());
+
     }
 
     // Update is called once per frame
@@ -69,6 +76,7 @@ public class MissionView : MonoBehaviour
         }
 
         updateprefab();
+        StartCoroutine(updateMarioUIPos());
     }
 
     //显示"新手教学"牌
@@ -100,6 +108,39 @@ public class MissionView : MonoBehaviour
                 item.enabled = true;
             }
         }
+    }
+
+    private IEnumerator updateMarioUIPos()
+    {
+        if (GameData.currentMissionNum >= 2)
+        {
+            var pos = list_stepMission[GameData.currentMissionNum - 2].transform.position;
+            MarioUI.transform.position = new Vector3(pos.x, MarioUI.transform.position.y, pos.z);
+        }
+
+        //马里奥UI向新的关卡point移动
+        var waitSeconds = alreadyDisplayNoticeCard ? 5 : 12;
+        yield return new WaitForSeconds(waitSeconds);
+        var currentMissionPos = list_stepMission[GameData.currentMissionNum - 1].transform.position;
+        MarioUI.transform.position = new Vector3(currentMissionPos.x, MarioUI.transform.position.y, currentMissionPos.z);
+
+        AudioControler.getInstance().SE_MoveMap.Play();
+
+        yield return new WaitForSeconds(1);
+        MarioUI.GetComponent<Image>().sprite = MarioUIHandsUp;
+
+        //贴图问题修正pos
+        var temp_pos = MarioUI.transform.position;
+        MarioUI.transform.position = new Vector3(temp_pos.x - 3, temp_pos.y, temp_pos.z);
+
+        StartCoroutine("jumpScene");
+    }
+
+    private IEnumerator jumpScene()
+    {
+        yield return new WaitForSeconds(1);
+        AudioControler.getInstance().SE_Daikettefinal.Play();
+        StartCoroutine(SceneTransition.getInstance().loadScene("MainScene", 2));
 
     }
 }
