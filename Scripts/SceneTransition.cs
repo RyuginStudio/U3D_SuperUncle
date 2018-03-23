@@ -53,6 +53,8 @@ public class SceneTransition : MonoBehaviour
     //场景跳转
     public IEnumerator loadScene(string SceneName, float delayTime)
     {
+        TransionMask.SetActive(true);
+
         DeclineSwitch = false;
         IncreaseSwitch = true;
 
@@ -64,9 +66,18 @@ public class SceneTransition : MonoBehaviour
     {
         if (IncreaseSwitch)
         {
+            TransionMask.SetActive(true);
+
             var color = TransionMask.GetComponent<Image>().color;
             if (color.a < 255)
                 TransionMask.GetComponent<Image>().color = new Color(color.r, color.g, color.b, color.a + 0.01f);
+            else
+            {
+                IncreaseSwitch = false;
+            }
+
+            //淡出BGM
+            BGM_Decline();
         }
     }
 
@@ -77,7 +88,24 @@ public class SceneTransition : MonoBehaviour
             var color = TransionMask.GetComponent<Image>().color;
             if (color.a > 0)
                 TransionMask.GetComponent<Image>().color = new Color(color.r, color.g, color.b, color.a - 0.01f);
+            else
+            {
+                DeclineSwitch = false;
+                TransionMask.SetActive(false);
+            }
         }
+    }
+
+    private void BGM_Decline()
+    {
+        if (AudioControler.getInstance().BGM_Title != null && AudioControler.getInstance().BGM_Title.isPlaying)
+            AudioControler.getInstance().BGM_Title.volume -= 0.0085f;
+        else if (AudioControler.getInstance().BGM_Ground != null && AudioControler.getInstance().BGM_Ground.isPlaying)
+            AudioControler.getInstance().BGM_Ground.volume -= 0.0085f;
+        else if (AudioControler.getInstance().BGM_Ground_Hurry != null && AudioControler.getInstance().BGM_Ground_Hurry.isPlaying)
+            AudioControler.getInstance().BGM_Ground_Hurry.volume -= 0.0085f;
+        else if (AudioControler.getInstance().BGM_10MarioMap != null && AudioControler.getInstance().BGM_10MarioMap.isPlaying)
+            AudioControler.getInstance().BGM_10MarioMap.volume -= 0.0085f;
     }
 
 }

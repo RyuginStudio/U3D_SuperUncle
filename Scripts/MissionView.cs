@@ -140,7 +140,7 @@ public class MissionView : MonoBehaviour
     {
         yield return new WaitForSeconds(1);
         AudioControler.getInstance().SE_Daikettefinal.Play();
-        StartCoroutine(SceneTransition.getInstance().loadScene("MainScene", 2));
+        StartCoroutine(SceneTransition.getInstance().loadScene("LivesScene", 2));
 
     }
 }
