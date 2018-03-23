@@ -119,7 +119,7 @@ public class MissionView : MonoBehaviour
         }
 
         //马里奥UI向新的关卡point移动
-        var waitSeconds = alreadyDisplayNoticeCard ? 5 : 12;
+        var waitSeconds = alreadyDisplayNoticeCard ? 3 : 12;
         yield return new WaitForSeconds(waitSeconds);
         var currentMissionPos = list_stepMission[GameData.currentMissionNum - 1].transform.position;
         MarioUI.transform.position = new Vector3(currentMissionPos.x, MarioUI.transform.position.y, currentMissionPos.z);
