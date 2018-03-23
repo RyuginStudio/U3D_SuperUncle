@@ -133,14 +133,14 @@ public class MapEditor : MonoBehaviour
     public void init()
     {
         //图块prefab数组初始化（从prefab文件夹加载）
-        PrefabMapBlock = new GameObject[GameData.blockNum];
+        PrefabMapBlock = new GameObject[1000];
         for (int i = 0; i < PrefabMapBlock.Length; i++)
         {
             PrefabMapBlock.SetValue(Resources.Load(@"Prefab/BlockPrefab/Ground_" + i.ToString()), i);
         }
 
         //图块toggleGroup初始化
-        for (int i = 0; i < GameData.blockNum; i++)
+        for (int i = 0; i < 1000; i++)
         {
             var toggle = Instantiate(PrefabToggle, ToggleGroup);
 
