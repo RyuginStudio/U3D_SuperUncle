@@ -27,7 +27,7 @@ public class GameData : MonoBehaviour
     public static void dataUpdate()
     {
         alreadyTeaching = false;
-        mapName = "map2";
+        mapName = "map1";
         missionTotalNum = 30;
         currentMissionNum = 1;
         MarioLives = 12;
@@ -37,7 +37,7 @@ public class GameData : MonoBehaviour
     //===========================游戏数据===========================//
 
     public static bool alreadyTeaching = false;  //完成新手教学
-    public static string mapName = "map2";       //地图关卡索引
+    public static string mapName = "map1";       //地图关卡索引
     public static int missionTotalNum = 30;      //地图关卡总数
     public static int currentMissionNum = 1;     //当前关卡数目
 

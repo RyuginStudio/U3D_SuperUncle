@@ -309,7 +309,7 @@ public class Character : MonoBehaviour
     {
         if (m_isGrounded && Input.GetButtonDown("Jump"))
         {
-            m_Rigidbody2D.AddForce(new Vector2(0, 800));
+            m_Rigidbody2D.AddForce(new Vector2(0, 730));
             AudioControler.getInstance().SE_Jump.Play();
         }
     }

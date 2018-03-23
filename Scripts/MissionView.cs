@@ -116,7 +116,7 @@ public class MissionView : MonoBehaviour
         }
 
         //马里奥UI向新的关卡point移动
-        var waitSeconds = GameData.alreadyTeaching ? 3 : 12;
+        var waitSeconds = GameData.alreadyTeaching ? 3 : 12.5f;
         yield return new WaitForSeconds(waitSeconds);
         var currentMissionPos = list_stepMission[GameData.currentMissionNum - 1].transform.position;
         MarioUI.transform.position = new Vector3(currentMissionPos.x, MarioUI.transform.position.y, currentMissionPos.z);
@@ -135,7 +135,7 @@ public class MissionView : MonoBehaviour
 
     private IEnumerator jumpScene()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.5f);
         AudioControler.getInstance().SE_Daikettefinal.Play();
         StartCoroutine(SceneTransition.getInstance().loadScene("LivesScene", 0, 2));
 
