@@ -28,7 +28,9 @@ public class MapBlock : MonoBehaviour
     {
         None,  //无事件
         Coin,
-        Goomba
+        Goomba,
+        TortoiseFly,
+        TortoiseLand
     }
     public EventType BlockEvent;
 
@@ -105,6 +107,16 @@ public class MapBlock : MonoBehaviour
                     createGoomba();
                     break;
                 }
+            case EventType.TortoiseFly:
+                {
+                    createTortoiseFly();
+                    break;
+                }
+            case EventType.TortoiseLand:
+                {
+                    createTortoiseLand();
+                    break;
+                }
 
             default:
                 break;
@@ -137,6 +149,23 @@ public class MapBlock : MonoBehaviour
         var pos = transform.position;
         var goomba = Instantiate(Resources.Load("Prefab/Enemy/Goomba"), new Vector2(pos.x, pos.y + 0.2f), new Quaternion());
         ((GameObject)goomba).GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 400));
+    }
+
+    public void createTortoiseLand()
+    {
+        AudioControler.getInstance().SE_Appear.Play();
+        var pos = transform.position;
+        var tortoise = Instantiate(Resources.Load("Prefab/Enemy/Tortoise"), new Vector2(pos.x, pos.y + 0.5f), new Quaternion());
+        ((GameObject)tortoise).GetComponent<Tortoise>().TortoiseStatus = Tortoise.Status.isOnFoot;
+        ((GameObject)tortoise).GetComponent<Tortoise>().TortoiseDirection = Tortoise.direction.left | Tortoise.direction.right;
+        ((GameObject)tortoise).GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 400));
+    }
+    public void createTortoiseFly()
+    {
+        AudioControler.getInstance().SE_Appear.Play();
+        var pos = transform.position;
+        var tortoise = Instantiate(Resources.Load("Prefab/Enemy/Tortoise"), new Vector2(pos.x, pos.y + 1.1f), new Quaternion());
+        ((GameObject)tortoise).GetComponent<Tortoise>().TortoiseStatus = Tortoise.Status.isFly;
     }
 
     #endregion

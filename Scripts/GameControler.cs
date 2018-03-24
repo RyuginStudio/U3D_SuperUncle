@@ -91,6 +91,16 @@ public class GameControler : MonoBehaviour
                         ((GameObject)prefabBlock).GetComponent<MapBlock>().BlockEvent = MapBlock.EventType.Goomba;
                         break;
                     }
+                case "TortoiseFly":
+                    {
+                        ((GameObject)prefabBlock).GetComponent<MapBlock>().BlockEvent = MapBlock.EventType.TortoiseFly;
+                        break;
+                    }
+                case "TortoiseLand":
+                    {
+                        ((GameObject)prefabBlock).GetComponent<MapBlock>().BlockEvent = MapBlock.EventType.TortoiseLand;
+                        break;
+                    }
 
                 default:
                     break;

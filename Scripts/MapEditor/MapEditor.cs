@@ -91,6 +91,16 @@ public class MapEditor : MonoBehaviour
                     prefabBlock.GetComponent<MapBlock>().BlockEvent = MapBlock.EventType.Goomba;
                     break;
                 }
+            case "TortoiseFly":
+                {
+                    prefabBlock.GetComponent<MapBlock>().BlockEvent = MapBlock.EventType.TortoiseFly;
+                    break;
+                }
+            case "TortoiseLand":
+                {
+                    prefabBlock.GetComponent<MapBlock>().BlockEvent = MapBlock.EventType.TortoiseLand;
+                    break;
+                }
 
             default:
                 break;
@@ -217,6 +227,16 @@ public class MapEditor : MonoBehaviour
                     case "Goomba":
                         {
                             GameObject.Find(ob).GetComponent<MapBlock>().BlockEvent = MapBlock.EventType.Goomba;
+                            break;
+                        }
+                    case "TortoiseFly":
+                        {
+                            GameObject.Find(ob).GetComponent<MapBlock>().BlockEvent = MapBlock.EventType.TortoiseFly;
+                            break;
+                        }
+                    case "TortoiseLand":
+                        {
+                            GameObject.Find(ob).GetComponent<MapBlock>().BlockEvent = MapBlock.EventType.TortoiseLand;
                             break;
                         }
                     default:
