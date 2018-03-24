@@ -39,7 +39,7 @@ public class EnemyOptimization : MonoBehaviour
                         {
                             charaPos = GameObject.FindGameObjectWithTag("Player").transform.parent.gameObject.transform.localPosition;
 
-                            Debug.Log(Vector2.Distance(item.localPosition, charaPos));
+                            //Debug.Log(Vector2.Distance(item.localPosition, charaPos));
 
                             if (Vector2.Distance(item.localPosition, charaPos) > maxDistance)
                             {
@@ -61,7 +61,7 @@ public class EnemyOptimization : MonoBehaviour
                         {
                             charaPos = GameObject.FindGameObjectWithTag("Player").transform.parent.gameObject.transform.localPosition;
 
-                            Debug.Log(Vector2.Distance(item.localPosition, charaPos));
+                            //Debug.Log(Vector2.Distance(item.localPosition, charaPos));
 
                             if (Vector2.Distance(item.localPosition, charaPos) > maxDistance)
                             {
