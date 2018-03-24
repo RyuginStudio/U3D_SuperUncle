@@ -131,8 +131,7 @@ public class MapEditor : MonoBehaviour
         {
             for (int j = 0; j < row; j++)
             {
-                //Instantiate(PrefabMask, new Vector3(0.64f * i, 0.64f * j, 0), new Quaternion(), mapMaskGrid);
-                Instantiate(PrefabMask, new Vector3(0.639f * i, 0.639f * j, 0), new Quaternion(), mapMaskGrid);  //.64会导致拼接缝隙
+                Instantiate(PrefabMask, new Vector3(0.64f * i, 0.64f * j, 0), PrefabMask.transform.rotation, mapMaskGrid);
             }
         }
 
