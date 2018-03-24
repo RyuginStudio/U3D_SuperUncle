@@ -219,7 +219,7 @@ public class Tortoise : MonoBehaviour, IEnemy
         }
         else if (TortoiseStatus == Status.isCrawl)
         {
-            if(m_Animator.GetCurrentAnimatorStateInfo(0).IsName("Walk"))
+            if (m_Animator.GetCurrentAnimatorStateInfo(0).IsName("Walk"))
             {
                 TortoiseStatus = Status.isOnFoot;
             }
@@ -358,10 +358,10 @@ public class Tortoise : MonoBehaviour, IEnemy
         #region bodyLeftRight
 
         var circlePos = GetComponent<CircleCollider2D>().transform.position;
-        var posBodyLeft = new Vector2(circlePos.x - GetComponent<CircleCollider2D>().radius, circlePos.y);
+        var posBodyLeft = new Vector2(circlePos.x - GetComponent<CircleCollider2D>().radius, circlePos.y - .2f);
         var targetBodyLeft = new Vector2(posBodyLeft.x - 1, posBodyLeft.y);
         var DirectionBodyLeft = targetBodyLeft - posBodyLeft;
-        var posBodyRight = new Vector2(circlePos.x + GetComponent<CircleCollider2D>().radius, circlePos.y);
+        var posBodyRight = new Vector2(circlePos.x + GetComponent<CircleCollider2D>().radius, circlePos.y - .2f);
         var targetBodyRight = new Vector2(posBodyRight.x + 1, posBodyRight.y);
         var DirectionBodyRight = targetBodyRight - posBodyRight;
 
@@ -467,7 +467,7 @@ public class Tortoise : MonoBehaviour, IEnemy
                         TortoiseStatus = Status.isShellStatic;
                         break;
                     }
-                    
+
                 default:
                     break;
             }
@@ -518,7 +518,7 @@ public class Tortoise : MonoBehaviour, IEnemy
     //乌龟爬行逻辑
     public void tortoiseCrawl()
     {
-        if(currentTime - beginCrawlUpdate > 3 && TortoiseStatus == Status.isShellStatic)
+        if (currentTime - beginCrawlUpdate > 3 && TortoiseStatus == Status.isShellStatic)
         {
             TortoiseStatus = Status.isCrawl;
         }
@@ -614,5 +614,5 @@ public class Tortoise : MonoBehaviour, IEnemy
             transform.Rotate(Vector3.forward, angle);
         }
     }
-    
+
 }
