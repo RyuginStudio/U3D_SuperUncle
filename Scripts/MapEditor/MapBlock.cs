@@ -17,6 +17,9 @@ public class MapBlock : MonoBehaviour
     //存放预制体的transform
     public Transform TransformMapPack;
 
+    //存放敌人的transform
+    public Transform TransformEnemyPack;
+
     //图块种类
     public int type;
 
@@ -49,6 +52,7 @@ public class MapBlock : MonoBehaviour
         instance = this;
 
         TransformMapPack = GameObject.FindGameObjectWithTag("MapPack").transform;
+        TransformEnemyPack = GameObject.FindGameObjectWithTag("EnemyPack").transform;
     }
 
     // Update is called once per frame
@@ -147,7 +151,7 @@ public class MapBlock : MonoBehaviour
     {
         AudioControler.getInstance().SE_Appear.Play();
         var pos = transform.position;
-        var goomba = Instantiate(Resources.Load("Prefab/Enemy/Goomba"), new Vector2(pos.x, pos.y + 0.2f), new Quaternion());
+        var goomba = Instantiate(Resources.Load("Prefab/Enemy/Goomba"), new Vector2(pos.x, pos.y + 0.2f), new Quaternion(), TransformEnemyPack);
         ((GameObject)goomba).GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 400));
     }
 
@@ -155,7 +159,7 @@ public class MapBlock : MonoBehaviour
     {
         AudioControler.getInstance().SE_Appear.Play();
         var pos = transform.position;
-        var tortoise = Instantiate(Resources.Load("Prefab/Enemy/Tortoise"), new Vector2(pos.x, pos.y + 0.5f), new Quaternion());
+        var tortoise = Instantiate(Resources.Load("Prefab/Enemy/Tortoise"), new Vector2(pos.x, pos.y + 0.5f), new Quaternion(), TransformEnemyPack);
         ((GameObject)tortoise).GetComponent<Tortoise>().TortoiseStatus = Tortoise.Status.isOnFoot;
         ((GameObject)tortoise).GetComponent<Tortoise>().TortoiseDirection = Tortoise.direction.left | Tortoise.direction.right;
         ((GameObject)tortoise).GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 400));
@@ -164,7 +168,7 @@ public class MapBlock : MonoBehaviour
     {
         AudioControler.getInstance().SE_Appear.Play();
         var pos = transform.position;
-        var tortoise = Instantiate(Resources.Load("Prefab/Enemy/Tortoise"), new Vector2(pos.x, pos.y + 1.1f), new Quaternion());
+        var tortoise = Instantiate(Resources.Load("Prefab/Enemy/Tortoise"), new Vector2(pos.x, pos.y + 1.1f), new Quaternion(), TransformEnemyPack);
         ((GameObject)tortoise).GetComponent<Tortoise>().TortoiseStatus = Tortoise.Status.isFly;
     }
 
