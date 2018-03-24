@@ -356,8 +356,8 @@ public class Character : MonoBehaviour
         AudioControler.getInstance().SE_Die2.PlayDelayed(0.5f);
         AudioControler.getInstance().SE_OhNo.PlayDelayed(0.5f);
 
-        //死亡时屏幕抖动
-        GameObject.FindWithTag("MainCamera").GetComponent<ShakeCamera>().isshakeCamera = true;
+        //死亡时屏幕抖动  弃用
+        //GameObject.FindWithTag("MainCamera").GetComponent<ShakeCamera>().isshakeCamera = true;
 
         m_animator.SetBool("isDie", true);
         Destroy(GetComponent<CapsuleCollider2D>());
