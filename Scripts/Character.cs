@@ -186,7 +186,7 @@ public class Character : MonoBehaviour
         //Debug.Log("colliderName1: " + collider_left);
         //Debug.Log("colliderName2: " + collider_right);
 
-        if (collider_left == null & collider_right == null)
+        if (collider_left == null && collider_right == null)
         {
             m_isGrounded = false;
             canPlayFallDownSE = true;
