@@ -52,7 +52,18 @@ public class Camera2DFollow : MonoBehaviour
         Vector3 aheadTargetPos = target.position + m_LookAheadPos + Vector3.forward * m_OffsetZ;
         Vector3 newPos = Vector3.SmoothDamp(transform.position, aheadTargetPos, ref m_CurrentVelocity, damping);
 
-        newPos.x = newPos.x < 0 ? 0 : newPos.x;  //边界值
+        //U3D摄像机理解：https://blog.csdn.net/n5/article/details/50083205
+        float orthographicSize = GetComponent<Camera>().orthographicSize;
+        float aspectRatio = Screen.width * 1.0f / Screen.height;
+        float cameraHeight = orthographicSize * 2;
+        float cameraWidth = cameraHeight * aspectRatio;
+
+        //镜头偏移值
+        var offset = 0.35f;  //=>该偏移量只在图块比城堡右侧宽出来一个格子时显示效果最佳
+
+        //边界值
+        newPos.x = newPos.x > AirWall.getInstance().max_X - cameraWidth / 2 - offset? AirWall.getInstance().max_X - cameraWidth / 2 - offset: newPos.x;
+        newPos.x = newPos.x < 0 ? 0 : newPos.x;
         newPos.y = newPos.y < 0 ? 0 : newPos.y;
 
         transform.position = newPos;

@@ -15,9 +15,19 @@ public class AirWall : MonoBehaviour
     [SerializeField] private GameObject UpWall;
     [SerializeField] private GameObject mapBlocks;
 
+    private static AirWall instance;
+    public static AirWall getInstance()
+    {
+        return instance;
+    }
+
+    public float max_X = 0;
+    public float min_X = 100;
+
     // Use this for initialization
     void Start()
     {
+        instance = this;
         Invoke("updateAirWallViaBlockPos", 0.5f);
     }
 
@@ -29,9 +39,6 @@ public class AirWall : MonoBehaviour
 
     void updateAirWallViaBlockPos()  //获取所有图块x最大值
     {
-        float max_X = 0;
-        float min_X = 100;
-
         foreach (var item in mapBlocks.GetComponentsInChildren<Transform>())
         {
             if (item.position.x > max_X)
