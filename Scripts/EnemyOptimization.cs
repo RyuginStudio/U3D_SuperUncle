@@ -51,6 +51,8 @@ public class EnemyOptimization : MonoBehaviour
                                 item.gameObject.GetComponent<Goomba>().enabled = true;
                                 item.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
                             }
+
+                            setFallDownDie(item.gameObject);
                         }
                         break;
                     }
@@ -73,6 +75,8 @@ public class EnemyOptimization : MonoBehaviour
                                 item.gameObject.GetComponent<Tortoise>().enabled = true;
                                 item.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
                             }
+
+                            setFallDownDie(item.gameObject);
                         }
                         break;
                     }
@@ -80,6 +84,15 @@ public class EnemyOptimization : MonoBehaviour
                 default:
                     break;
             }
+        }
+    }
+
+    private void setFallDownDie(GameObject item)
+    {
+        //敌人掉落后设置为死亡销毁
+        if (item.transform.position.y < -15)
+        {
+            GameObject.Destroy(item);
         }
     }
 }
