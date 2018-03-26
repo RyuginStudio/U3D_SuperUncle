@@ -416,12 +416,12 @@ public class Character : MonoBehaviour
                         {
                             collision.GetComponent<Tortoise>().pushOrTreadShell(gameObject);
                         }
-                        else if(transform.position.x < collision.transform.position.x && collision.GetComponent<Tortoise>().TortoiseDirection == Tortoise.direction.left 
+                        else if (transform.position.x < collision.transform.position.x && collision.GetComponent<Tortoise>().TortoiseDirection == Tortoise.direction.left
                             || transform.position.x > collision.transform.position.x && collision.GetComponent<Tortoise>().TortoiseDirection == Tortoise.direction.right)
                         {   //需要对龟壳的direction进行判断
                             GameControler.getInstance().gameOver();
                         }
-                            
+
                         break;
                     }
             }

@@ -1,7 +1,7 @@
 ﻿/*
  * 时间：2018年1月25日11:15:07
  * 作者：vszed
- * 功能：游戏流程总控制器：倒计时、游戏结束等
+ * 功能：游戏流程总控制器：倒计时、游戏结束、呼出菜单等
  */
 
 using System.Collections;
@@ -25,6 +25,9 @@ public class GameControler : MonoBehaviour
 
     //游戏结束开关
     public bool GameOver;
+
+    //主菜单UI
+    public GameObject menuUI;
 
     //单例
     private static GameControler instance;
@@ -52,6 +55,8 @@ public class GameControler : MonoBehaviour
             countDownUpdate = Time.time;
             countDown();
         }
+
+        popUpMenu();
     }
 
     public void loadMap()  //根据GameDt加载地图
@@ -214,5 +219,20 @@ public class GameControler : MonoBehaviour
             str_coin = "0" + str_coin;
         }
         GameObject.Find("CoinNum").GetComponent<Text>().text = str_coin;
+    }
+
+    //呼出、关闭菜单（重开游戏、退出游戏等）
+    public void popUpMenu()
+    {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            //Debug.Log("popUpMenu");
+            AudioControler.getInstance().SE_SYS_PAUSE.Play();
+
+            if (menuUI.activeSelf)
+                menuUI.SetActive(false);
+            else
+                menuUI.SetActive(true);
+        }
     }
 }
