@@ -136,6 +136,20 @@ public class ReadCreateMap : MonoBehaviour
 
     public void readMap()  //读取已有地图
     {
+        //读取地图时，确保无图块
+        var mapPack = GameObject.FindGameObjectWithTag("MapPack");
+        foreach (var item in mapPack.GetComponentsInChildren<SpriteRenderer>())
+            GameObject.Destroy(item.gameObject);
+
+        //确保for、foreach执行完毕
+        if (mapPack.GetComponentsInChildren<SpriteRenderer>().Length != 0)
+            Invoke("doReadMap", 1);
+        else
+            doReadMap();
+    }
+
+    private void doReadMap()
+    {
         //Debug.Log("Read Map");
         //ps: var JsonFile = Resources.Load(@"MapConfig/mapConfig") as TextAsset;
         var JsonFile = Resources.Load(@"MapConfig/" + inputFiledName.text) as TextAsset;
