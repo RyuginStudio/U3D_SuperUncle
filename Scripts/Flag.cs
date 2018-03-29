@@ -32,9 +32,29 @@ public class Flag : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.GetComponent<Character>())
+        if (collision.GetComponent<Character>() && !collision.GetComponentInChildren<Animator>().GetBool("isGetFlag"))
         {
-            Debug.Log("123");
+            StartCoroutine(getFlag(collision));
         }
+    }
+
+    //取得旗子
+    public IEnumerator getFlag(Collider2D collision)
+    {
+        GameControler.getInstance().GameOver = true;
+        collision.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+        collision.GetComponentInChildren<Animator>().SetBool("isGetFlag", true);
+
+        yield return new WaitForSeconds(0.15f);
+        if (AudioControler.getInstance().BGM_Ground.isPlaying)
+            AudioControler.getInstance().BGM_Ground.Stop();
+        if (AudioControler.getInstance().BGM_Ground_Hurry.isPlaying)
+            AudioControler.getInstance().BGM_Ground_Hurry.Stop();
+        collision.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+        collision.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
+        AudioControler.getInstance().SE_SYS_GOAL_FLAG.Play();
+
+        yield return new WaitForSeconds(1);
+        AudioControler.getInstance().SE_course_clear.Play();
     }
 }

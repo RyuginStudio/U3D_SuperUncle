@@ -99,7 +99,7 @@ public class Character : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!m_animator.GetBool("isDie"))
+        if (!m_animator.GetBool("isDie") && !m_animator.GetBool("isGetFlag"))
         {
             keyboardControl();
             CharacterRayCollisionDetection();
