@@ -29,4 +29,12 @@ public class Flag : MonoBehaviour
         if (GetComponent<Rigidbody2D>() && GetComponent<Rigidbody2D>().velocity.y == 0)
             Destroy(GetComponent<Rigidbody2D>());
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.GetComponent<Character>())
+        {
+            Debug.Log("123");
+        }
+    }
 }
