@@ -24,7 +24,7 @@ public class MapEditor : MonoBehaviour
     {
         instance = this;
 
-        createMask(64, 244);// row, column);
+        createMask();
 
         MapStructList = new List<MapStruct>();
 
@@ -52,8 +52,8 @@ public class MapEditor : MonoBehaviour
 
     public List<MapStruct> MapStructList;   //存放地图图块的容器
 
-    public int row;     //行
-    public int column;  //列
+    [SerializeField] private int row = 64;      //地图多少行
+    [SerializeField] private int column = 244;  //地图多少列
 
 
     public void drawBlock(Vector3 pos, int type, string blockEvent, int doEventTimes)
@@ -125,7 +125,7 @@ public class MapEditor : MonoBehaviour
 
     }
 
-    public void createMask(int row, int column)  //创建网格遮罩
+    public void createMask()  //创建网格遮罩
     {
         for (int i = 0; i < column; i++)
         {
