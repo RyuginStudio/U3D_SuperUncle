@@ -47,6 +47,7 @@ public class AudioControler : MonoBehaviour
     public AudioSource SE_PlayExit;
     public AudioSource SE_SYS_GOAL_FLAG;
     public AudioSource SE_course_clear;
+    public AudioSource SE_VOC_MA_CLEAR_NORMAL;
 
     //=========BGM=========//
     public AudioSource BGM_Title;

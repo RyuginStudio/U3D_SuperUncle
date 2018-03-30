@@ -25,10 +25,11 @@ public class Castle : MonoBehaviour
     public void isGroundedSetStatic()
     {
         //在编辑地图中会直接删掉刚体
-        if (GetComponent<Rigidbody2D>() && GetComponent<Rigidbody2D>().velocity.y == 0)
+        if (GetComponentInParent<Rigidbody2D>() && GetComponentInParent<Rigidbody2D>().velocity.y == 0)
         {
-            Destroy(GetComponent<Rigidbody2D>());
-            Destroy(GetComponent<BoxCollider2D>());
+            Destroy(GetComponentInParent<Rigidbody2D>());
+            Destroy(GetComponentInParent<BoxCollider2D>());
+            transform.position = new Vector3(transform.position.x, transform.position.y, -5);
         }
     }
 }
