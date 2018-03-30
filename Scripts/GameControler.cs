@@ -192,6 +192,7 @@ public class GameControler : MonoBehaviour
         int currentScore = 0;
         int.TryParse(GameObject.Find("ScoreNum").GetComponent<Text>().text, out currentScore);
         currentScore += score;
+        currentScore = currentScore < 0 ? 0 : currentScore; 
         var str_currentScore = currentScore.ToString();
 
         while (str_currentScore.Length < 9)
