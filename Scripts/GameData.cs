@@ -31,7 +31,7 @@ public class GameData : MonoBehaviour
         missionTotalNum = 30;
         currentMissionNum = 1;
         MarioLives = 12;
-
+        Flag.alreadyGetFlag = false;
     }
 
     //===========================游戏数据===========================//

@@ -20,6 +20,7 @@ public class Castle : MonoBehaviour
     void Update()
     {
         isGroundedSetStatic();
+        displayMask();
     }
 
     public void isGroundedSetStatic()
@@ -30,6 +31,14 @@ public class Castle : MonoBehaviour
             Destroy(GetComponentInParent<Rigidbody2D>());
             Destroy(GetComponentInParent<BoxCollider2D>());
             transform.position = new Vector3(transform.position.x, transform.position.y, -5);
+        }
+    }
+
+    public void displayMask()
+    {
+        if (Flag.alreadyGetFlag)
+        {
+            GetComponent<SpriteRenderer>().enabled = true;
         }
     }
 }

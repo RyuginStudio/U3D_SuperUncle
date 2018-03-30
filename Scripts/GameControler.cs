@@ -235,4 +235,23 @@ public class GameControler : MonoBehaviour
                 menuUI.SetActive(true);
         }
     }
+
+    //过关->下一关
+    public void goToNextMission()
+    {
+        //重置数据
+        Flag.alreadyGetFlag = false;
+
+        if (GameData.currentMissionNum + 1 <= GameData.missionTotalNum)
+        {
+            ++GameData.currentMissionNum;
+            GameData.mapName = "map" + GameData.currentMissionNum;
+            StartCoroutine(SceneTransition.getInstance().loadScene("MissionViewScene", 0, 3));
+        }
+        else
+        {
+            //TODO: 马里奥见到公主场景
+        }
+
+    }
 }
