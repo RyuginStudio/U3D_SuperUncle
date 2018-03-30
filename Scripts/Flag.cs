@@ -82,7 +82,7 @@ public class Flag : MonoBehaviour
         AudioControler.getInstance().SE_VOC_MA_CLEAR_NORMAL.Play();
 
         yield return new WaitForSeconds(3);
-        GameControler.getInstance().goToNextMission();
+        GameControler.getInstance().balanceScoreSwitch = true;
     }
 
     //取旗后去城堡动画

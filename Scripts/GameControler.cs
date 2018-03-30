@@ -26,6 +26,12 @@ public class GameControler : MonoBehaviour
     //游戏结束开关
     public bool GameOver;
 
+    //清算关卡得分开关
+    public bool balanceScoreSwitch;
+
+    //4000分换1UP
+    int ScoreToLives;
+
     //主菜单UI
     public GameObject menuUI;
 
@@ -57,6 +63,8 @@ public class GameControler : MonoBehaviour
         }
 
         popUpMenu();
+
+        balanceScore();
     }
 
     public void loadMap()  //根据GameDt加载地图
@@ -192,7 +200,7 @@ public class GameControler : MonoBehaviour
         int currentScore = 0;
         int.TryParse(GameObject.Find("ScoreNum").GetComponent<Text>().text, out currentScore);
         currentScore += score;
-        currentScore = currentScore < 0 ? 0 : currentScore; 
+        currentScore = currentScore < 0 ? 0 : currentScore;
         var str_currentScore = currentScore.ToString();
 
         while (str_currentScore.Length < 9)
@@ -222,6 +230,14 @@ public class GameControler : MonoBehaviour
         GameObject.Find("CoinNum").GetComponent<Text>().text = str_coin;
     }
 
+    //1UP加命
+    public void oneUp()
+    {
+        AudioControler.getInstance().SE_ONE_UP.Play();
+        Destroy(Instantiate(Resources.Load("Prefab/UI/1UP"), GameObject.Find("Canvas").transform), 1);
+        ++GameData.MarioLives;
+    }
+
     //呼出、关闭菜单（重开游戏、退出游戏等）
     public void popUpMenu()
     {
@@ -237,6 +253,45 @@ public class GameControler : MonoBehaviour
         }
     }
 
+    //分数结算
+    public void balanceScore()
+    {
+        if (balanceScoreSwitch)
+        {
+            if (!AudioControler.getInstance().SE_SCORE_COUNT.isPlaying)
+                AudioControler.getInstance().SE_SCORE_COUNT.Play();
+
+            int currentScore = 0;
+            int.TryParse(GameObject.Find("ScoreNum").GetComponent<Text>().text, out currentScore);
+
+            currentScore = currentScore - 10 > 0 ? currentScore - 10 : 0;
+
+            var str_currentScore = currentScore.ToString();
+            while (str_currentScore.Length < 9)
+                str_currentScore = "0" + str_currentScore;
+
+            GameObject.Find("ScoreNum").GetComponent<Text>().text = str_currentScore;
+
+            //分数兑换命数
+            ScoreToLives += 10;
+            if (ScoreToLives >= 4000)
+            {
+                ScoreToLives = 0;
+                oneUp();
+            }
+
+            if (currentScore == 0)
+            {
+                balanceScoreSwitch = false;
+                AudioControler.getInstance().SE_SCORE_COUNT.Stop();
+                AudioControler.getInstance().SE_SCORE_COUNT_FINISH.Play();
+
+                //下一关
+                goToNextMission();
+            }
+        }
+    }
+
     //过关->下一关
     public void goToNextMission()
     {
@@ -247,7 +302,7 @@ public class GameControler : MonoBehaviour
         {
             ++GameData.currentMissionNum;
             GameData.mapName = "map" + GameData.currentMissionNum;
-            StartCoroutine(SceneTransition.getInstance().loadScene("MissionViewScene", 0, 3));
+            StartCoroutine(SceneTransition.getInstance().loadScene("MissionViewScene", 1.5f, 3));
         }
         else
         {
