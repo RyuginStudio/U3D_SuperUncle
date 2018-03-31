@@ -575,7 +575,7 @@ public class Tortoise : MonoBehaviour, IEnemy
         }
     }
 
-    //只有两种情况会死：任何状态下 => 1.被炮弹击中 2.被别的龟壳击中
+    //只有3种情况会死：任何状态下 => 1.被炮弹击中 2.被别的龟壳击中 3.被无敌角色触碰
     public void die(GameObject ob)
     {
         isDied = true;

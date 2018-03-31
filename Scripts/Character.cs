@@ -392,10 +392,11 @@ public class Character : MonoBehaviour
             switch (collision.gameObject.tag)
             {
                 case "Goomba":
-                    collision.gameObject.GetComponent<Goomba>().doBeTread(gameObject);
+                    collision.gameObject.GetComponent<Goomba>().isGrounded = false;
+                    collision.gameObject.GetComponent<Goomba>().die(gameObject);
                     break;
                 case "Tortoise":
-                    collision.gameObject.GetComponent<Tortoise>().doBeTread(gameObject);
+                    collision.gameObject.GetComponent<Tortoise>().die(gameObject);
                     break;
             }
         }
@@ -431,13 +432,50 @@ public class Character : MonoBehaviour
             switch (collision.gameObject.tag)
             {
                 case "Goomba":
-                    collision.gameObject.GetComponent<Goomba>().doBeTread(gameObject);
+                    collision.gameObject.GetComponent<Goomba>().isGrounded = false;
+                    collision.gameObject.GetComponent<Goomba>().die(gameObject);
                     break;
                 case "Tortoise":
-                    collision.gameObject.GetComponent<Tortoise>().doBeTread(gameObject);
+                    collision.gameObject.GetComponent<Tortoise>().die(gameObject);
                     break;
             }
         }
     }
+    #region isUnmatchedCollision  //针对头部和脚部无敌的碰撞
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (isUnmatched)
+        {
+            switch (collision.gameObject.tag)
+            {
+                case "Goomba":
+                    collision.gameObject.GetComponent<Goomba>().isGrounded = false;
+                    collision.gameObject.GetComponent<Goomba>().die(gameObject);
+                    break;
+                case "Tortoise":
+                    collision.gameObject.GetComponent<Tortoise>().die(gameObject);
+                    break;
+            }
+        }
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (isUnmatched)
+        {
+            switch (collision.gameObject.tag)
+            {
+                case "Goomba":
+                    collision.gameObject.GetComponent<Goomba>().isGrounded = false;
+                    collision.gameObject.GetComponent<Goomba>().die(gameObject);
+                    break;
+                case "Tortoise":
+                    collision.gameObject.GetComponent<Tortoise>().die(gameObject);
+                    break;
+            }
+        }
+    }
+    #endregion
+
 
 }
