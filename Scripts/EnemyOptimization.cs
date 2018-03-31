@@ -3,6 +3,7 @@
  * 作者：vszed
  * 功能：优化与角色距离过远的敌人
  * 用法：挂载到敌人父物体下
+ * 另外：也可在相应敌人下采用OnBecameInvisible进行优化（未采用）
  */
 
 using System.Collections;

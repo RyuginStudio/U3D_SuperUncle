@@ -190,4 +190,10 @@ public class Goomba : MonoBehaviour, IEnemy
         }
     }
 
+    //也不失为一种优化方案 --暂时弃用
+    //public void OnBecameInvisible()
+    //{
+    //    Debug.Log("OnBecameInvisible");
+    //}
+
 }
