@@ -118,12 +118,26 @@ public class ReadCreateMap : MonoBehaviour
 
         writer.WriteArrayEnd();
 
+        writer.WritePropertyName("EnemyBlocks");
+
+        writer.WriteArrayStart();
+
+        //写入敌人数据
+        foreach (var item in GameObject.FindGameObjectWithTag("EnemyPack").GetComponentsInChildren<Rigidbody2D>())
+        {
+            writer.WriteObjectStart();
+            writer.WritePropertyName("position.x");
+            writer.Write(item.transform.position.x);
+            writer.WritePropertyName("position.y");
+            writer.Write(item.transform.position.y);
+            writer.WritePropertyName("type");
+            writer.Write(item.name);
+            writer.WriteObjectEnd();
+        }
+
+        writer.WriteArrayEnd();
+
         writer.WriteObjectEnd();
-
-
-        JsonData jd = JsonMapper.ToObject(sb.ToString());
-
-        JsonData jdItems = jd["MapBlocks"];
 
         StreamWriter sw;
         sw = File.CreateText(path);
@@ -141,11 +155,11 @@ public class ReadCreateMap : MonoBehaviour
         foreach (var item in mapPack.GetComponentsInChildren<SpriteRenderer>())
             GameObject.Destroy(item.gameObject);
 
-        //确保for、foreach执行完毕
-        if (mapPack.GetComponentsInChildren<SpriteRenderer>().Length != 0)
-            Invoke("doReadMap", 1);
-        else
-            doReadMap();
+        var enemyPack = GameObject.FindGameObjectWithTag("EnemyPack");
+        foreach (var item in enemyPack.GetComponentsInChildren<SpriteRenderer>())
+            GameObject.Destroy(item.gameObject);
+
+        Invoke("doReadMap", 1);
     }
 
     private void doReadMap()
@@ -155,7 +169,9 @@ public class ReadCreateMap : MonoBehaviour
         var JsonFile = Resources.Load(@"MapConfig/" + inputFiledName.text) as TextAsset;
         var JsonObj = JsonMapper.ToObject(JsonFile.text);
         var JsonItems = JsonObj["MapBlocks"];
+        var JsonEnemies = JsonObj["EnemyBlocks"];
 
+        //读图块
         foreach (JsonData item in JsonItems)
         {
             //Debug.Log("x:" + item["position.x"]);
@@ -169,6 +185,16 @@ public class ReadCreateMap : MonoBehaviour
             var doEventTimes = int.Parse(item["doEventTimes"].ToString());
 
             MapEditor.getInstance().drawBlock(new Vector3(x, y, 0), type, blockEvent, doEventTimes);
+        }
+
+        //读敌人
+        foreach (JsonData item in JsonEnemies)
+        {
+            var x = Convert.ToSingle(item["position.x"].ToString());
+            var y = Convert.ToSingle(item["position.y"].ToString());
+            var type = item["type"].ToString();
+
+            EnemyEditor.getInstance().drawEnemy(new Vector3(x, y, 0), type);
         }
     }
 

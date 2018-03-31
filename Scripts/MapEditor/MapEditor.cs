@@ -55,7 +55,7 @@ public class MapEditor : MonoBehaviour
     [SerializeField] private int row = 64;      //地图多少行
     [SerializeField] private int column = 244;  //地图多少列
 
-
+    //绘制地图
     public void drawBlock(Vector3 pos, int type, string blockEvent, int doEventTimes)
     {
         if (GameObject.Find(pos.ToString()))
@@ -142,7 +142,7 @@ public class MapEditor : MonoBehaviour
     public void init()
     {
         //图块prefab数组初始化（从prefab文件夹加载）
-        PrefabMapBlock = new GameObject[250];
+        PrefabMapBlock = new GameObject[251];
         for (int i = 0; i < PrefabMapBlock.Length; i++)
         {
             PrefabMapBlock.SetValue(Resources.Load(@"Prefab/BlockPrefab/Ground_" + i.ToString()), i);

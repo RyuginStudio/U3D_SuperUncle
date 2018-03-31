@@ -65,6 +65,12 @@ public class Tortoise : MonoBehaviour, IEnemy
         DownTargetPos = new Vector3(pos.x, pos.y - 10, pos.z);
 
         wingControl();
+
+        if (EnemyEditor.getInstance() != null)
+        {
+            GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+            Destroy(this);
+        }
     }
 
     // Update is called once per frame

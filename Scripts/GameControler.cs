@@ -121,6 +121,20 @@ public class GameControler : MonoBehaviour
 
             ((GameObject)prefabBlock).GetComponent<MapBlock>().canDoEventTimes = doEventTimes;
         }
+
+        //================================================================================================================================//
+        var JsonEnemies = JsonObj["EnemyBlocks"];
+
+        foreach (JsonData item in JsonEnemies)
+        {
+            var x = Convert.ToSingle(item["position.x"].ToString());
+            var y = Convert.ToSingle(item["position.y"].ToString());
+            var type = item["type"].ToString();
+            //Debug.Log(type);
+            var prefabBlock = Instantiate(Resources.Load("Prefab/Enemy/" + type), new Vector3(x, y, 0), new Quaternion(), GameObject.FindWithTag("EnemyPack").transform);
+
+            prefabBlock.name = type;
+        }
     }
 
     //游戏倒计时

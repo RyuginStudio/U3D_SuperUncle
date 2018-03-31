@@ -9,6 +9,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GirdEvent : MonoBehaviour
 {
@@ -27,11 +28,10 @@ public class GirdEvent : MonoBehaviour
 
     public void setBlockPos()
     {
-        //默认
-        MapEditor.getInstance().drawBlock(new Vector3(transform.position.x, transform.position.y, 0), MapEditor.getInstance().toggleChoice, "None", 0);
-        //Debug.Log("x: " + transform.position.x);
-        //Debug.Log("y: " + transform.position.y);
-        //Debug.Log("z: " + transform.position.z);
+        if (GameObject.Find("ChangeFunction").GetComponent<Toggle>().isOn)
+            EnemyEditor.getInstance().drawEnemy(new Vector3(transform.position.x, transform.position.y, 0), EnemyEditor.getInstance().toggle_type);
+        else
+            MapEditor.getInstance().drawBlock(new Vector3(transform.position.x, transform.position.y, 0), MapEditor.getInstance().toggleChoice, "None", 0);
     }
 
 }

@@ -41,6 +41,12 @@ public class Goomba : MonoBehaviour, IEnemy
         currentTime = Time.time;
         previousPos = transform.position;
         m_rigidbody = GetComponent<Rigidbody2D>();
+
+        if (EnemyEditor.getInstance() != null)
+        {
+            GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+            Destroy(this);
+        }
     }
 
     // Update is called once per frame

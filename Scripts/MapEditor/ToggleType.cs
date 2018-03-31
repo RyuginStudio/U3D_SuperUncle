@@ -10,6 +10,7 @@ public class ToggleType : MonoBehaviour
     void Start()
     {
         int.TryParse(name, out type);
+        enemy_type = name.ToString();
     }
 
     // Update is called once per frame
@@ -20,14 +21,23 @@ public class ToggleType : MonoBehaviour
 
     public int type;
 
+    public string enemy_type;
+
     public void showType()
     {
-        //确定选择toggle的种类
-        if (GetComponent<Toggle>().isOn)
+        if (int.TryParse(name, out type))
         {
-            //Debug.Log(type);
-            MapEditor.getInstance().toggleChoice = type;
+            //确定选择toggle的种类
+            if (GetComponent<Toggle>().isOn)
+            {
+                //Debug.Log(type);
+                MapEditor.getInstance().toggleChoice = type;
+            }
         }
-
+        else
+        {
+            if (GetComponent<Toggle>().isOn)
+                EnemyEditor.getInstance().toggle_type = enemy_type;
+        }
     }
 }

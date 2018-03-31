@@ -159,7 +159,7 @@ public class MapBlock : MonoBehaviour
     {
         AudioControler.getInstance().SE_Appear.Play();
         var pos = transform.position;
-        var tortoise = Instantiate(Resources.Load("Prefab/Enemy/Tortoise"), new Vector2(pos.x, pos.y + 0.5f), new Quaternion(), TransformEnemyPack);
+        var tortoise = Instantiate(Resources.Load("Prefab/Enemy/TortoiseLand"), new Vector2(pos.x, pos.y + 0.5f), new Quaternion(), TransformEnemyPack);
         ((GameObject)tortoise).GetComponent<Tortoise>().TortoiseStatus = Tortoise.Status.isOnFoot;
         ((GameObject)tortoise).GetComponent<Tortoise>().TortoiseDirection = Tortoise.direction.left | Tortoise.direction.right;
         ((GameObject)tortoise).GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 400));
@@ -168,7 +168,7 @@ public class MapBlock : MonoBehaviour
     {
         AudioControler.getInstance().SE_Appear.Play();
         var pos = transform.position;
-        var tortoise = Instantiate(Resources.Load("Prefab/Enemy/Tortoise"), new Vector2(pos.x, pos.y + 1.1f), new Quaternion(), TransformEnemyPack);
+        var tortoise = Instantiate(Resources.Load("Prefab/Enemy/TortoiseFly"), new Vector2(pos.x, pos.y + 1.1f), new Quaternion(), TransformEnemyPack);
         ((GameObject)tortoise).GetComponent<Tortoise>().TortoiseStatus = Tortoise.Status.isFly;
     }
 
