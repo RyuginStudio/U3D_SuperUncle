@@ -107,6 +107,8 @@ public class SceneTransition : MonoBehaviour
             AudioControler.getInstance().BGM_Ground_Hurry.volume -= 0.0085f;
         else if (AudioControler.getInstance().BGM_10MarioMap != null && AudioControler.getInstance().BGM_10MarioMap.isPlaying)
             AudioControler.getInstance().BGM_10MarioMap.volume -= 0.0085f;
+        else if (AudioControler.getInstance().BGM_SickCow != null && AudioControler.getInstance().BGM_SickCow.isPlaying)
+            AudioControler.getInstance().BGM_SickCow.volume -= 0.0085f;
     }
 
 }
