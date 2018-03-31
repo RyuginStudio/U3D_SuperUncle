@@ -142,7 +142,7 @@ public class MapEditor : MonoBehaviour
     public void init()
     {
         //图块prefab数组初始化（从prefab文件夹加载）
-        PrefabMapBlock = new GameObject[251];
+        PrefabMapBlock = new GameObject[252];
         for (int i = 0; i < PrefabMapBlock.Length; i++)
         {
             PrefabMapBlock.SetValue(Resources.Load(@"Prefab/BlockPrefab/Ground_" + i.ToString()), i);

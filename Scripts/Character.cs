@@ -186,14 +186,14 @@ public class Character : MonoBehaviour
         //Debug.Log("colliderName1: " + collider_left);
         //Debug.Log("colliderName2: " + collider_right);
 
-        if (collider_left == null && collider_right == null)
+        if ((collider_left != null && !collider_left.GetComponent<BoxCollider2D>().isTrigger) || (collider_right != null && !collider_right.GetComponent<BoxCollider2D>().isTrigger))
         {
-            m_isGrounded = false;
-            canPlayFallDownSE = true;
+            m_isGrounded = true;
         }
         else
         {
-            m_isGrounded = true;
+            m_isGrounded = false;
+            canPlayFallDownSE = true;
         }
 
         //=================脚部与图块 End=================//
