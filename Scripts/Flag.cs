@@ -27,23 +27,31 @@ public class Flag : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-
+        if (EnemyEditor.getInstance() != null)
+        {
+            GetComponentInParent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+            Destroy(this);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        isGroundedSetStatic();
+        StartCoroutine(isGroundedSetStatic());
         goToCastleAnim(ob);
         flagControl();
     }
 
     //落地后移除刚体
-    public void isGroundedSetStatic()
+    public IEnumerator isGroundedSetStatic()
     {
         //在编辑地图中会直接删掉刚体
         if (GetComponentInParent<Rigidbody2D>() && GetComponentInParent<Rigidbody2D>().velocity.y == 0)
+        {
+            yield return new WaitForSeconds(2);
+
             Destroy(GetComponentInParent<Rigidbody2D>());
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
