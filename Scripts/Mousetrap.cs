@@ -31,7 +31,7 @@ public class Mousetrap : MonoBehaviour
     {
         if (collision.GetComponent<Character>())
         {
-            if (collision.GetComponent<Rigidbody2D>().velocity.y > -1) //保证为向上
+            if (collision.GetComponent<Rigidbody2D>().velocity.y > 0) //保证为向上
             {
                 if (!AudioControler.getInstance().BGM_SickCow.isPlaying)
                 {
@@ -46,7 +46,10 @@ public class Mousetrap : MonoBehaviour
                 GetComponent<SpriteRenderer>().enabled = true;
 
                 foreach (var item in GetComponents<BoxCollider2D>())
+                {
                     item.enabled = true;
+                    item.isTrigger = false;
+                }
             }
 
         }

@@ -186,6 +186,8 @@ public class GameControler : MonoBehaviour
             //BGM
             AudioControler.getInstance().BGM_Ground.Stop();
             AudioControler.getInstance().BGM_Ground_Hurry.Stop();
+            AudioControler.getInstance().BGM_SickCow.Stop();
+            AudioControler.getInstance().BGM_MarioKartStar.Stop();
 
             Character.getInstance().characterDie();
 

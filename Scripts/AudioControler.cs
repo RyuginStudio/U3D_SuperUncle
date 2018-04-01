@@ -51,6 +51,8 @@ public class AudioControler : MonoBehaviour
     public AudioSource SE_SCORE_COUNT;
     public AudioSource SE_SCORE_COUNT_FINISH;
     public AudioSource SE_ONE_UP;
+    public AudioSource SE_VOC_GET_STAR;
+    public AudioSource SE_PLY_CHANGE_BIG;
 
     //=========BGM=========//
     public AudioSource BGM_Title;
@@ -58,4 +60,5 @@ public class AudioControler : MonoBehaviour
     public AudioSource BGM_Ground_Hurry;
     public AudioSource BGM_10MarioMap;
     public AudioSource BGM_SickCow;
+    public AudioSource BGM_MarioKartStar;
 }
