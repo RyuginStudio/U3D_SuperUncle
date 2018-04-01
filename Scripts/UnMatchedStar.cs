@@ -12,11 +12,19 @@ public class UnMatchedStar : MonoBehaviour
 {
     private Rigidbody2D m_rigidBody;
     private bool isContact;
+    private bool playAnim;
+
+    //光照组件
+    GameObject ob_light;
+    private float current_Time;
+    private float changeLightUpdate;
 
     // Use this for initialization
     void Start()
     {
+        current_Time = Time.time;
         m_rigidBody = GetComponent<Rigidbody2D>();
+        ob_light = GameObject.Find("Directional Light");
 
         if (EnemyEditor.getInstance() != null)
         {
@@ -28,7 +36,10 @@ public class UnMatchedStar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        current_Time = Time.time;
+
         jump();
+        unmatchedAnim();
     }
 
     void jump()
@@ -63,6 +74,7 @@ public class UnMatchedStar : MonoBehaviour
             if (collision.GetComponent<Character>() && !collision.GetComponent<Character>().isUnmatched)
             {
                 isContact = true;
+                playAnim = true;
 
                 Destroy(GetComponent<CircleCollider2D>());
                 Destroy(GetComponent<SpriteRenderer>());
@@ -85,6 +97,8 @@ public class UnMatchedStar : MonoBehaviour
                 AudioControler.getInstance().BGM_Ground.Play();
 
                 collision.GetComponent<Character>().isUnmatched = false;
+                ob_light.GetComponent<Light>().color = Color.white;
+
                 Destroy(gameObject);
             }
             else if (collision.GetComponent<Character>() && collision.GetComponent<Character>().isUnmatched)  //无敌不会附加
@@ -99,6 +113,37 @@ public class UnMatchedStar : MonoBehaviour
                 StartCoroutine(GameControler.getInstance().ScoreUIControl(1000, transform.position, 0));
 
                 Destroy(gameObject, 3);
+            }
+        }
+    }
+
+    //无敌角色闪烁动画（用改变阳光的颜色实现）
+    public void unmatchedAnim()
+    {
+        if (playAnim)
+        {
+            var value = 0.05f;
+
+            if (current_Time - changeLightUpdate > 5 * value)
+            {
+                ob_light.GetComponent<Light>().color = Color.blue;
+                changeLightUpdate = Time.time;
+            }
+            else if (current_Time - changeLightUpdate > 4 * value)
+            {
+                ob_light.GetComponent<Light>().color = Color.red;
+            }
+            else if (current_Time - changeLightUpdate > 3 * value)
+            {
+                ob_light.GetComponent<Light>().color = Color.gray;
+            }
+            else if (current_Time - changeLightUpdate > 2 * value)
+            {
+                ob_light.GetComponent<Light>().color = Color.yellow;
+            }
+            else if (current_Time - changeLightUpdate > 1 * value)
+            {
+                ob_light.GetComponent<Light>().color = Color.green;
             }
         }
     }
