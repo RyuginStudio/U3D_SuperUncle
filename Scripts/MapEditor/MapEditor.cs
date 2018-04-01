@@ -101,6 +101,11 @@ public class MapEditor : MonoBehaviour
                     prefabBlock.GetComponent<MapBlock>().BlockEvent = MapBlock.EventType.TortoiseLand;
                     break;
                 }
+            case "UnmatchStar":
+                {
+                    prefabBlock.GetComponent<MapBlock>().BlockEvent = MapBlock.EventType.UnmatchStar;
+                    break;
+                }
 
             default:
                 break;
@@ -236,6 +241,11 @@ public class MapEditor : MonoBehaviour
                     case "TortoiseLand":
                         {
                             GameObject.Find(ob).GetComponent<MapBlock>().BlockEvent = MapBlock.EventType.TortoiseLand;
+                            break;
+                        }
+                    case "UnmatchStar":
+                        {
+                            GameObject.Find(ob).GetComponent<MapBlock>().BlockEvent = MapBlock.EventType.UnmatchStar;
                             break;
                         }
                     default:

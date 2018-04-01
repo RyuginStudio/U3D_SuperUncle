@@ -33,7 +33,8 @@ public class MapBlock : MonoBehaviour
         Coin,
         Goomba,
         TortoiseFly,
-        TortoiseLand
+        TortoiseLand,
+        UnmatchStar
     }
     public EventType BlockEvent;
 
@@ -121,6 +122,11 @@ public class MapBlock : MonoBehaviour
                     createTortoiseLand();
                     break;
                 }
+            case EventType.UnmatchStar:
+                {
+                    createUnmatchStar();
+                    break;
+                }
 
             default:
                 break;
@@ -170,6 +176,13 @@ public class MapBlock : MonoBehaviour
         var pos = transform.position;
         var tortoise = Instantiate(Resources.Load("Prefab/Enemy/TortoiseFly"), new Vector2(pos.x, pos.y + 1.1f), new Quaternion(), TransformEnemyPack);
         ((GameObject)tortoise).GetComponent<Tortoise>().TortoiseStatus = Tortoise.Status.isFly;
+    }
+    public void createUnmatchStar()
+    {
+        AudioControler.getInstance().SE_Appear.Play();
+        var pos = transform.position;
+        var star = Instantiate(Resources.Load("Prefab/Enemy/Star"), new Vector2(pos.x, pos.y + 1.1f), new Quaternion(), TransformEnemyPack);
+        ((GameObject)star).GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 400));
     }
 
     #endregion

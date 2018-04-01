@@ -53,6 +53,7 @@ public class AudioControler : MonoBehaviour
     public AudioSource SE_ONE_UP;
     public AudioSource SE_VOC_GET_STAR;
     public AudioSource SE_PLY_CHANGE_BIG;
+    public AudioSource SE_STAR_FINISH;
 
     //=========BGM=========//
     public AudioSource BGM_Title;
@@ -61,4 +62,21 @@ public class AudioControler : MonoBehaviour
     public AudioSource BGM_10MarioMap;
     public AudioSource BGM_SickCow;
     public AudioSource BGM_MarioKartStar;
+
+    //关掉所有BGM => 在新的BGM播放之前调用
+    public void stopAllBGM()
+    {
+        if (AudioControler.getInstance().BGM_Ground != null && AudioControler.getInstance().BGM_Ground.isPlaying)
+            AudioControler.getInstance().BGM_Ground.Stop();
+        else if (AudioControler.getInstance().BGM_Ground_Hurry != null && AudioControler.getInstance().BGM_Ground_Hurry.isPlaying)
+            AudioControler.getInstance().BGM_Ground_Hurry.Stop();
+        else if (AudioControler.getInstance().BGM_SickCow != null && AudioControler.getInstance().BGM_SickCow.isPlaying)
+            AudioControler.getInstance().BGM_SickCow.Stop();
+        else if (AudioControler.getInstance().BGM_10MarioMap != null && AudioControler.getInstance().BGM_10MarioMap.isPlaying)
+            AudioControler.getInstance().BGM_10MarioMap.Stop();
+        else if (AudioControler.getInstance().BGM_MarioKartStar != null && AudioControler.getInstance().BGM_MarioKartStar.isPlaying)
+            AudioControler.getInstance().BGM_MarioKartStar.Stop();
+        else if (AudioControler.getInstance().BGM_Title != null && AudioControler.getInstance().BGM_Title.isPlaying)
+            AudioControler.getInstance().BGM_Title.Stop();
+    }
 }

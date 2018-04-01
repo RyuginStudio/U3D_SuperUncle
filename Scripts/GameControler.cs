@@ -114,6 +114,11 @@ public class GameControler : MonoBehaviour
                         ((GameObject)prefabBlock).GetComponent<MapBlock>().BlockEvent = MapBlock.EventType.TortoiseLand;
                         break;
                     }
+                case "UnmatchStar":
+                    {
+                        ((GameObject)prefabBlock).GetComponent<MapBlock>().BlockEvent = MapBlock.EventType.UnmatchStar;
+                        break;
+                    }
 
                 default:
                     break;
@@ -164,7 +169,7 @@ public class GameControler : MonoBehaviour
         if (result <= 100 && !AudioControler.getInstance().BGM_Ground_Hurry.isPlaying)
         {
             //BGM
-            AudioControler.getInstance().BGM_Ground.Stop();
+            AudioControler.getInstance().stopAllBGM();
             AudioControler.getInstance().BGM_Ground_Hurry.PlayDelayed(2.5f);
 
             //SE

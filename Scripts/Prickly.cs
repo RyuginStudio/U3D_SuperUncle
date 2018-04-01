@@ -25,7 +25,7 @@ public class Prickly : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.GetComponent<Character>())
+        if (collision.gameObject.GetComponent<Character>() && !collision.gameObject.GetComponent<Character>().isUnmatched)
         {
             GameControler.getInstance().gameOver();
         }
@@ -33,7 +33,7 @@ public class Prickly : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.GetComponent<Character>())
+        if (collision.gameObject.GetComponent<Character>() && !collision.gameObject.GetComponent<Character>().isUnmatched)
         {
             GameControler.getInstance().gameOver();
         }

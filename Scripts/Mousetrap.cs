@@ -35,11 +35,7 @@ public class Mousetrap : MonoBehaviour
             {
                 if (!AudioControler.getInstance().BGM_SickCow.isPlaying)
                 {
-                    if (AudioControler.getInstance().BGM_Ground.isPlaying)
-                        AudioControler.getInstance().BGM_Ground.Stop();
-                    if (AudioControler.getInstance().BGM_Ground_Hurry.isPlaying)
-                        AudioControler.getInstance().BGM_Ground_Hurry.Stop();
-
+                    AudioControler.getInstance().stopAllBGM();
                     AudioControler.getInstance().BGM_SickCow.Play();
                 }
                 GetComponent<SpriteRenderer>().sprite = block;
@@ -50,6 +46,7 @@ public class Mousetrap : MonoBehaviour
                     item.enabled = true;
                     item.isTrigger = false;
                 }
+                Destroy(this);
             }
 
         }
