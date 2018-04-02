@@ -62,7 +62,7 @@ public class Camera2DFollow : MonoBehaviour
         var offset = 0.35f;  //=>该偏移量只在图块比城堡右侧宽出来一个格子时显示效果最佳
 
         //边界值
-        newPos.x = newPos.x > AirWall.getInstance().max_X - cameraWidth / 2 - offset? AirWall.getInstance().max_X - cameraWidth / 2 - offset: newPos.x;
+        newPos.x = newPos.x > AirWall.getInstance().max_X - cameraWidth / 2 - offset ? AirWall.getInstance().max_X - cameraWidth / 2 - offset : newPos.x;
         newPos.x = newPos.x < 0 ? 0 : newPos.x;
         newPos.y = newPos.y < 0 ? 0 : newPos.y;
 
