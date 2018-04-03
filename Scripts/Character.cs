@@ -125,7 +125,17 @@ public class Character : MonoBehaviour
 
         //GetComponent<Rigidbody2D>().AddForce(new Vector2(horizontal * MoveSpeed, 0));   // --last version
 
-        float lineSpeed = Input.GetButton("Sprint") ? horizontal * MoveSpeed : horizontal * MoveSpeed / 2;
+        float lineSpeed = 0;
+
+        if (Input.GetButton("Sprint") || (CrossPlatform.getInstance() != null && CrossPlatform.getInstance().btn_A_isPressed))
+        {
+            lineSpeed = horizontal * MoveSpeed;
+        }
+        else
+        {
+            lineSpeed = horizontal * MoveSpeed / 2;
+        }
+
 
         //直接操控刚体的线性速度
         m_Rigidbody2D.velocity = new Vector2(lineSpeed, m_Rigidbody2D.velocity.y);
@@ -138,6 +148,16 @@ public class Character : MonoBehaviour
 
         //角色下落音效
         playFallDownSE();
+    }
+
+    public bool getIsGrounded()
+    {
+        return m_isGrounded;
+    }
+
+    public Animator getAnimator()
+    {
+        return m_animator;
     }
 
     //角色的射线碰撞检测(头部和脚部)
@@ -330,7 +350,7 @@ public class Character : MonoBehaviour
         {
             AudioControler.getInstance().SE_FootNote.Play();
 
-            if (Input.GetButton("Sprint"))
+            if (Input.GetButton("Sprint") || (CrossPlatform.getInstance() && CrossPlatform.getInstance().btn_A_isPressed))
                 AudioControler.getInstance().SE_FootNote_L.PlayDelayed(0.1f);
             else
                 AudioControler.getInstance().SE_FootNote_L.PlayDelayed(0.165f);
