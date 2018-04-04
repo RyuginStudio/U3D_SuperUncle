@@ -67,8 +67,7 @@ public class CrossPlatform : MonoBehaviour
                 Character.getInstance().characterMove(1);
                 //Debug.Log("Right");
             }
-
-            else if (GameObject.Find("Stick").transform.localPosition.x <= 0)
+            else
             {
                 Character.getInstance().characterMove(-1);
                 //Debug.Log("Left");

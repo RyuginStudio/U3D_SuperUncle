@@ -46,14 +46,12 @@ public class Joystick : ScrollRect
 
     public override void OnBeginDrag(PointerEventData eventData)
     {
-        //Debug.Log("Begin");
         base.OnBeginDrag(eventData);
         isBeginDrag = true;
     }
 
     public override void OnEndDrag(PointerEventData eventData)
     {
-        //Debug.Log("End");
         base.OnEndDrag(eventData);
         isBeginDrag = false;
     }

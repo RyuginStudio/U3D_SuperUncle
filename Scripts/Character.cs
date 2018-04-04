@@ -111,7 +111,9 @@ public class Character : MonoBehaviour
     {
         var horizontal = Input.GetAxis("Horizontal");
 
-        characterMove(horizontal);
+        this.jump();
+
+        characterMove(horizontal);       
     }
 
     //角色移动函数
@@ -139,9 +141,6 @@ public class Character : MonoBehaviour
 
         //直接操控刚体的线性速度
         m_Rigidbody2D.velocity = new Vector2(lineSpeed, m_Rigidbody2D.velocity.y);
-
-        //角色跳跃
-        this.jump();
 
         //角色脚步音效
         playFootPrintSE(horizontal);
