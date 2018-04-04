@@ -22,8 +22,8 @@
 
 #### 游戏截图(Screen shot)：
 
-![image](https://github.com/vszed/SuperUncle/blob/master/ScreenShot/1.png)
-![image](https://github.com/vszed/SuperUncle/blob/master/ScreenShot/2.png)
-![image](https://github.com/vszed/SuperUncle/blob/master/ScreenShot/3.png)
-![image](https://github.com/vszed/SuperUncle/blob/master/ScreenShot/4.png)
-![image](https://github.com/vszed/SuperUncle/blob/master/ScreenShot/5.png)
+![image](https://github.com/vszed/U3D_SuperUncle/blob/master/ScreenShot/1.PNG)
+![image](https://github.com/vszed/U3D_SuperUncle/blob/master/ScreenShot/2.PNG)
+![image](https://github.com/vszed/U3D_SuperUncle/blob/master/ScreenShot/3.PNG)
+![image](https://github.com/vszed/U3D_SuperUncle/blob/master/ScreenShot/4.PNG)
+![image](https://github.com/vszed/U3D_SuperUncle/blob/master/ScreenShot/5.PNG)
