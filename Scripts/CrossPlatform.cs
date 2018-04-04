@@ -60,7 +60,7 @@ public class CrossPlatform : MonoBehaviour
 
     public void characterMove()
     {
-        if (Joystick.getInstance().isBeginDrag && !Character.getInstance().getAnimator().GetBool("isDie") && !Character.getInstance().getAnimator().GetBool("isGetFlag") && !Character.getInstance().getAnimator().GetBool("goToCastle"))
+        if (Joystick.getInstance().isBeginDrag && !GameControler.getInstance().GameOver && !Character.getInstance().getAnimator().GetBool("isDie") && !Character.getInstance().getAnimator().GetBool("isGetFlag") && !Character.getInstance().getAnimator().GetBool("goToCastle"))
         {
             if (GameObject.Find("Stick").transform.localPosition.x > 0)
             {
@@ -74,5 +74,22 @@ public class CrossPlatform : MonoBehaviour
                 //Debug.Log("Left");
             }
         }
+    }
+
+    public GameObject menuUI;
+
+    //打开菜单
+    public void onOpenMenu()
+    {
+        //实现手机晃动震动效果
+#if UNITY_ANDROID || UNITY_IOS
+        Handheld.Vibrate();
+#endif
+
+        AudioControler.getInstance().SE_SYS_PAUSE.Play();
+        if (menuUI.activeSelf)
+            menuUI.SetActive(false);
+        else
+            menuUI.SetActive(true);
     }
 }
