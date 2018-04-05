@@ -40,7 +40,7 @@ public class Clouds : MonoBehaviour
         var currtPos = transform.position;
         transform.position = Vector2.MoveTowards(transform.position, new Vector2(-12, currtPos.y), (cloudState == state.big ? bigSpeed : smallSpeed) * Time.deltaTime);
         if (transform.position.x <= -12)
-            transform.position = new Vector2(9.6f, currtPos.y);
+            transform.position = new Vector2(11.96f, currtPos.y);
     }
 
 }

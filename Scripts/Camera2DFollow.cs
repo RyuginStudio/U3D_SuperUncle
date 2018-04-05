@@ -63,6 +63,7 @@ public class Camera2DFollow : MonoBehaviour
 
         //边界值
         newPos.x = newPos.x > AirWall.getInstance().max_X - cameraWidth / 2 - offset ? AirWall.getInstance().max_X - cameraWidth / 2 - offset : newPos.x;
+        //newPos.x = newPos.x < AirWall.getInstance().min_X + cameraWidth / 2 - offset ? AirWall.getInstance().min_X + cameraWidth / 2 - offset : newPos.x;
         newPos.x = newPos.x < 0 ? 0 : newPos.x;
         newPos.y = newPos.y < 0 ? 0 : newPos.y;
 
