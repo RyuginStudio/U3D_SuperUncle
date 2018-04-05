@@ -87,7 +87,11 @@ public class MissionView : MonoBehaviour
             (pre as GameObject).transform.localPosition = new Vector3(-13, 556, 0);
             (pre as GameObject).GetComponent<NoticeCard>().fallToPos = new Vector3(-13, 37, 0);
             (pre as GameObject).GetComponent<NoticeCard>().str_title = "碧琪公主遇到危险了";
-            (pre as GameObject).GetComponent<NoticeCard>().str_Content = "    1. W A S D 控制大叔上下左右移动     \n    2. J 控制大叔跳跃     \n    3. L 控制大叔加速运动     \n    4. E 呼出游戏主菜单     \n\n    拯救公主的使命就交给你了！！！";
+
+            if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer)
+                (pre as GameObject).GetComponent<NoticeCard>().str_Content = "    1. 虚拟摇杆控制大叔上下左右移动     \n    2. B 控制大叔跳跃     \n    3. A 控制大叔加速运动     \n    4. Menu 呼出游戏主菜单     \n\n    拯救公主的使命就交给你了！！！";
+            else
+                (pre as GameObject).GetComponent<NoticeCard>().str_Content = "    1. W A S D 控制大叔上下左右移动     \n    2. J 控制大叔跳跃     \n    3. L 控制大叔加速运动     \n    4. E 呼出游戏主菜单     \n\n    拯救公主的使命就交给你了！！！";
 
             Destroy(pre, 10);
         }
