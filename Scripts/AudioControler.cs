@@ -26,8 +26,7 @@ public class AudioControler : MonoBehaviour
     //=========S E=========//
     public AudioSource SE_HurryUp;
     public AudioSource SE_OhNo;
-    public AudioSource SE_Die1;
-    public AudioSource SE_Die2;
+    public AudioSource SE_Die;
     public AudioSource SE_Jump;
     public AudioSource SE_Hit_Block;
     public AudioSource SE_Gain_Coin;
@@ -62,6 +61,7 @@ public class AudioControler : MonoBehaviour
     public AudioSource BGM_10MarioMap;
     public AudioSource BGM_SickCow;
     public AudioSource BGM_MarioKartStar;
+    public AudioSource BGM_VersionUpdate;
 
     //关掉所有BGM => 在新的BGM播放之前调用
     public void stopAllBGM()
@@ -78,5 +78,7 @@ public class AudioControler : MonoBehaviour
             AudioControler.getInstance().BGM_MarioKartStar.Stop();
         else if (AudioControler.getInstance().BGM_Title != null && AudioControler.getInstance().BGM_Title.isPlaying)
             AudioControler.getInstance().BGM_Title.Stop();
+        else if (AudioControler.getInstance().BGM_VersionUpdate != null && AudioControler.getInstance().BGM_VersionUpdate.isPlaying)
+            AudioControler.getInstance().BGM_VersionUpdate.Stop();
     }
 }
