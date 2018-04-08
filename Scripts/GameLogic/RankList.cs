@@ -3,6 +3,7 @@
  * 作者：vszed
  * 功能：联网排行榜
  * 参考：https://blog.csdn.net/icrazyaaa/article/details/49909937
+ * 注意：要访问webservice的方法，需要具备的是：webservice的wsdl、system.web.dll、system.web.services.dll，前者可以通过visual studio自带的命令提示访问wsdl工具，后俩个dll可以在D:\Program Files\Unity\Editor\Data\Mono\lib\mono\2.0中找到。
  */
 
 using System.Collections;
@@ -17,7 +18,7 @@ public class RankList : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        string url = "47.75.2.153";//"www.vszed.com";
+        string url = "192.168.0.104";//"47.75.2.153";//"www.vszed.com";
         StartCoroutine(load(url));
     }
 
@@ -35,17 +36,18 @@ public class RankList : MonoBehaviour
         //接收请求
         yield return httpGet;
 
-        Debug.Log(httpGet.error);
-
         //判断请求是否有错误：空为没错误
         if (string.IsNullOrEmpty(httpGet.error))
         {
-            Debug.Log(httpGet.text);
+            RankListService service = new RankListService();
+            service.updateList("I love vszed");
+            Debug.Log(service.showList());
         }
         else
         {
             //网络异常
             ErrorLabel.SetActive(true);
+            Debug.Log(httpGet.error);
         }
 
 
