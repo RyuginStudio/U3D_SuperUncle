@@ -10,7 +10,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RankList : MonoBehaviour
+public class RankListClient : MonoBehaviour
 {
     public GameObject RotatePic;
     public GameObject ErrorLabel;
@@ -18,7 +18,7 @@ public class RankList : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        string url = "192.168.0.104";//"47.75.2.153";//"www.vszed.com";
+        string url = "47.75.2.153/hello.aspx";
         StartCoroutine(load(url));
     }
 
@@ -40,8 +40,8 @@ public class RankList : MonoBehaviour
         if (string.IsNullOrEmpty(httpGet.error))
         {
             RankListService service = new RankListService();
-            service.updateList("I love vszed");
-            Debug.Log(service.showList());
+            service.updateList("vszed所向披靡");
+            Debug.Log(service.getRankList());
         }
         else
         {
