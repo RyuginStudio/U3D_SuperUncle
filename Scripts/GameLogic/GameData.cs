@@ -41,7 +41,9 @@ public class GameData : MonoBehaviour
     public static int missionTotalNum = 30;      //地图关卡总数
     public static int currentMissionNum = 1;     //当前关卡数目
 
-    //===========================角色数据===========================//
+    //===========================玩家数据===========================//
 
     public static int MarioLives = 12;
+    public static int GetScore = 0;             //关卡得分
+    public static int CostTime = 0;             //关卡耗时
 }

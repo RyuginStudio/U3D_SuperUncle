@@ -323,7 +323,7 @@ public class GameControler : MonoBehaviour
         {
             ++GameData.currentMissionNum;
             GameData.mapName = "map" + GameData.currentMissionNum;
-            StartCoroutine(SceneTransition.getInstance().loadScene("MissionViewScene", 1.5f, 3));
+            StartCoroutine(SceneTransition.getInstance().loadScene("RankListScene", 1.5f, 3));
         }
         else
         {

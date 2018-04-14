@@ -9,17 +9,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class RankListClient : MonoBehaviour
 {
     public GameObject RotatePic;
     public GameObject ErrorLabel;
+    public GameObject TipsLabel;
+
+    public GameObject UpLoadModule;
+    public GameObject RankListModule;
+
+    public Text NameInputText;
+    public Text TipsInputText;
+
+    private string url;
 
     // Use this for initialization
     void Start()
     {
-        string url = "47.75.2.153/hello.aspx";
-        StartCoroutine(load(url));
+        url = "47.75.2.153/hello.aspx";
     }
 
     // Update is called once per frame
@@ -30,6 +39,10 @@ public class RankListClient : MonoBehaviour
 
     public IEnumerator load(string url)
     {
+        yield return new WaitForSeconds(2);
+
+        Destroy(RotatePic);
+
         //发送请求：U3D的WWW基于Http通讯 => 适合短连接
         WWW httpGet = new WWW(url);
 
@@ -56,6 +69,38 @@ public class RankListClient : MonoBehaviour
 
     void rotateLoadingAnim()
     {
-        RotatePic.transform.Rotate(new Vector3(0, 0, -1));
+        if (RotatePic)
+            RotatePic.transform.Rotate(new Vector3(0, 0, -1));
+    }
+
+    public void onBtnUpLoad()
+    {
+        if (NameInputText.text != "")
+        {
+            AudioControler.getInstance().SE_FlyClapLong.Play();
+
+            Destroy(UpLoadModule);
+            RankListModule.SetActive(true);
+
+            StartCoroutine(load(url));
+        }
+        else
+        {
+            TipsInputText.text = "你的名字不能为空......";
+            if (!AudioControler.getInstance().SE_Invalid.isPlaying)
+                AudioControler.getInstance().SE_Invalid.Play();
+        }
+    }
+
+    public void onBtnQuitToTitle()
+    {
+        AudioControler.getInstance().SE_PlayExit.Play();
+        StartCoroutine(SceneTransition.getInstance().loadScene("TitleScene", 0, 2));
+    }
+
+    public void onBtnPlayNext()
+    {
+        AudioControler.getInstance().SE_PlayNext.Play();
+        StartCoroutine(SceneTransition.getInstance().loadScene("MissionViewScene", 0, 2));
     }
 }

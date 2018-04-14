@@ -53,6 +53,9 @@ public class AudioControler : MonoBehaviour
     public AudioSource SE_VOC_GET_STAR;
     public AudioSource SE_PLY_CHANGE_BIG;
     public AudioSource SE_STAR_FINISH;
+    public AudioSource SE_PlayNext;
+    public AudioSource SE_FlyClapLong;
+    public AudioSource SE_CourseClearFilter;
 
     //=========BGM=========//
     public AudioSource BGM_Title;
