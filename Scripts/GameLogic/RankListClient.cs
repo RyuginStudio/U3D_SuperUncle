@@ -15,7 +15,6 @@ public class RankListClient : MonoBehaviour
 {
     public GameObject RotatePic;
     public GameObject ErrorLabel;
-    public GameObject TipsLabel;
 
     public GameObject UpLoadModule;
     public GameObject RankListModule;
@@ -29,6 +28,9 @@ public class RankListClient : MonoBehaviour
     void Start()
     {
         url = "47.75.2.153/hello.aspx";
+
+        //Debug.Log(GameData.CostTime);
+        //Debug.Log(GameData.GetScore);
     }
 
     // Update is called once per frame
@@ -53,7 +55,7 @@ public class RankListClient : MonoBehaviour
         if (string.IsNullOrEmpty(httpGet.error))
         {
             RankListService service = new RankListService();
-            service.updateList("vszed所向披靡");
+            service.updateList(NameInputText.text + "^" + GameData.CostTime.ToString() + "^" + GameData.GetScore.ToString());  //用^做分割
             Debug.Log(service.getRankList());
         }
         else

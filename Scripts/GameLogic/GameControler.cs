@@ -331,4 +331,14 @@ public class GameControler : MonoBehaviour
         }
 
     }
+
+    //操作GameData：得分、耗时 数据用于“排行榜”
+    public void countScoreTime()
+    {
+        //得分
+        int.TryParse(GameObject.Find("ScoreNum").GetComponent<Text>().text, out GameData.GetScore);
+        //耗时
+        int.TryParse(LabelTimeLeft.GetComponent<Text>().text, out GameData.CostTime);
+        GameData.CostTime = 300 - GameData.CostTime;  //耗时
+    }
 }

@@ -94,6 +94,9 @@ public class Flag : MonoBehaviour
         yield return new WaitForSeconds(1.5f);
         AudioControler.getInstance().SE_VOC_MA_CLEAR_NORMAL.Play();
 
+        //取分、取耗时 => 排行榜
+        GameControler.getInstance().countScoreTime();
+
         yield return new WaitForSeconds(3);
         GameControler.getInstance().balanceScoreSwitch = true;
     }

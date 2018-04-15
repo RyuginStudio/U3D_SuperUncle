@@ -32,6 +32,8 @@ public class GameData : MonoBehaviour
         currentMissionNum = 1;
         MarioLives = 12;
         Flag.alreadyGetFlag = false;
+        GetScore = 0;
+        CostTime = 0;
     }
 
     //===========================游戏数据===========================//
