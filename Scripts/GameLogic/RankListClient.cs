@@ -41,10 +41,6 @@ public class RankListClient : MonoBehaviour
 
     public IEnumerator load(string url)
     {
-        yield return new WaitForSeconds(2);
-
-        Destroy(RotatePic);
-
         //发送请求：U3D的WWW基于Http通讯 => 适合短连接
         WWW httpGet = new WWW(url);
 
@@ -55,8 +51,7 @@ public class RankListClient : MonoBehaviour
         if (string.IsNullOrEmpty(httpGet.error))
         {
             RankListService service = new RankListService();
-            service.updateList(NameInputText.text + "^" + GameData.CostTime.ToString() + "^" + GameData.GetScore.ToString());  //用^做分割
-            Debug.Log(service.getRankList());
+            service.upLoadData("map" + GameData.currentMissionNum, NameInputText.text, GameData.CostTime, GameData.GetScore);
         }
         else
         {
@@ -65,8 +60,9 @@ public class RankListClient : MonoBehaviour
             Debug.Log(httpGet.error);
         }
 
+        yield return new WaitForSeconds(2);
 
-
+        Destroy(RotatePic);
     }
 
     void rotateLoadingAnim()
@@ -103,6 +99,18 @@ public class RankListClient : MonoBehaviour
     public void onBtnPlayNext()
     {
         AudioControler.getInstance().SE_PlayNext.Play();
-        StartCoroutine(SceneTransition.getInstance().loadScene("MissionViewScene", 0, 2));
+
+        ++GameData.currentMissionNum;
+        GameData.mapName = "map" + GameData.currentMissionNum;
+
+        if (GameData.currentMissionNum <= GameData.missionTotalNum)
+        {
+            StartCoroutine(SceneTransition.getInstance().loadScene("MissionViewScene", 0, 2));
+        }
+        else
+        {
+            //见公主场景
+        }
+
     }
 }

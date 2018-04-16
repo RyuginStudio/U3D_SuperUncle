@@ -40,7 +40,7 @@ public class Title : MonoBehaviour
         {
             StartCoroutine(SceneTransition.getInstance().loadScene("MissionViewScene", 0, 2));
             GameData.dataUpdate();
-        }            
+        }
         else
         {
             SceneTransition.getInstance().IncreaseSwitch = true;

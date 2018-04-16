@@ -307,29 +307,19 @@ public class GameControler : MonoBehaviour
                 AudioControler.getInstance().SE_SCORE_COUNT.Stop();
                 AudioControler.getInstance().SE_SCORE_COUNT_FINISH.Play();
 
-                //下一关
-                goToNextMission();
+                //排行榜界面
+                goToRankListScene();
             }
         }
     }
 
-    //过关->下一关
-    public void goToNextMission()
+    //过关->排行榜
+    public void goToRankListScene()
     {
         //重置数据
         Flag.alreadyGetFlag = false;
 
-        if (GameData.currentMissionNum + 1 <= GameData.missionTotalNum)
-        {
-            ++GameData.currentMissionNum;
-            GameData.mapName = "map" + GameData.currentMissionNum;
-            StartCoroutine(SceneTransition.getInstance().loadScene("RankListScene", 1.5f, 3));
-        }
-        else
-        {
-            //TODO: 马里奥见到公主场景
-        }
-
+        StartCoroutine(SceneTransition.getInstance().loadScene("RankListScene", 1.5f, 3));
     }
 
     //操作GameData：得分、耗时 数据用于“排行榜”

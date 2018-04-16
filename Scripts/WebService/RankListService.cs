@@ -27,7 +27,7 @@ using System.Xml.Serialization;
 [System.Web.Services.WebServiceBindingAttribute(Name="RankListServiceSoap", Namespace="http://tempuri.org/")]
 public partial class RankListService : System.Web.Services.Protocols.SoapHttpClientProtocol {
     
-    private System.Threading.SendOrPostCallback updateListOperationCompleted;
+    private System.Threading.SendOrPostCallback upLoadDataOperationCompleted;
     
     private System.Threading.SendOrPostCallback getRankListOperationCompleted;
     
@@ -37,79 +37,92 @@ public partial class RankListService : System.Web.Services.Protocols.SoapHttpCli
     }
     
     /// <remarks/>
-    public event updateListCompletedEventHandler updateListCompleted;
+    public event upLoadDataCompletedEventHandler upLoadDataCompleted;
     
     /// <remarks/>
     public event getRankListCompletedEventHandler getRankListCompleted;
     
     /// <remarks/>
-    [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/updateList", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-    public void updateList(string uploadData) {
-        this.Invoke("updateList", new object[] {
-                    uploadData});
+    [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/upLoadData", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+    public void upLoadData(string MapName, string UserName, int CostTime, int Score) {
+        this.Invoke("upLoadData", new object[] {
+                    MapName,
+                    UserName,
+                    CostTime,
+                    Score});
     }
     
     /// <remarks/>
-    public System.IAsyncResult BeginupdateList(string uploadData, System.AsyncCallback callback, object asyncState) {
-        return this.BeginInvoke("updateList", new object[] {
-                    uploadData}, callback, asyncState);
+    public System.IAsyncResult BeginupLoadData(string MapName, string UserName, int CostTime, int Score, System.AsyncCallback callback, object asyncState) {
+        return this.BeginInvoke("upLoadData", new object[] {
+                    MapName,
+                    UserName,
+                    CostTime,
+                    Score}, callback, asyncState);
     }
     
     /// <remarks/>
-    public void EndupdateList(System.IAsyncResult asyncResult) {
+    public void EndupLoadData(System.IAsyncResult asyncResult) {
         this.EndInvoke(asyncResult);
     }
     
     /// <remarks/>
-    public void updateListAsync(string uploadData) {
-        this.updateListAsync(uploadData, null);
+    public void upLoadDataAsync(string MapName, string UserName, int CostTime, int Score) {
+        this.upLoadDataAsync(MapName, UserName, CostTime, Score, null);
     }
     
     /// <remarks/>
-    public void updateListAsync(string uploadData, object userState) {
-        if ((this.updateListOperationCompleted == null)) {
-            this.updateListOperationCompleted = new System.Threading.SendOrPostCallback(this.OnupdateListOperationCompleted);
+    public void upLoadDataAsync(string MapName, string UserName, int CostTime, int Score, object userState) {
+        if ((this.upLoadDataOperationCompleted == null)) {
+            this.upLoadDataOperationCompleted = new System.Threading.SendOrPostCallback(this.OnupLoadDataOperationCompleted);
         }
-        this.InvokeAsync("updateList", new object[] {
-                    uploadData}, this.updateListOperationCompleted, userState);
+        this.InvokeAsync("upLoadData", new object[] {
+                    MapName,
+                    UserName,
+                    CostTime,
+                    Score}, this.upLoadDataOperationCompleted, userState);
     }
     
-    private void OnupdateListOperationCompleted(object arg) {
-        if ((this.updateListCompleted != null)) {
+    private void OnupLoadDataOperationCompleted(object arg) {
+        if ((this.upLoadDataCompleted != null)) {
             System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-            this.updateListCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            this.upLoadDataCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
         }
     }
     
     /// <remarks/>
     [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/getRankList", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-    public string getRankList() {
-        object[] results = this.Invoke("getRankList", new object[0]);
-        return ((string)(results[0]));
+    [return: System.Xml.Serialization.XmlArrayItemAttribute(IsNullable=false)]
+    public RL_Data[] getRankList(string MapName) {
+        object[] results = this.Invoke("getRankList", new object[] {
+                    MapName});
+        return ((RL_Data[])(results[0]));
     }
     
     /// <remarks/>
-    public System.IAsyncResult BegingetRankList(System.AsyncCallback callback, object asyncState) {
-        return this.BeginInvoke("getRankList", new object[0], callback, asyncState);
+    public System.IAsyncResult BegingetRankList(string MapName, System.AsyncCallback callback, object asyncState) {
+        return this.BeginInvoke("getRankList", new object[] {
+                    MapName}, callback, asyncState);
     }
     
     /// <remarks/>
-    public string EndgetRankList(System.IAsyncResult asyncResult) {
+    public RL_Data[] EndgetRankList(System.IAsyncResult asyncResult) {
         object[] results = this.EndInvoke(asyncResult);
-        return ((string)(results[0]));
+        return ((RL_Data[])(results[0]));
     }
     
     /// <remarks/>
-    public void getRankListAsync() {
-        this.getRankListAsync(null);
+    public void getRankListAsync(string MapName) {
+        this.getRankListAsync(MapName, null);
     }
     
     /// <remarks/>
-    public void getRankListAsync(object userState) {
+    public void getRankListAsync(string MapName, object userState) {
         if ((this.getRankListOperationCompleted == null)) {
             this.getRankListOperationCompleted = new System.Threading.SendOrPostCallback(this.OngetRankListOperationCompleted);
         }
-        this.InvokeAsync("getRankList", new object[0], this.getRankListOperationCompleted, userState);
+        this.InvokeAsync("getRankList", new object[] {
+                    MapName}, this.getRankListOperationCompleted, userState);
     }
     
     private void OngetRankListOperationCompleted(object arg) {
@@ -127,7 +140,52 @@ public partial class RankListService : System.Web.Services.Protocols.SoapHttpCli
 
 /// <remarks/>
 [System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.6.1055.0")]
-public delegate void updateListCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+[System.SerializableAttribute()]
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.ComponentModel.DesignerCategoryAttribute("code")]
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+public partial class RL_Data {
+    
+    private string userNameField;
+    
+    private int costTimeField;
+    
+    private int scoreField;
+    
+    /// <remarks/>
+    public string UserName {
+        get {
+            return this.userNameField;
+        }
+        set {
+            this.userNameField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public int CostTime {
+        get {
+            return this.costTimeField;
+        }
+        set {
+            this.costTimeField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public int Score {
+        get {
+            return this.scoreField;
+        }
+        set {
+            this.scoreField = value;
+        }
+    }
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.6.1055.0")]
+public delegate void upLoadDataCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
 
 /// <remarks/>
 [System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.6.1055.0")]
@@ -147,10 +205,10 @@ public partial class getRankListCompletedEventArgs : System.ComponentModel.Async
     }
     
     /// <remarks/>
-    public string Result {
+    public RL_Data[] Result {
         get {
             this.RaiseExceptionIfNecessary();
-            return ((string)(this.results[0]));
+            return ((RL_Data[])(this.results[0]));
         }
     }
 }
