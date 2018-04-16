@@ -39,6 +39,9 @@ public class RankListClient : MonoBehaviour
         rotateLoadingAnim();
     }
 
+    public GameObject prefab_RankData;
+    public Transform instateTransform;
+
     public IEnumerator load(string url)
     {
         //发送请求：U3D的WWW基于Http通讯 => 适合短连接
@@ -50,8 +53,38 @@ public class RankListClient : MonoBehaviour
         //判断请求是否有错误：空为没错误
         if (string.IsNullOrEmpty(httpGet.error))
         {
+            //上传至排行榜
             RankListService service = new RankListService();
             service.upLoadData("map" + GameData.currentMissionNum, NameInputText.text, GameData.CostTime, GameData.GetScore);
+
+            //取排行榜内容
+            yield return new WaitForSeconds(2);
+            Destroy(RotatePic);
+            var list = service.getRankList("map" + GameData.currentMissionNum);
+
+            instateTransform.gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(534, 50 * list.Length);
+
+            foreach (var item in list)
+            {
+                var prefab = Instantiate(prefab_RankData, instateTransform);
+                foreach (var dataInPrefab in prefab.GetComponentsInChildren<Text>())
+                {
+                    switch (dataInPrefab.name)
+                    {
+                        case "UserName":
+                            dataInPrefab.GetComponent<Text>().text = item.UserName;
+                            break;
+                        case "CostTime":
+                            dataInPrefab.GetComponent<Text>().text = item.CostTime.ToString() + "秒";
+                            break;
+                        case "Score":
+                            dataInPrefab.GetComponent<Text>().text = item.Score.ToString() + "分";
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
         }
         else
         {
@@ -59,10 +92,6 @@ public class RankListClient : MonoBehaviour
             ErrorLabel.SetActive(true);
             Debug.Log(httpGet.error);
         }
-
-        yield return new WaitForSeconds(2);
-
-        Destroy(RotatePic);
     }
 
     void rotateLoadingAnim()
