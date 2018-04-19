@@ -56,6 +56,7 @@ public class AudioControler : MonoBehaviour
     public AudioSource SE_PlayNext;
     public AudioSource SE_FlyClapLong;
     public AudioSource SE_CourseClearFilter;
+    public AudioSource SE_Hahaha;
 
     //=========BGM=========//
     public AudioSource BGM_Title;
@@ -65,6 +66,7 @@ public class AudioControler : MonoBehaviour
     public AudioSource BGM_SickCow;
     public AudioSource BGM_MarioKartStar;
     public AudioSource BGM_VersionUpdate;
+    public AudioSource BGM_Schnappi;
 
     //关掉所有BGM => 在新的BGM播放之前调用
     public void stopAllBGM()
@@ -83,5 +85,7 @@ public class AudioControler : MonoBehaviour
             AudioControler.getInstance().BGM_Title.Stop();
         else if (AudioControler.getInstance().BGM_VersionUpdate != null && AudioControler.getInstance().BGM_VersionUpdate.isPlaying)
             AudioControler.getInstance().BGM_VersionUpdate.Stop();
+        else if (AudioControler.getInstance().BGM_Schnappi != null && AudioControler.getInstance().BGM_Schnappi.isPlaying)
+            AudioControler.getInstance().BGM_Schnappi.Stop();
     }
 }

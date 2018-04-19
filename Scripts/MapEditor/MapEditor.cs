@@ -106,6 +106,21 @@ public class MapEditor : MonoBehaviour
                     prefabBlock.GetComponent<MapBlock>().BlockEvent = MapBlock.EventType.UnmatchStar;
                     break;
                 }
+            case "PlayBGM_SickCow":
+                {
+                    prefabBlock.GetComponent<MapBlock>().BlockEvent = MapBlock.EventType.PlayBGM_SickCow;
+                    break;
+                }
+            case "PlayBGM_Schnappi":
+                {
+                    prefabBlock.GetComponent<MapBlock>().BlockEvent = MapBlock.EventType.PlayBGM_Schnappi;
+                    break;
+                }
+            case "PlaySE_Hahaha":
+                {
+                    prefabBlock.GetComponent<MapBlock>().BlockEvent = MapBlock.EventType.PlaySE_Hahaha;
+                    break;
+                }
 
             default:
                 break;
@@ -246,6 +261,21 @@ public class MapEditor : MonoBehaviour
                     case "UnmatchStar":
                         {
                             GameObject.Find(ob).GetComponent<MapBlock>().BlockEvent = MapBlock.EventType.UnmatchStar;
+                            break;
+                        }
+                    case "PlayBGM_SickCow":
+                        {
+                            GameObject.Find(ob).GetComponent<MapBlock>().BlockEvent = MapBlock.EventType.PlayBGM_SickCow;
+                            break;
+                        }
+                    case "PlayBGM_Schnappi":
+                        {
+                            GameObject.Find(ob).GetComponent<MapBlock>().BlockEvent = MapBlock.EventType.PlayBGM_Schnappi;
+                            break;
+                        }
+                    case "PlaySE_Hahaha":
+                        {
+                            GameObject.Find(ob).GetComponent<MapBlock>().BlockEvent = MapBlock.EventType.PlaySE_Hahaha;
                             break;
                         }
                     default:

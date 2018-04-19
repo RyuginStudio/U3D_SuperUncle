@@ -119,6 +119,21 @@ public class GameControler : MonoBehaviour
                         ((GameObject)prefabBlock).GetComponent<MapBlock>().BlockEvent = MapBlock.EventType.UnmatchStar;
                         break;
                     }
+                case "PlayBGM_SickCow":
+                    {
+                        ((GameObject)prefabBlock).GetComponent<MapBlock>().BlockEvent = MapBlock.EventType.PlayBGM_SickCow;
+                        break;
+                    }
+                case "PlayBGM_Schnappi":
+                    {
+                        ((GameObject)prefabBlock).GetComponent<MapBlock>().BlockEvent = MapBlock.EventType.PlayBGM_Schnappi;
+                        break;
+                    }
+                case "PlaySE_Hahaha":
+                    {
+                        ((GameObject)prefabBlock).GetComponent<MapBlock>().BlockEvent = MapBlock.EventType.PlaySE_Hahaha;
+                        break;
+                    }
 
                 default:
                     break;
@@ -189,10 +204,7 @@ public class GameControler : MonoBehaviour
             GameOver = true;
 
             //BGM
-            AudioControler.getInstance().BGM_Ground.Stop();
-            AudioControler.getInstance().BGM_Ground_Hurry.Stop();
-            AudioControler.getInstance().BGM_SickCow.Stop();
-            AudioControler.getInstance().BGM_MarioKartStar.Stop();
+            AudioControler.getInstance().stopAllBGM();
 
             Character.getInstance().characterDie();
 

@@ -34,7 +34,10 @@ public class MapBlock : MonoBehaviour
         Goomba,
         TortoiseFly,
         TortoiseLand,
-        UnmatchStar
+        UnmatchStar,
+        PlayBGM_SickCow,
+        PlayBGM_Schnappi,
+        PlaySE_Hahaha
     }
     public EventType BlockEvent;
 
@@ -125,6 +128,30 @@ public class MapBlock : MonoBehaviour
             case EventType.UnmatchStar:
                 {
                     createUnmatchStar();
+                    break;
+                }
+            case EventType.PlayBGM_SickCow:
+                {
+                    if (!AudioControler.getInstance().BGM_SickCow.isPlaying)
+                    {
+                        AudioControler.getInstance().stopAllBGM();
+                        AudioControler.getInstance().BGM_SickCow.Play();
+                    }
+                    break;
+                }
+            case EventType.PlayBGM_Schnappi:
+                {
+                    if (!AudioControler.getInstance().BGM_Schnappi.isPlaying)
+                    {
+                        AudioControler.getInstance().stopAllBGM();
+                        AudioControler.getInstance().BGM_Schnappi.Play();
+                    }
+                    break;
+                }
+            case EventType.PlaySE_Hahaha:
+                {
+                    if (!AudioControler.getInstance().SE_Hahaha.isPlaying)
+                        AudioControler.getInstance().SE_Hahaha.Play();
                     break;
                 }
 

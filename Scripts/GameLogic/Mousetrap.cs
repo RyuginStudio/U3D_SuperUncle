@@ -33,11 +33,6 @@ public class Mousetrap : MonoBehaviour
         {
             if (collision.GetComponent<Rigidbody2D>().velocity.y > 0) //保证为向上
             {
-                if (!AudioControler.getInstance().BGM_SickCow.isPlaying)
-                {
-                    AudioControler.getInstance().stopAllBGM();
-                    AudioControler.getInstance().BGM_SickCow.Play();
-                }
                 GetComponent<SpriteRenderer>().sprite = block;
                 GetComponent<SpriteRenderer>().enabled = true;
 

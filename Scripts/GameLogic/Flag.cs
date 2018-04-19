@@ -73,14 +73,7 @@ public class Flag : MonoBehaviour
         collision.GetComponentInChildren<Animator>().SetBool("isGetFlag", true);
 
         yield return new WaitForSeconds(0.15f);
-        if (AudioControler.getInstance().BGM_Ground.isPlaying)
-            AudioControler.getInstance().BGM_Ground.Stop();
-        if (AudioControler.getInstance().BGM_Ground_Hurry.isPlaying)
-            AudioControler.getInstance().BGM_Ground_Hurry.Stop();
-        if (AudioControler.getInstance().BGM_MarioKartStar.isPlaying)
-            AudioControler.getInstance().BGM_MarioKartStar.Stop();
-        if (AudioControler.getInstance().BGM_SickCow.isPlaying)
-            AudioControler.getInstance().BGM_SickCow.Stop();
+        AudioControler.getInstance().stopAllBGM();
 
         collision.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
         collision.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
