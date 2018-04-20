@@ -62,7 +62,7 @@ public class MissionView : MonoBehaviour
 
         for (int i = 0; i < GameData.missionTotalNum; i++)
         {
-            if (!GameData.alreadyTeaching)
+            if (PlayerPrefs.GetInt("currentMissionNum", 1) <= 1)
             {
                 yield return new WaitForSeconds(0.2f);
             }
@@ -81,7 +81,7 @@ public class MissionView : MonoBehaviour
     {
         yield return new WaitForSeconds(0.2f * GameData.missionTotalNum + 2);
 
-        if (!GameData.alreadyTeaching)
+        if (PlayerPrefs.GetInt("currentMissionNum", 1) <= 1)
         {
             var pre = Instantiate(Resources.Load("Prefab/UI/NoticeCard"), prefabTransform);
             (pre as GameObject).transform.localPosition = new Vector3(-13, 556, 0);
@@ -95,8 +95,6 @@ public class MissionView : MonoBehaviour
 
             Destroy(pre, 10);
         }
-
-        GameData.alreadyTeaching = true;
     }
 
     //刷新已打穿的关卡预制体
@@ -120,7 +118,7 @@ public class MissionView : MonoBehaviour
         }
 
         //马里奥UI向新的关卡point移动
-        var waitSeconds = GameData.alreadyTeaching ? 3 : 12.5f;
+        var waitSeconds = PlayerPrefs.GetInt("currentMissionNum", 1) > 1 ? 3 : 12.5f;
         yield return new WaitForSeconds(waitSeconds);
         var currentMissionPos = list_stepMission[GameData.currentMissionNum - 1].transform.position;
         MarioUI.transform.position = new Vector3(currentMissionPos.x, MarioUI.transform.position.y, currentMissionPos.z);

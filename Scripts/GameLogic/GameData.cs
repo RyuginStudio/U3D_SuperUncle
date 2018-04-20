@@ -14,7 +14,8 @@ public class GameData : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-
+        currentMissionNum = PlayerPrefs.GetInt("currentMissionNum", 1);
+        //PlayerPrefs.DeleteAll();
     }
 
     // Update is called once per frame
@@ -26,10 +27,8 @@ public class GameData : MonoBehaviour
     //刷新数据
     public static void dataUpdate()
     {
-        alreadyTeaching = false;
-        mapName = "map1";
         missionTotalNum = 30;
-        currentMissionNum = 1;
+        currentMissionNum = PlayerPrefs.GetInt("currentMissionNum", 1);
         MarioLives = 12;
         Flag.alreadyGetFlag = false;
         GetScore = 0;
@@ -38,10 +37,8 @@ public class GameData : MonoBehaviour
 
     //===========================游戏数据===========================//
 
-    public static bool alreadyTeaching = false;  //完成新手教学
-    public static string mapName = "map1";       //地图关卡索引
-    public static int missionTotalNum = 30;      //地图关卡总数
-    public static int currentMissionNum = 1;     //当前关卡数目
+    public static int missionTotalNum = 30;  //地图关卡总数
+    public static int currentMissionNum;     //当前关卡
 
     //===========================玩家数据===========================//
 

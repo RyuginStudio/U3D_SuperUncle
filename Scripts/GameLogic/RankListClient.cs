@@ -130,7 +130,7 @@ public class RankListClient : MonoBehaviour
         AudioControler.getInstance().SE_PlayNext.Play();
 
         ++GameData.currentMissionNum;
-        GameData.mapName = "map" + GameData.currentMissionNum;
+        PlayerPrefs.SetInt("currentMissionNum", GameData.currentMissionNum);  //存档
 
         if (GameData.currentMissionNum <= GameData.missionTotalNum)
         {
@@ -139,6 +139,7 @@ public class RankListClient : MonoBehaviour
         else
         {
             //见公主场景
+            PlayerPrefs.DeleteAll();  //清除存档 
         }
 
     }

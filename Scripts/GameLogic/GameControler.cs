@@ -69,7 +69,7 @@ public class GameControler : MonoBehaviour
 
     public void loadMap()  //根据GameDt加载地图
     {
-        string mapName = GameData.mapName;
+        string mapName = "map" + GameData.currentMissionNum;
         //Debug.Log(mapName);
 
         var JsonFile = Resources.Load(@"MapConfig/" + mapName) as TextAsset;
