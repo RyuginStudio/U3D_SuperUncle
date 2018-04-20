@@ -139,7 +139,7 @@ public class RankListClient : MonoBehaviour
         else
         {
             //见公主场景
-            PlayerPrefs.DeleteAll();  //清除存档 
+            PlayerPrefs.DeleteAll();  //TODO：清除存档 不要清除奖杯
         }
 
     }
