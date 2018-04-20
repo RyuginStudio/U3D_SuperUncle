@@ -37,6 +37,7 @@ public class MissionView : MonoBehaviour
     void Start()
     {
         currentLives.GetComponent<Text>().text = "x " + GameData.MarioLives.ToString();
+        GameData.currentMissionNum = PlayerPrefs.GetInt("currentMissionNum", 1);
         FinishMissionViewNum.GetComponent<Text>().text = (GameData.currentMissionNum - 1).ToString() + " / " + GameData.missionTotalNum;
 
         StartCoroutine(displayNoticeCard());
