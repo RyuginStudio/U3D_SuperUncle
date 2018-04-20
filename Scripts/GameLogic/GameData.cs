@@ -27,7 +27,7 @@ public class GameData : MonoBehaviour
     //刷新数据
     public static void dataUpdate()
     {
-        missionTotalNum = 30;
+        missionTotalNum = 10;
         currentMissionNum = PlayerPrefs.GetInt("currentMissionNum", 1);
         MarioLives = 12;
         Flag.alreadyGetFlag = false;
@@ -37,7 +37,7 @@ public class GameData : MonoBehaviour
 
     //===========================游戏数据===========================//
 
-    public static int missionTotalNum = 30;  //地图关卡总数
+    public static int missionTotalNum = 10;  //地图关卡总数
     public static int currentMissionNum;     //当前关卡
 
     //===========================玩家数据===========================//
