@@ -20,7 +20,7 @@ public class PiranhaFlower : MonoBehaviour
     {
         if (EnemyEditor.getInstance() != null)
             Destroy(this);
-        else
+        else if (GetComponentInParent<Rigidbody2D>() && GetComponentInParent<Rigidbody2D>().bodyType == RigidbodyType2D.Static)  //以免删除板栗混合食人花的刚体
             Destroy(GetComponentInParent<Rigidbody2D>());
     }
 
