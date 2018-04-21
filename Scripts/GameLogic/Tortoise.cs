@@ -403,6 +403,12 @@ public class Tortoise : MonoBehaviour, IEnemy
 
     public void doBeTread(GameObject player)
     {
+        if (Character.getInstance().isUnmatched)
+        {
+            die(player);
+            return;
+        }
+
         if (currentTime - doBeTreadUpdate > 0.2f)
         {
             StartCoroutine(GameControler.getInstance().ScoreUIControl(100, transform.localPosition, 0.1f));

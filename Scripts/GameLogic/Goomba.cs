@@ -104,6 +104,12 @@ public class Goomba : MonoBehaviour, IEnemy
     //被踩执行内容
     public void doBeTread(GameObject player)
     {
+        if (Character.getInstance().isUnmatched)
+        {
+            die(player);
+            return;
+        }
+
         if (currentTime - doBeTreadUpdate > 0.2f)
         {
             //Debug.Log("doBeTread()");
@@ -120,7 +126,7 @@ public class Goomba : MonoBehaviour, IEnemy
         StartCoroutine(GameControler.getInstance().ScoreUIControl(100, transform.localPosition, 0.1f));
 
         //在地上死
-        if (isGrounded && ob.tag != "Tortoise")
+        if (isGrounded && ob.tag != "Tortoise" && !ob.GetComponent<Character>().isUnmatched)
         {
             AudioControler.getInstance().SE_Emy_Fumu.Play();
 
