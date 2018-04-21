@@ -20,6 +20,8 @@ public class PiranhaFlower : MonoBehaviour
     {
         if (EnemyEditor.getInstance() != null)
             Destroy(this);
+        else
+            Destroy(GetComponentInParent<Rigidbody2D>());
     }
 
     // Update is called once per frame
