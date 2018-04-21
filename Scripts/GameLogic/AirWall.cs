@@ -2,6 +2,7 @@
  * 时间：2018年3月23日20:12:55
  * 作者：vszed
  * 功能：空气墙
+ * 注意：layer为mapBlock为了让敌人碰到后转向
  */
 
 using System.Collections;

@@ -113,7 +113,7 @@ public class Character : MonoBehaviour
 
         this.jump();
 
-        characterMove(horizontal);       
+        characterMove(horizontal);
     }
 
     //角色移动函数
@@ -289,11 +289,11 @@ public class Character : MonoBehaviour
         //Debug.DrawRay(pos_head_right, directionHeadRight, Color.red, 0.05f);
 
         //需要保证是向“上”跳的状态（限制线速度的Y）
-        if (collider_Head_Left != null && m_Rigidbody2D.velocity.y > -1 && !collider_Head_Left.isTrigger)
+        if (collider_Head_Left != null && m_Rigidbody2D.velocity.y > -1 && !collider_Head_Left.isTrigger && collider_Head_Left.GetComponent<MapBlock>())
         {
             collider_Head_Left.GetComponent<MapBlock>().BlockCollision();
         }
-        if (collider_Head_Right != null && m_Rigidbody2D.velocity.y > -1 && !collider_Head_Right.isTrigger)
+        if (collider_Head_Right != null && m_Rigidbody2D.velocity.y > -1 && !collider_Head_Right.isTrigger && collider_Head_Right.GetComponent<MapBlock>())
         {
             collider_Head_Right.GetComponent<MapBlock>().BlockCollision();
         }
