@@ -9,8 +9,8 @@ public class ToggleType : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        int.TryParse(name, out type);
-        enemy_type = name.ToString();
+        int.TryParse(name, out type);  //针对图块
+        enemy_type = name.ToString();  //针对敌人
     }
 
     // Update is called once per frame
