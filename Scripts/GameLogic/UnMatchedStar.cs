@@ -91,7 +91,8 @@ public class UnMatchedStar : MonoBehaviour
                 yield return new WaitForSeconds(.2f);
                 AudioControler.getInstance().BGM_MarioKartStar.Play();
                 yield return new WaitForSeconds(17.5f);
-                AudioControler.getInstance().SE_STAR_FINISH.Play();
+                if (!GameControler.getInstance().GameOver)
+                    AudioControler.getInstance().SE_STAR_FINISH.Play();
                 yield return new WaitForSeconds(1);
                 if (!GameControler.getInstance().GameOver)  //加判断
                 {
