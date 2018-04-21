@@ -7,6 +7,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PiranhaFlower : MonoBehaviour
 {
@@ -20,8 +21,6 @@ public class PiranhaFlower : MonoBehaviour
     {
         if (EnemyEditor.getInstance() != null)
             Destroy(this);
-        else if (GetComponentInParent<Rigidbody2D>() && GetComponentInParent<Rigidbody2D>().bodyType == RigidbodyType2D.Static)  //以免删除板栗混合食人花的刚体
-            Destroy(GetComponentInParent<Rigidbody2D>());
     }
 
     // Update is called once per frame
@@ -72,9 +71,10 @@ public class PiranhaFlower : MonoBehaviour
         //更改绘制层级 0 => 4
         GetComponent<SpriteRenderer>().sortingOrder = 4;
 
-        GetComponentInParent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
-        GetComponentInParent<Rigidbody2D>().gravityScale = 3;
-        GetComponentInParent<Rigidbody2D>().mass = 1;
+        gameObject.AddComponent<Rigidbody2D>();
+        GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+        GetComponent<Rigidbody2D>().gravityScale = 3;
+        GetComponent<Rigidbody2D>().mass = 1;
 
         if (GetComponent<BoxCollider2D>())
             Destroy(GetComponent<BoxCollider2D>());
@@ -84,17 +84,17 @@ public class PiranhaFlower : MonoBehaviour
         if (obPos.x > transform.position.x)
         {
             rotateAngle = 10;
-            GetComponentInParent<Rigidbody2D>().AddForce(new Vector2(-400, 400), ForceMode2D.Force);
+            GetComponent<Rigidbody2D>().AddForce(new Vector2(-400, 400), ForceMode2D.Force);
         }
         else
         {
             rotateAngle = -10;
-            GetComponentInParent<Rigidbody2D>().AddForce(new Vector2(400, 400), ForceMode2D.Force);
+            GetComponent<Rigidbody2D>().AddForce(new Vector2(400, 400), ForceMode2D.Force);
         }
 
         ownRotateSwitch = true;
 
-        Destroy(gameObject, 5);
+        Destroy(gameObject.GetComponentInParent<Image>().gameObject, 5);  //image没实际意义，只供删除父物体
     }
 
     //空中死亡旋转动画
