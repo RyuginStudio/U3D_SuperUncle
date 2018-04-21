@@ -93,8 +93,11 @@ public class UnMatchedStar : MonoBehaviour
                 yield return new WaitForSeconds(17.5f);
                 AudioControler.getInstance().SE_STAR_FINISH.Play();
                 yield return new WaitForSeconds(1);
-                AudioControler.getInstance().stopAllBGM();
-                AudioControler.getInstance().BGM_Ground.Play();
+                if (!GameControler.getInstance().GameOver)  //加判断
+                {
+                    AudioControler.getInstance().stopAllBGM();
+                    AudioControler.getInstance().BGM_Ground.Play();
+                }
 
                 collision.GetComponent<Character>().isUnmatched = false;
                 ob_light.GetComponent<Light>().color = Color.white;
