@@ -27,7 +27,7 @@ public class RankListClient : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        url = "http://47.75.2.153/hello.aspx";  //安卓端不会自动添加http://...
+        url = @"http://47.75.2.153/hello.aspx";  //安卓端不会自动添加http://...
 
         //Debug.Log(GameData.CostTime);
         //Debug.Log(GameData.GetScore);
