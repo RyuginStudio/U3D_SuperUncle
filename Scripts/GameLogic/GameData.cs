@@ -37,8 +37,8 @@ public class GameData : MonoBehaviour
 
     //===========================游戏数据===========================//
 
-    public static int missionTotalNum = 10;  //地图关卡总数
-    public static int currentMissionNum;     //当前关卡
+    public static int missionTotalNum = 10;   //地图关卡总数
+    public static int currentMissionNum = 1;  //当前关卡
 
     //===========================玩家数据===========================//
 
