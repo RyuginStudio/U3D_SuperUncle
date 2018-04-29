@@ -138,7 +138,6 @@ public class Flag : MonoBehaviour
     public void getScore()
     {
         int score = (int)((marioContactPos.y - downLimit.position.y) / (upLimit.position.y - downLimit.position.y) * 1000 / 100) * 100;
-        Debug.Log(score);
         score = score < 100 ? 100 : score;
         score = score > 1000 ? 1000 : score;
         //Debug.Log(score);
