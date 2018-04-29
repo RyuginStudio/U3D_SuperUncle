@@ -21,8 +21,8 @@ public class Flag : MonoBehaviour
     //红旗上升最终坐标
     public Vector3 marioContactPos;
     //旗子上、下极限Y坐标(2.018, -1.845)
-    public float upLimit = 2.018f;
-    public float downLimit = -1.845f;
+    public Transform upLimit;
+    public Transform downLimit;
 
     // Use this for initialization
     void Start()
@@ -59,7 +59,7 @@ public class Flag : MonoBehaviour
         if (collision.GetComponent<Character>() && !alreadyGetFlag)
         {
             alreadyGetFlag = true;
-            marioContactPos = collision.transform.position;
+            marioContactPos = GameObject.Find("kosi_jnt").transform.position;  //碰撞后获取角色手骨坐标为取旗坐标
             StartCoroutine(getFlag(collision));
             getScore();
         }
@@ -118,15 +118,15 @@ public class Flag : MonoBehaviour
             var color = redFlag.GetComponent<SpriteRenderer>().color;
             redFlag.GetComponent<SpriteRenderer>().color = new Color(color.r, color.g, color.b, color.a + 0.1f);
 
-            if (marioContactPos.y > upLimit)
-                marioContactPos.y = upLimit;
-            else if (marioContactPos.y < downLimit)
-                marioContactPos.y = downLimit;
+            if (marioContactPos.y > upLimit.position.y)
+                marioContactPos.y = upLimit.position.y;
+            else if (marioContactPos.y < downLimit.position.y)
+                marioContactPos.y = downLimit.position.y;
 
-            redFlag.transform.localPosition = Vector3.MoveTowards(redFlag.transform.localPosition, new Vector2(redFlag.transform.localPosition.x, marioContactPos.y), 0.05f);
-            blackFlag.transform.localPosition = Vector3.MoveTowards(blackFlag.transform.localPosition, new Vector2(blackFlag.transform.localPosition.x, downLimit), 0.05f);
+            redFlag.transform.position = Vector3.MoveTowards(redFlag.transform.position, new Vector2(redFlag.transform.position.x, marioContactPos.y), 0.05f);
+            blackFlag.transform.position = Vector3.MoveTowards(blackFlag.transform.position, new Vector2(blackFlag.transform.position.x, downLimit.position.y), 0.05f);
 
-            if (blackFlag.transform.localPosition.y <= downLimit)
+            if (blackFlag.transform.position.y <= downLimit.position.y)
             {
                 var color_2 = blackFlag.GetComponent<SpriteRenderer>().color;
                 blackFlag.GetComponent<SpriteRenderer>().color = new Color(color_2.r, color_2.g, color_2.b, color_2.a - 0.1f);
@@ -137,7 +137,8 @@ public class Flag : MonoBehaviour
     //取旗得分
     public void getScore()
     {
-        int score = (int)((marioContactPos.y - downLimit) / (upLimit - downLimit) * 1000 / 100) * 100;
+        int score = (int)((marioContactPos.y - downLimit.position.y) / (upLimit.position.y - downLimit.position.y) * 1000 / 100) * 100;
+        Debug.Log(score);
         score = score < 100 ? 100 : score;
         score = score > 1000 ? 1000 : score;
         //Debug.Log(score);
