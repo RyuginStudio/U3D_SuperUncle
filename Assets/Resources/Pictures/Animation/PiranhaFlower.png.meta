@@ -1,0 +1,1100 @@
+fileFormatVersion: 2
+guid: dbcafb7113b1ae64bb567b456685975b
+timeCreated: 1524303607
+licenseType: Pro
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: PiranhaFlower_0
+    21300002: PiranhaFlower_1
+    21300004: PiranhaFlower_2
+    21300006: PiranhaFlower_3
+    21300008: PiranhaFlower_4
+    21300010: PiranhaFlower_5
+    21300012: PiranhaFlower_6
+    21300014: PiranhaFlower_7
+    21300016: PiranhaFlower_8
+    21300018: PiranhaFlower_9
+    21300020: PiranhaFlower_10
+    21300022: PiranhaFlower_11
+    21300024: PiranhaFlower_12
+    21300026: PiranhaFlower_13
+    21300028: PiranhaFlower_14
+    21300030: PiranhaFlower_15
+    21300032: PiranhaFlower_16
+    21300034: PiranhaFlower_17
+    21300036: PiranhaFlower_18
+    21300038: PiranhaFlower_19
+    21300040: PiranhaFlower_20
+    21300042: PiranhaFlower_21
+    21300044: PiranhaFlower_22
+    21300046: PiranhaFlower_23
+    21300048: PiranhaFlower_24
+    21300050: PiranhaFlower_25
+    21300052: PiranhaFlower_26
+    21300054: PiranhaFlower_27
+    21300056: PiranhaFlower_28
+    21300058: PiranhaFlower_29
+    21300060: PiranhaFlower_30
+    21300062: PiranhaFlower_31
+    21300064: PiranhaFlower_32
+    21300066: PiranhaFlower_33
+    21300068: PiranhaFlower_34
+    21300070: PiranhaFlower_35
+    21300072: PiranhaFlower_36
+    21300074: PiranhaFlower_37
+    21300076: PiranhaFlower_38
+    21300078: PiranhaFlower_39
+    21300080: PiranhaFlower_40
+    21300082: PiranhaFlower_41
+    21300084: PiranhaFlower_42
+    21300086: PiranhaFlower_43
+    21300088: PiranhaFlower_44
+    21300090: PiranhaFlower_45
+    21300092: PiranhaFlower_46
+    21300094: PiranhaFlower_47
+    21300096: PiranhaFlower_48
+    21300098: PiranhaFlower_49
+    21300100: PiranhaFlower_50
+    21300102: PiranhaFlower_51
+    21300104: PiranhaFlower_52
+    21300106: PiranhaFlower_53
+    21300108: PiranhaFlower_54
+    21300110: PiranhaFlower_55
+    21300112: PiranhaFlower_56
+    21300114: PiranhaFlower_57
+    21300116: PiranhaFlower_58
+    21300118: PiranhaFlower_59
+    21300120: PiranhaFlower_60
+    21300122: PiranhaFlower_61
+    21300124: PiranhaFlower_62
+    21300126: PiranhaFlower_63
+    21300128: PiranhaFlower_64
+    21300130: PiranhaFlower_65
+    21300132: PiranhaFlower_66
+    21300134: PiranhaFlower_67
+    21300136: PiranhaFlower_68
+    21300138: PiranhaFlower_69
+    21300140: PiranhaFlower_70
+    21300142: PiranhaFlower_71
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: 0
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaUsage: 1
+  alphaIsTransparency: 0
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 8192
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Standalone
+    maxTextureSize: 8192
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Android
+    maxTextureSize: 8192
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: WebGL
+    maxTextureSize: 8192
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: PiranhaFlower_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1288
+        width: 128
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PiranhaFlower_1
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 1288
+        width: 128
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PiranhaFlower_2
+      rect:
+        serializedVersion: 2
+        x: 258
+        y: 1288
+        width: 128
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PiranhaFlower_3
+      rect:
+        serializedVersion: 2
+        x: 387
+        y: 1288
+        width: 128
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PiranhaFlower_4
+      rect:
+        serializedVersion: 2
+        x: 516
+        y: 1288
+        width: 128
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PiranhaFlower_5
+      rect:
+        serializedVersion: 2
+        x: 645
+        y: 1288
+        width: 128
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PiranhaFlower_6
+      rect:
+        serializedVersion: 2
+        x: 774
+        y: 1288
+        width: 128
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PiranhaFlower_7
+      rect:
+        serializedVersion: 2
+        x: 903
+        y: 1288
+        width: 128
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PiranhaFlower_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1127
+        width: 128
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PiranhaFlower_9
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 1127
+        width: 128
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PiranhaFlower_10
+      rect:
+        serializedVersion: 2
+        x: 258
+        y: 1127
+        width: 128
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PiranhaFlower_11
+      rect:
+        serializedVersion: 2
+        x: 387
+        y: 1127
+        width: 128
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PiranhaFlower_12
+      rect:
+        serializedVersion: 2
+        x: 516
+        y: 1127
+        width: 128
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PiranhaFlower_13
+      rect:
+        serializedVersion: 2
+        x: 645
+        y: 1127
+        width: 128
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PiranhaFlower_14
+      rect:
+        serializedVersion: 2
+        x: 774
+        y: 1127
+        width: 128
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PiranhaFlower_15
+      rect:
+        serializedVersion: 2
+        x: 903
+        y: 1127
+        width: 128
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PiranhaFlower_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 966
+        width: 128
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PiranhaFlower_17
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 966
+        width: 128
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PiranhaFlower_18
+      rect:
+        serializedVersion: 2
+        x: 258
+        y: 966
+        width: 128
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PiranhaFlower_19
+      rect:
+        serializedVersion: 2
+        x: 387
+        y: 966
+        width: 128
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PiranhaFlower_20
+      rect:
+        serializedVersion: 2
+        x: 516
+        y: 966
+        width: 128
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PiranhaFlower_21
+      rect:
+        serializedVersion: 2
+        x: 645
+        y: 966
+        width: 128
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PiranhaFlower_22
+      rect:
+        serializedVersion: 2
+        x: 774
+        y: 966
+        width: 128
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PiranhaFlower_23
+      rect:
+        serializedVersion: 2
+        x: 903
+        y: 966
+        width: 128
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PiranhaFlower_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 805
+        width: 128
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PiranhaFlower_25
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 805
+        width: 128
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PiranhaFlower_26
+      rect:
+        serializedVersion: 2
+        x: 258
+        y: 805
+        width: 128
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PiranhaFlower_27
+      rect:
+        serializedVersion: 2
+        x: 387
+        y: 805
+        width: 128
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PiranhaFlower_28
+      rect:
+        serializedVersion: 2
+        x: 516
+        y: 805
+        width: 128
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PiranhaFlower_29
+      rect:
+        serializedVersion: 2
+        x: 645
+        y: 805
+        width: 128
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PiranhaFlower_30
+      rect:
+        serializedVersion: 2
+        x: 774
+        y: 805
+        width: 128
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PiranhaFlower_31
+      rect:
+        serializedVersion: 2
+        x: 903
+        y: 805
+        width: 128
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PiranhaFlower_32
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 644
+        width: 128
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PiranhaFlower_33
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 644
+        width: 128
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PiranhaFlower_34
+      rect:
+        serializedVersion: 2
+        x: 258
+        y: 644
+        width: 128
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PiranhaFlower_35
+      rect:
+        serializedVersion: 2
+        x: 387
+        y: 644
+        width: 128
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PiranhaFlower_36
+      rect:
+        serializedVersion: 2
+        x: 516
+        y: 644
+        width: 128
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PiranhaFlower_37
+      rect:
+        serializedVersion: 2
+        x: 645
+        y: 644
+        width: 128
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PiranhaFlower_38
+      rect:
+        serializedVersion: 2
+        x: 774
+        y: 644
+        width: 128
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PiranhaFlower_39
+      rect:
+        serializedVersion: 2
+        x: 903
+        y: 644
+        width: 128
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PiranhaFlower_40
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 483
+        width: 128
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PiranhaFlower_41
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 483
+        width: 128
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PiranhaFlower_42
+      rect:
+        serializedVersion: 2
+        x: 258
+        y: 483
+        width: 128
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PiranhaFlower_43
+      rect:
+        serializedVersion: 2
+        x: 387
+        y: 483
+        width: 128
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PiranhaFlower_44
+      rect:
+        serializedVersion: 2
+        x: 516
+        y: 483
+        width: 128
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PiranhaFlower_45
+      rect:
+        serializedVersion: 2
+        x: 645
+        y: 483
+        width: 128
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PiranhaFlower_46
+      rect:
+        serializedVersion: 2
+        x: 774
+        y: 483
+        width: 128
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PiranhaFlower_47
+      rect:
+        serializedVersion: 2
+        x: 903
+        y: 483
+        width: 128
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PiranhaFlower_48
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 322
+        width: 128
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PiranhaFlower_49
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 322
+        width: 128
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PiranhaFlower_50
+      rect:
+        serializedVersion: 2
+        x: 258
+        y: 322
+        width: 128
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PiranhaFlower_51
+      rect:
+        serializedVersion: 2
+        x: 387
+        y: 322
+        width: 128
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PiranhaFlower_52
+      rect:
+        serializedVersion: 2
+        x: 516
+        y: 322
+        width: 128
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PiranhaFlower_53
+      rect:
+        serializedVersion: 2
+        x: 645
+        y: 322
+        width: 128
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PiranhaFlower_54
+      rect:
+        serializedVersion: 2
+        x: 774
+        y: 322
+        width: 128
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PiranhaFlower_55
+      rect:
+        serializedVersion: 2
+        x: 903
+        y: 322
+        width: 128
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PiranhaFlower_56
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 161
+        width: 128
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PiranhaFlower_57
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 161
+        width: 128
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PiranhaFlower_58
+      rect:
+        serializedVersion: 2
+        x: 258
+        y: 161
+        width: 128
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PiranhaFlower_59
+      rect:
+        serializedVersion: 2
+        x: 387
+        y: 161
+        width: 128
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PiranhaFlower_60
+      rect:
+        serializedVersion: 2
+        x: 516
+        y: 161
+        width: 128
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PiranhaFlower_61
+      rect:
+        serializedVersion: 2
+        x: 645
+        y: 161
+        width: 128
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PiranhaFlower_62
+      rect:
+        serializedVersion: 2
+        x: 774
+        y: 161
+        width: 128
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PiranhaFlower_63
+      rect:
+        serializedVersion: 2
+        x: 903
+        y: 161
+        width: 128
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PiranhaFlower_64
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 128
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PiranhaFlower_65
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 0
+        width: 128
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PiranhaFlower_66
+      rect:
+        serializedVersion: 2
+        x: 258
+        y: 0
+        width: 128
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PiranhaFlower_67
+      rect:
+        serializedVersion: 2
+        x: 387
+        y: 0
+        width: 128
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PiranhaFlower_68
+      rect:
+        serializedVersion: 2
+        x: 516
+        y: 0
+        width: 128
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PiranhaFlower_69
+      rect:
+        serializedVersion: 2
+        x: 645
+        y: 0
+        width: 128
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PiranhaFlower_70
+      rect:
+        serializedVersion: 2
+        x: 774
+        y: 0
+        width: 128
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PiranhaFlower_71
+      rect:
+        serializedVersion: 2
+        x: 903
+        y: 0
+        width: 128
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

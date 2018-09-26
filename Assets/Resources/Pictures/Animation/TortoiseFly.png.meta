@@ -1,0 +1,332 @@
+fileFormatVersion: 2
+guid: fabe9a71d31e8674580e269700d7ee48
+timeCreated: 1520603968
+licenseType: Pro
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: TortoiseFly_0
+    21300002: TortoiseFly_1
+    21300004: TortoiseFly_2
+    21300006: TortoiseFly_3
+    21300008: TortoiseFly_4
+    21300010: TortoiseFly_5
+    21300012: TortoiseFly_6
+    21300014: TortoiseFly_7
+    21300016: TortoiseFly_8
+    21300018: TortoiseFly_9
+    21300020: TortoiseFly_10
+    21300022: TortoiseFly_11
+    21300024: TortoiseFly_12
+    21300026: TortoiseFly_13
+    21300028: TortoiseFly_14
+    21300030: TortoiseFly_15
+    21300032: TortoiseFly_16
+    21300034: TortoiseFly_17
+    21300036: TortoiseFly_18
+    21300038: TortoiseFly_19
+    21300040: TortoiseFly_20
+    21300042: TortoiseFly_21
+    21300044: TortoiseFly_22
+    21300046: TortoiseFly_23
+    21300048: TortoiseFly_24
+    21300050: TortoiseFly_25
+    21300052: TortoiseFly_26
+    21300054: TortoiseFly_27
+    21300056: TortoiseFly_28
+    21300058: TortoiseFly_29
+    21300060: TortoiseFly_30
+    21300062: TortoiseFly_31
+    21300064: TortoiseFly_32
+    21300066: TortoiseFly_33
+    21300068: TortoiseFly_34
+    21300070: TortoiseFly_35
+    21300072: TortoiseFly_36
+    21300074: TortoiseFly_37
+    21300076: TortoiseFly_38
+    21300078: TortoiseFly_39
+    21300080: TortoiseFly_40
+    21300082: TortoiseFly_41
+    21300084: TortoiseFly_42
+    21300086: TortoiseFly_43
+    21300088: TortoiseFly_44
+    21300090: TortoiseFly_45
+    21300092: TortoiseFly_46
+    21300094: TortoiseFly_47
+    21300096: TortoiseFly_48
+    21300098: TortoiseFly_49
+    21300100: TortoiseFly_50
+    21300102: TortoiseFly_51
+    21300104: TortoiseFly_52
+    21300106: TortoiseFly_53
+    21300108: TortoiseFly_54
+    21300110: TortoiseFly_55
+    21300112: TortoiseFly_56
+    21300114: TortoiseFly_57
+    21300116: TortoiseFly_58
+    21300118: TortoiseFly_59
+    21300120: TortoiseFly_60
+    21300122: TortoiseFly_61
+    21300124: TortoiseFly_62
+    21300126: TortoiseFly_63
+    21300128: TortoiseFly_64
+    21300130: TortoiseFly_65
+    21300132: TortoiseFly_66
+    21300134: TortoiseFly_67
+    21300136: TortoiseFly_68
+    21300138: TortoiseFly_69
+    21300140: TortoiseFly_70
+    21300142: TortoiseFly_71
+    21300144: TortoiseFly_72
+    21300146: TortoiseFly_73
+    21300148: TortoiseFly_74
+    21300150: TortoiseFly_75
+    21300152: TortoiseFly_76
+    21300154: TortoiseFly_77
+    21300156: TortoiseFly_78
+    21300158: TortoiseFly_79
+    21300160: TortoiseFly_80
+    21300162: TortoiseFly_81
+    21300164: TortoiseFly_82
+    21300166: TortoiseFly_83
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: -1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaUsage: 1
+  alphaIsTransparency: 0
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Android
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: WebGL
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: TortoiseFly_0
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 387
+        width: 178
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: TortoiseFly_1
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 387
+        width: 178
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: TortoiseFly_2
+      rect:
+        serializedVersion: 2
+        x: 359
+        y: 387
+        width: 178
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: TortoiseFly_3
+      rect:
+        serializedVersion: 2
+        x: 538
+        y: 387
+        width: 178
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: TortoiseFly_4
+      rect:
+        serializedVersion: 2
+        x: 717
+        y: 387
+        width: 178
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: TortoiseFly_5
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 194
+        width: 178
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: TortoiseFly_6
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 194
+        width: 178
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: TortoiseFly_7
+      rect:
+        serializedVersion: 2
+        x: 359
+        y: 194
+        width: 178
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: TortoiseFly_8
+      rect:
+        serializedVersion: 2
+        x: 538
+        y: 194
+        width: 178
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: TortoiseFly_9
+      rect:
+        serializedVersion: 2
+        x: 717
+        y: 194
+        width: 178
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: TortoiseFly_10
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 1
+        width: 178
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: TortoiseFly_11
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 1
+        width: 178
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
